@@ -13,100 +13,109 @@
 		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  		<style>
-  		.card {
-  			width: 306px;
-  			height: 458px;
-  			
-  		}
-  		</style>
-	</head>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<style>
+		input[type=text] {
+			width: 1680px;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+			background-color: white;
+			background-image: url('searchicon.png');
+			background-position: 10px 10px;
+			background-repeat: no-repeat;
+			padding: 12px 20px 12px 40px;
+		}
+		nav {
+		font-size:20px;
+		}
+		</style>
+</head>
 <body>
-	<div id="menu">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="#"><img src="../images/JH.png" width="35px" height="35px"/>지호전자</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+	
+	<div id="menu" class="container-fluid">
+		
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="/shopping/product/productList.html"> <img src="../images/JH.png"
+					width="35px" height="35px" /> 지호전자
+				</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">Menu</a>
-                    <div class="dropdown-menu">
-                    	<a class="dropdown-item" href="#">Login</a>
-                    	<a class="dropdown-item" href="#">Sign Up</a>
-                    <div class="dropdown-divider"></div>
-                     	<a class="dropdown-item" href="#">Service center</a> 
-                     	<a class="dropdown-item" href="#">Shopping Cart Lookup</a>
-                  	</div></li> 
-             		</ul> 
-				<form class="form-inline my-2 my-lg-0">
-               		<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-             	</form>
-			</div>
-		</nav>
-	</div>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="nav nav-pills nav-fill">
+						<li class="nav-item"><a class="nav-link" href="/shopping/product/productList.html"><i class="fa fa-home"></i>Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/shopping/user/loginForm.html"><i class="fa fa-user"></i>로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="/shopping/user/joinForm3.html"> <i class="fa fa-user-plus"></i>회원가입</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i>장바구니</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-question-circle"></i>고객센터</a></li>
+					</ul>
+				</div>
+			</nav>
 	
+			<form class="form-inline">
+				  <input type="text" name="search" placeholder="Search..">
+			</form>
+		
+	</div>
+
 	<div id="content" class="container-fluid border">
 		<div class="row">
 			<div class="nav-side-menu col-xs-0 col-md-2 border" style="height: auto">
             <div class="brand">All Categories</div>
-            <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+            <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse"
+               data-target="#menu-content"></i>
 
             <div class="menu-list">
-<!-- 				TV -----------------------------------------------------------------------------------------------------------z
- -->               <ul id="menu-content" class="menu-content collapse out">
+              <ul id="menu-content" class="menu-content collapse out">
                   <li data-toggle="collapse" data-target="#TV" class="collapsed">
                      <a href="#"><i class="fa fa-television fa-lg"></i> TV <span class="arrow"></span></a>
                   </li>
                   <ul class="sub-menu collapse" id="TV">
                      <li class="active"><a href="https://www.lge.co.kr/tvs?subCateId=CT50000028">OLED</a></li>
-                     <li><a href="https://www.lge.co.kr/search/result?search=%EB%B2%BD%EA%B1%B8%EC%9D%B4%ED%98%95&force=false#iihntcky">Wall Type</a></li>
-                     <li><a href="https://www.lge.co.kr/search/result?search=%EC%8A%A4%ED%83%A0%EB%93%9C%ED%98%95&force=false#0jnjw2bq">Stand Type</a></li>
-                  </ul>ㅋ
-<!--                   pc ----------------------------------------------------------------------------------------------------------------------
- -->                  <li data-toggle="collapse" data-target="#PC" class="collapsed">
+                     <li><a href="https://www.lge.co.kr/search/result?search=%EB%B2%BD%EA%B1%B8%EC%9D%B4%ED%98%95&force=false#iihntcky">벽걸이형</a></li>
+                     <li><a href="https://www.lge.co.kr/search/result?search=%EC%8A%A4%ED%83%A0%EB%93%9C%ED%98%95&force=false#0jnjw2bq">스탠드형</a></li>
+                  </ul>
+                <li data-toggle="collapse" data-target="#PC" class="collapsed">
                      <a href="#"><i class="fa fa-desktop fa-lg"></i> PC <span class="arrow"></span></a>
                   </li>
                   <ul class="sub-menu collapse" id="PC">
-                     <li class="active"><a href="https://www.lge.co.kr/notebook">Laptop</a></li>
-                     <li><a href="https://www.lge.co.kr/monitors">Monitor</a></li>
-                     <li><a href="https://www.lge.co.kr/all-in-one-pc-and-desktop">Desktop</a></li>
+                     <li class="active"><a href="https://www.lge.co.kr/notebook">노트북</a></li>
+                     <li><a href="https://www.lge.co.kr/monitors">모니터</a></li>
+                     <li><a href="https://www.lge.co.kr/all-in-one-pc-and-desktop">컴퓨터</a></li>
                   </ul>
 
-<!-- 					 냉장고 ------------------------------------------------------------------------------------------------------------------------
- -->                  <li data-toggle="collapse" data-target="#Refrigerator" class="collapsed">
-                     <a href="#"><i class="fa fa-snowflake-o fa-lg"></i> Refrigerator <span class="arrow"></span></a>
+                 <li data-toggle="collapse" data-target="#Refrigerator" class="collapsed">
+                     <a href="#"><i class="fa fa-snowflake-o fa-lg"></i> 냉장고 <span class="arrow"></span></a>
                   </li>
                   <ul class="sub-menu collapse" id="Refrigerator">
-                     <li class="active"><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000070">Water Purifier Type</a></li>
-                     <li><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000066">Double Door</a></li>
-                     <li><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000067">Standard</a></li>
-                     <li><a href="https://www.lge.co.kr/kimchi-refrigerators">Kimchi Refrigerator</a></li>
+                     <li class="active"><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000070">정수기형</a></li>
+                     <li><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000066">양문형</a></li>
+                     <li><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000067">일반형</a></li>
+                     <li><a href="https://www.lge.co.kr/kimchi-refrigerators">김치냉장고</a></li>
                   </ul> 
 
-<!-- 						세탁기 --------------------------------------------------------------------------------------------------------------------
- -->                  <li data-toggle="collapse" data-target="#washingmachine" class="collapsed">
-                     <a href="#"><i class="fa fa-tint fa-lg"></i> washing machine <span
+                  <li data-toggle="collapse" data-target="#washingmachine" class="collapsed">
+                     <a href="#"><i class="fa fa-tint fa-lg"></i> 세탁기 <span
                         class="arrow"></span></a>
                   </li>
                   <ul class="sub-menu collapse" id="washingmachine">
-                     <li class="active"><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000070">Roundabout</a></li>
-                     <li><a href="https://www.lge.co.kr/washing-machines?subCateId=CT50000102">Drum</a></li>
-                     <li><a href="https://www.lge.co.kr/washing-machines?subCateId=CT50000105">Wash Tower</a></li>
+                     <li class="active"><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000070">통돌이</a></li>
+                     <li><a href="https://www.lge.co.kr/washing-machines?subCateId=CT50000102">드럼</a></li>
+                     <li><a href="https://www.lge.co.kr/washing-machines?subCateId=CT50000105">워시 타워</a></li>
                   </ul>
-<!--       				에어컨 ----------------------------------------------------------------------------------------------------------------------------
- -->                  <li data-toggle="collapse" data-target="#airconditioner" class="collapsed">
-                     <a href="#"><i class="fa-thin fa-air-conditioner"></i> air conditioner <span
+                  <li data-toggle="collapse" data-target="#airconditioner" class="collapsed">
+                     <a href="#"><i class="fa-thin fa-air-conditioner"></i> 에어컨 <span
                         class="arrow"></span></a>
                   </li>
                   <ul class="sub-menu collapse" id="airconditioner">
-                     <li class="active"><a href="https://www.lge.co.kr/air-conditioners?subCateId=CT50000134">Stand Type</a></li>
-                     <li><a href="https://www.lge.co.kr/search/result?search=%EC%9D%B4%EB%8F%99%EC%8B%9D%20%EC%97%90%EC%96%B4%EC%BB%A8&force=false#3t05wsb7">Portable</a></li>
-                     <li><a href="https://www.lge.co.kr/air-conditioners?subCateId=CT50000135">Wall Type</a></li>
+                     <li class="active"><a href="https://www.lge.co.kr/air-conditioners?subCateId=CT50000134">스탠드형</a></li>
+                     <li><a href="https://www.lge.co.kr/search/result?search=%EC%9D%B4%EB%8F%99%EC%8B%9D%20%EC%97%90%EC%96%B4%EC%BB%A8&force=false#3t05wsb7">이동식</a></li>
+                     <li><a href="https://www.lge.co.kr/air-conditioners?subCateId=CT50000135">벽걸이형</a></li>
                   </ul>
 
                </ul>
@@ -117,14 +126,14 @@
 				<div class="row">
 					<div id="demo" class="carousel slide" data-ride="carousel" data-interval="3000">
 
-				<!-- Indicatorsㄴㄴ -->
+				
 				<ul class="carousel-indicators">
 					<li data-target="#demo" data-slide-to="0" class="active"></li>
 					<li data-target="#demo" data-slide-to="1"></li>
 					<li data-target="#demo" data-slide-to="2"></li>
 				</ul>
 
-				<!-- The slideshow -->
+				
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<img src="../images/티비1.png" width="1400px" height="500px" >
@@ -149,8 +158,8 @@
 					<tbody class="table table-borderless">
 						<tr>
 							<td>
-								<div class="card mx-3">
-									<div class="card-header bg-white"><img src="../images/티비4.png"></div>
+								<div class="card">
+									<div class="card-header"><img src="../images/티비4.png"></div>
 									<div class="card-body">
 										<h4>LG 올레드 오브제컬렉션</h4>
 										<p>보지 않을 때도 계속되는 예술적 경험</p>
@@ -159,8 +168,8 @@
 								</div>
 							</td>
 							<td>
-								<div class="card mx-3">
-									<div class="card-header bg-white"><img src="../images/티비5.png"></div>
+								<div class="card">
+									<div class="card-header"><img src="../images/티비5.png"></div>
 									<div class="card-body">
 										<h4>LG 올레드 evo</h4>
 										<p>5세대 인공지능 알포9과 화질 알고리즘으로 더 진화한 올레드</p>
@@ -169,8 +178,8 @@
 								</div>
 							</td>
 							<td>
-								<div class="card mx-3">
-									<div class="card-header bg-white"><img src="../images/티비6.png"></div>
+								<div class="card">
+									<div class="card-header"><img src="../images/티비6.png"></div>
 									<div class="card-body">
 										<h4>LG 올레드 TV</h4>
 										<p>10년 차의 기술과 노하우, 혁신적인 자발광 기술로 완성</p>
@@ -179,8 +188,8 @@
 								</div>
 							</td>
 							<td>
-								<div class="card mx-3">
-									<div class="card-header bg-white"><img src="../images/티비7.png"></div>
+								<div class="card">
+									<div class="card-header"><img src="../images/티비7.png"></div>
 									<div class="card-body">
 										<h4>LG 울트라 HD TV</h4>
 										<p>4K 울트라 화질이 보여주는 선명함의 차이</p>
@@ -191,8 +200,8 @@
 						</tr>
 						<tr>
 							<td>
-								<div class="card mx-3">
-									<div class="card-header bg-white"><img src="../images/티비8.png"></div>
+								<div class="card">
+									<div class="card-header"><img src="../images/티비8.png"></div>
 									<div class="card-body">
 										<h4>LG 울트라 HD TV</h4>
 										<p>4K 울트라 화질이 보여주는 선명함의 차이</p>
@@ -201,8 +210,8 @@
 								</div>
 							</td>
 							<td>
-								<div class="card mx-3">
-									<div class="card-header bg-white"><img src="../images/티비9.png"></div>
+								<div class="card">
+									<div class="card-header"><img src="../images/티비9.png"></div>
 									<div class="card-body">
 										<h4>LG 일반 LED TV</h4>
 										<p>보는 즐거움이 다른 생생한 화질</p>
@@ -211,8 +220,8 @@
 								</div>
 							</td>
 							<td>
-								<div class="card mx-3">
-									<div class="card-header bg-white"><img src="../images/티비10.png"></div>
+								<div class="card">
+									<div class="card-header"><img src="../images/티비10.png"></div>
 									<div class="card-body">
 										<h4>LG 나노셀 TV</h4>
 										<p>나노 입자로 완성한 퓨어 컬러</p>
@@ -221,8 +230,8 @@
 								</div>
 							</td>
 							<td>
-								<div class="card mx-3">
-									<div class="card-header bg-white"><img src="../images/티비11.png"></div>
+								<div class="card">
+									<div class="card-header"><img src="../images/티비11.png"></div>
 									<div class="card-body">
 										<h4>LG QNED TV(Mini LED)</h4>
 										<p>빛을 섬세하게 제어하는 미니 LED에 퀀텀닷+나노셀로 완성</p>
@@ -249,5 +258,6 @@
 			
 		</div>
 	</div>
+
 </body>
 </html>
