@@ -1,0 +1,203 @@
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+	argin: 0;
+	padding: 0;
+	-webkit-text-size-adjust: none;
+	word-break: keep-all;
+}
+
+.breadcrumb li {
+	display: inline-block;
+}
+
+li {
+	text-align: -webkit-match-parent;
+}
+
+dl, li, menu, ol, ul {
+	list-style: none;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+h2 {
+	display: block;
+	font-size: 1.5em;
+	margin-block-start: 0.83em;
+	margin-block-end: 0.83em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: bold;
+}
+
+div {
+	display: block;
+}
+
+.mypage .lnb-wrap .lnb {
+	float: left;
+	width: 16%;
+	padding-right: 24px;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.mypage .lnb-wrap .lnb .lnb-new .mypage-lnb .myp-sub {
+	margin-top: 6px;
+}
+
+.mypage .lnb-wrap .lnb .mypage-lnb a, .mypage .lnb-wrap .lnb .mypage-lnb span
+	{
+	display: inline-block;
+	font-size: 14px;
+	line-height: 24px;
+}
+
+.mypage-lnb>li {
+	margin-top: 10px;
+}
+
+my-dep1 {
+	font-size: 45px;
+}
+
+.mypage .lnb-wrap .lnb-contents {
+	float: right;
+	width: 84%;
+	max-width: 1146px;
+}
+
+.mypage.mypage-main-new .my-account .my-text {
+	margin-bottom: 32px;
+	border-bottom: 2px solid #000;
+}
+
+.mypage.mypage-main-new .my-account {
+	position: relative;
+	margin-bottom: 40px;
+}
+
+.mypage.mypage-main-new .my-account .my-text {
+	margin-bottom: 32px;
+	border-bottom: 2px solid #000;
+}
+
+.mypage.mypage-main-new .my-account .my-info {
+	display: flex;
+}
+
+.mypage.mypage-main-new .my-account .my-info>li {
+	position: relative;
+	display: inline-block;
+}
+
+.mypage.mypage-main-new .my-account .my-info>li:first-child {
+	width: 100%;
+	max-width: 562px;
+}
+
+.mypage.mypage-main-new .my-account .my-text>.name {
+	font-weight: 700;
+	font-size: 45px;
+	line-height: 1.29;
+	letter-spacing: -.5px;
+}
+
+.tabs-wrap {
+	position: relative;
+	display: block;
+}
+
+.tabs-wrap.btn-type .tabs>li {
+	display: inline-block;
+}
+
+.tabs-wrap.btn-type .tabs>li:first-child {
+	margin-left: 0;
+}
+
+.tabs-wrap .tabs {
+	max-width: 100%;
+	position: relative;
+	margin: 0 -2px;
+	padding: 0 2px;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.tabs-wrap .tabs>li {
+	display: inline-block;
+	margin-left: 36px;
+	padding: 2px 0;
+	vertical-align: top;
+}
+
+.tabs-wrap.btn-type:before {
+	position: absolute;
+	bottom: 1px !important;
+	right: 0;
+	left: 0;
+	height: 1px;
+	background: #ddd;
+	content: '';
+}
+
+.order-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	position: relative;
+	width: 100%;
+	padding: 24px 0;
+	background-color: #fff;
+}
+
+.order-item .category {
+	top: 0;
+	color: #da0f47;
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+@media screen and (max-width: 767px) .order-item .product-info {
+	padding
+	:
+	 
+	0
+	0
+	0
+	108
+	px
+	;
+	
+			    
+	width
+	:
+	 
+	100%;
+	flex
+	:
+	 
+	inherit
+	;
+	
+			
+}
+
+.order-item .product-info {
+	flex: 1;
+	position: relative;
+	padding: 24px 0;
+}
+
+.total p {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
