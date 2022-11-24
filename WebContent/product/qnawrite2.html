@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+		<script src=https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<script>
+		
+		</script>
+		<style>
+		table,tr,td{
+		border: 1px solid #ccc;
+		} 
+	</style>
+	</head>
+	<body>
+		<div class="container">
+  <h2>상품문의</h2>
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    상품문의글쓰기 버튼
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">상품 문의 작성</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          
+		<h4>문의 유형을 선택하시고, 내용을 작성해 주세요.</h4>
+		
+		
+		
+		<form id="frmQuestDetail" name="frmQuestDetail" method="post" onsubmit="javascript:return false;">
+			
+			<div class="qna">
+			<table summary="상품Q&amp;작성, 제목, 문의유형, 문의내용 등록하는 표" class="qnaTbl" >
+				
+					
+				<tbody>
+					<tr>
+						<th scope="row"><span class="mond">문의유형</span></th>
+						<td>
+							<ul class="inqQnaTab">
+								<li class="qTab1"><span>상품</span></li>
+
+								<li class="qTab4"><span>기타</span></li>
+							</ul>
+							
+						</td>
+					</tr>
+					
+					<tr>
+						<th scope="row"><span class="mond">제목</span></th>
+						 <td>
+							<div class="titWrite">
+								<input type="text" id="inquiryTitleName" name="inquiryTitleName" maxlength="51" 
+								value="" placeholder="제목을 입력해 주세요. (50자 이내)">
+								
+							</div> 
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row"><span class="mond">문의내용</span></th>
+						<td class="QnaTxt">
+							
+								<textarea rows="8" cols="20" name="inquiryContent" id="inquiryContent" 
+								placeholder="문의 내용을 입력해 주세요. (500자 이내)" ></textarea>
+								<div class="abClear">
+									
+									
+								</div> 
+							
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+			</div>
+			<div class="qnaNoti">
+				<p>개인정보 수집 및 이용에 대한 안내</p>
+				<table summary="">
+					
+					
+					<tbody >
+						<tr>
+							<th scope="row">수집 항목</th>
+							<td>휴대폰 번호 및 상품 Q&amp;A 제목, 문의 내용 등 개인이 직접 입력한 내용</td>
+						</tr>
+						<tr>
+							<th scope="row">수집 목적</th>
+							<td>문의 접수 및 결과 회신</td>
+						</tr>
+						<tr>
+							<th scope="row">이용 기간</th>
+							<td>원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.<br>
+							단, 관계 법령의 규정에 의하여 보존할 필요가 있는 경우  아래와 같이 관계 법령에서 정한 일정 기간 동안 개인정보를 보관할 수 있습니다.<br>
+							- 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년(전자상거래등에서의 소비자보호에 관한 법률)
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+			</div>
+			<div class="alC">
+				<a href="#" class="btnCom type1">등록</a>
+					<a href="#" class="btnCom type2">취소</a>	
+			</div>
+		</form>
+	
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+	</body>
+</html>
