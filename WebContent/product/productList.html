@@ -4,17 +4,28 @@
 	<meta charset="UTF-8">
 	<title>Shopping Mall</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/shopping/css/sidebar.css" rel="stylesheet" id="bootstrap-css">
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-  		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  		 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+ 		 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+ 		 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<script>
+		function ElectronicProducts(evt, ProductsName) {
+			  var i, tabcontent, tablinks;
+			  tabcontent = document.getElementsByClassName("tabcontent");
+			  for (i = 0; i < tabcontent.length; i++) {
+			    tabcontent[i].style.display = "none";
+			  }
+			  tablinks = document.getElementsByClassName("tablinks");
+			  for (i = 0; i < tablinks.length; i++) {
+			    tablinks[i].className = tablinks[i].className.replace(" active", "");
+			  }
+			  document.getElementById(ProductsName).style.display = "block";
+			  evt.currentTarget.className += " active";
+			}
+		</script>
 		<style>
+		
 		input[type=text] {
 			width: 1680px;
 			box-sizing: border-box;
@@ -40,233 +51,419 @@
 		.card-header {
 			background-color: white;
 		}
+		
+			* {box-sizing: border-box}
+		body {font-family: "Lato", sans-serif;}
+		
+		/* Style the tab */
+		.tab {
+		 overflow: hidden;
+		  border: 1px solid #ccc;
+		  background-color: #f1f1f1;
+		}
+		
+		/* Style the buttons inside the tab */
+		.tab button {
+		    background-color: inherit;
+			  float: left;
+			  border: none;
+			  outline: none;
+			  cursor: pointer;
+			  padding: 14px 16px;
+			  transition: 0.3s;
+			  font-size: 17px;
+		}
+		
+		/* Change background color of buttons on hover */
+		.tab button:hover {
+		  background-color: #ddd;
+		}
+		
+		/* Create an active/current "tab button" class */
+		.tab button.active {
+		  background-color: #ccc;
+		}
+		
+		/* Style the tab content */
+		.tabcontent {
+		  float: top;
+		  padding: 0px 12px;
+		  border: 1px solid #ccc;
+		  width: 70%;
+		  border-left: none;
+		  height: 300px;
+		  display: none;
+		}
+		
+		/* Clear floats after the tab */
+		.clearfix::after {
+		  content: "";
+		  clear: both;
+		  display: table;
+		}
 		</style>
 </head>
-<body>
-
+	<body>
 	
-	<div id="menu" class="container-fluid">
-		
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="/shopping/product/productList.html"> <img src="../images/JH.png"
-					width="35px" height="35px" /> 지호전자
+	
+		<nav class="navbar navbar-expand-lg navbar-light"">
+			<a class="navbar-brand" href="/shopping/product/productList.html"> <img src="../images/JH.png"
+					width="35px" height="35px"/> 지호전자
 				</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-				aria-expanded="false" aria-label="Toggle navigation">
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-					<ul class="nav nav-pills nav-fill">
-						<li class="nav-item"><a class="nav-link" href="/shopping/product/productList.html"><i class="fa fa-home"></i>Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="/shopping/user/loginForm.html"><i class="fa fa-user"></i>로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="/shopping/user/joinForm.html"> <i class="fa fa-user-plus"></i>회원가입</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i>장바구니</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-question-circle"></i>고객센터</a></li>
-					</ul>
-				</div>
-			</nav>
 	
-			<form class="form-inline">
-				  <input type="text" name="search" placeholder="Search..">
+			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" >
+
+			<ul class="navbar-nav" >
+				<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" ><i class="fa fa-user"></i></a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/shopping/user/loginForm.html">로그인</a> 
+						<a class="dropdown-item" href="/shopping/user/joinForm.html">회원가입</a> 
+						<a class="dropdown-item" href="/shopping/user/orderList.html">주문내역</a>
+					</div>
+				</li>
+
+				<li class="nav-item"><a class="nav-link" href="/shopping/product/productList2.html"><i class="fa fa-shopping-cart"></i></a></li>
+				<li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-question-circle"></i></a></li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search"
+					placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color:white; font-color:black;">Search</button>
 			</form>
-		
-	</div>
+
+		</div>
+		</nav>
+		<div class="tab">
+			<button class="tablinks" onmouseover="ElectronicProducts(event, 'TV')">TV</button>
+			<button class="tablinks" onmouseover="ElectronicProducts(event, 'PC')">PC</button>
+			<button class="tablinks" onmouseover="ElectronicProducts(event, 'Refrigerator')">냉장고</button>
+			<button class="tablinks" onmouseover="ElectronicProducts(event, 'Airconditioner')">에어컨</button>
+			<button class="tablinks" onmouseover="ElectronicProducts(event, 'Washingmachine')">세탁기</button>
+		</div>
+		<div id="TV" class="tabcontent">
+			<h3>TV</h3>
+			<hr/>
+			<h5><a href="/shopping/product/productDetail2.html">OLED</a></h5> <hr/>
+			<h5><a href="/shopping/product/productDetail2.html">벽걸이형</a></h5><hr/>
+			<h5><a href="/shopping/product/productDetail2.html">스탠드형</a></h5><hr/>
+		</div>
+	
+		<div id="PC" class="tabcontent">
+			<h3>PC</h3>
+			<hr/>
+			<h5><a href="/shopping/product/productDetail2.html">노트북</a></h5><hr/>
+			<h5><a href="/shopping/product/productDetail2.html">모니터</a></h5><hr/>
+			<h5><a href="/shopping/product/productDetail2.html">컴퓨터</a></h5><hr/>
+		</div>
+	
+		<div id="Refrigerator" class="tabcontent">
+			<h3>냉장고</h3>
+			<hr/>
+			<h5><a href="/shopping/product/productDetail2.html">정수기형</a></h5><hr/>
+			<h5><a href="/shopping/product/productDetail2.html"">양문형</a></h5><hr/>
+			<h5><a href="/shopping/product/productDetail2.html">일반형</a></h5><hr/>
+			<h5><a href="/shopping/product/productDetail2.html">김치냉장고</a></h5><hr/>
+		</div>
+		<div id="Airconditioner" class="tabcontent">
+			<h3>에어컨</h3>
+			<hr/>
+			<h5><a href="/shopping/product/productDetail2.html">스탠드형</a></h5><hr/>
+			<h5><a href="/shopping/product/productDetail2.html">이동식</a></h5><hr/>
+			<h5><a href="/shopping/product/productDetail2.html">벽걸이형</a></h5><hr/>
+		</div>
+		<div id="Washingmachine" class="tabcontent">
+			<h3>세탁기</h3>
+			<hr/>
+			<h5><a href="/shopping/product/productDetail2.html">통돌이</a></h5><hr/>
+			<h5><a href="/shopping/product/productDetail2.html">드럼</a></h5><hr/>
+			<h5><a href="/shopping/product/productDetail2.html">워시타워</a></h5><hr/>
+		</div>
+		<div class="clearfix"></div>
 
 	<div id="content" class="container-fluid border">
 		<div class="row">
-			<div class="nav-side-menu col-xs-0 col-md-2 border" style="height: auto">
-            <div class="brand">All Categories</div>
-            <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse"
-               data-target="#menu-content"></i>
+			<div class="nav-side-menu col-xs-0 col-md-2 scroll"
+				style="height: 3000px" style="margin-top: 10px">
+				<hr />
+				<div class="InbGroup">
+					<div class="smartFilter" id="smartFilter">
+						<div class="scroll" style="max-height: 3354px;">
+							<div class="filterMenu" id="divBrand">
+								<div class="filterMenuItem">
+									<button type="button" class="title"
+										onclick="search.etc.smartFilter(this);"
+										style="border: 1px solid black;">브랜드</button>
+									<hr />
+									<div class="depth">
+										<ul id="filterBrandList" class="list-unstyled">
+											<li data-dic="1삼성전자" data-cnt="157">
+												<div class="inpCheck">
+													<input type="checkbox" name="brnd_G10000" id="brnd_G10000"
+														value="삼성전자_G10000" onclick=""><label
+														for="brnd_G10000">삼성전자</label>(157)
+												</div>
+											</li>
+											<li data-dic="2LG전자" data-cnt="138">
+												<div class="inpCheck">
+													<input type="checkbox" name="brnd_G10020" id="brnd_G10020"
+														value="LG전자_G10020"
+														onclick="javascript:search.btn.brand('LG전자_G10020');"><label
+														for="brnd_G10020">LG전자</label>(138)
+												</div>
+											</li>
+											<li data-dic="2MIDOTECH" data-cnt="138">
+												<div class="inpCheck">
+													<input type="checkbox" name="brnd_12336024"
+														id="brnd_12336024" value="MIDOTECH_12336024"
+														onclick="javascript:search.btn.brand('MIDOTECH_12336024');"><label
+														for="brnd_12336024">MIDOTECH</label>(138)
+													<hr />
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="filterMenu" id="divPrice">
+								<div class="filterMenuItem">
+									<button type="button" class="title"
+										onclick="search.etc.smartFilter(this);"
+										style="border: 1px solid black;">가격</button>
+									<hr />
+									<ul class="depth list-unstyled" id="divSearchPrice">
+										<li><div class="inpRadio">
+												<input type="radio" name="priceValue" id="priceAll"
+													onclick="javascript:search.btn.checkedPrice(this.id,'','');"
+													checked="checked" data-price="가격 전체"><label
+													for="priceAll">전체</label>
+											</div></li>
+										<li><div class="inpRadio">
+												<input type="radio" name="priceValue" id="priceMin"
+													onclick="javascript:search.btn.checkedPrice(this.id,'110000','630000');"
+													data-price="63만원이하"><label for="priceMin">63만원이하</label>
+											</div></li>
+										<li><div class="inpRadio">
+												<input type="radio" name="priceValue" id="priceMinMid"
+													onclick="javascript:search.btn.checkedPrice(this.id,'630000','1100000');"
+													data-price="63만원~110만원"><label for="priceMinMid">63만원~110만원</label>
+											</div></li>
+										<li><div class="inpRadio">
+												<input type="radio" name="priceValue" id="priceMid"
+													onclick="javascript:search.btn.checkedPrice(this.id,'1100000','2100000');"
+													data-price="110만원~210만원"><label for="priceMid">110만원~210만원</label>
+											</div></li>
+										<li><div class="inpRadio">
+												<input type="radio" name="priceValue" id="priceMaxMid"
+													onclick="javascript:search.btn.checkedPrice(this.id,'2100000','3200000');"
+													data-price="210만원이상"><label for="priceMaxMid">210만원이상</label>
+												<hr />
+											</div></li>
+									</ul>
 
-            <div class="menu-list">
-              <ul id="menu-content" class="menu-content collapse out">
-                  <li data-toggle="collapse" data-target="#TV" class="collapsed">
-                     <a href="#"><i class="fa fa-television fa-lg"></i> TV <span class="arrow"></span></a>
-                  </li>
-                  <ul class="sub-menu collapse" id="TV">
-                     <li class="active"><a href="https://www.lge.co.kr/tvs?subCateId=CT50000028">OLED</a></li>
-                     <li><a href="https://www.lge.co.kr/search/result?search=%EB%B2%BD%EA%B1%B8%EC%9D%B4%ED%98%95&force=false#iihntcky">벽걸이형</a></li>
-                     <li><a href="https://www.lge.co.kr/search/result?search=%EC%8A%A4%ED%83%A0%EB%93%9C%ED%98%95&force=false#0jnjw2bq">스탠드형</a></li>
-                  </ul>
-                <li data-toggle="collapse" data-target="#PC" class="collapsed">
-                     <a href="#"><i class="fa fa-desktop fa-lg"></i> PC <span class="arrow"></span></a>
-                  </li>
-                  <ul class="sub-menu collapse" id="PC">
-                     <li class="active"><a href="https://www.lge.co.kr/notebook">노트북</a></li>
-                     <li><a href="https://www.lge.co.kr/monitors">모니터</a></li>
-                     <li><a href="https://www.lge.co.kr/all-in-one-pc-and-desktop">컴퓨터</a></li>
-                  </ul>
-
-                 <li data-toggle="collapse" data-target="#Refrigerator" class="collapsed">
-                     <a href="#"><i class="fa fa-snowflake-o fa-lg"></i> 냉장고 <span class="arrow"></span></a>
-                  </li>
-                  <ul class="sub-menu collapse" id="Refrigerator">
-                     <li class="active"><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000070">정수기형</a></li>
-                     <li><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000066">양문형</a></li>
-                     <li><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000067">일반형</a></li>
-                     <li><a href="https://www.lge.co.kr/kimchi-refrigerators">김치냉장고</a></li>
-                  </ul> 
-
-                  <li data-toggle="collapse" data-target="#washingmachine" class="collapsed">
-                     <a href="#"><i class="fa fa-tint fa-lg"></i> 세탁기 <span
-                        class="arrow"></span></a>
-                  </li>
-                  <ul class="sub-menu collapse" id="washingmachine">
-                     <li class="active"><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000070">통돌이</a></li>
-                     <li><a href="https://www.lge.co.kr/washing-machines?subCateId=CT50000102">드럼</a></li>
-                     <li><a href="https://www.lge.co.kr/washing-machines?subCateId=CT50000105">워시 타워</a></li>
-                  </ul>
-                  <li data-toggle="collapse" data-target="#airconditioner" class="collapsed">
-                     <a href="#"><i class="fa-thin fa-air-conditioner"></i> 에어컨 <span
-                        class="arrow"></span></a>
-                  </li>
-                  <ul class="sub-menu collapse" id="airconditioner">
-                     <li class="active"><a href="https://www.lge.co.kr/air-conditioners?subCateId=CT50000134">스탠드형</a></li>
-                     <li><a href="https://www.lge.co.kr/search/result?search=%EC%9D%B4%EB%8F%99%EC%8B%9D%20%EC%97%90%EC%96%B4%EC%BB%A8&force=false#3t05wsb7">이동식</a></li>
-                     <li><a href="https://www.lge.co.kr/air-conditioners?subCateId=CT50000135">벽걸이형</a></li>
-                  </ul>
-
-               </ul>
-            </div>
-         </div>
-			
-			<div class="main col-xs-12 col-md-10 border">
-				<div class="row">
-					<div id="demo" class="carousel slide" data-ride="carousel" data-interval="3000">
-
-				
-				<ul class="carousel-indicators">
-					<li data-target="#demo" data-slide-to="0" class="active"></li>
-					<li data-target="#demo" data-slide-to="1"></li>
-					<li data-target="#demo" data-slide-to="2"></li>
-				</ul>
-
-				
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="../images/티비1.png" width="1400px" height="500px" >
-					</div>
-					<div class="carousel-item">
-						<img src="../images/티비2.png" width="1400px"  height="500px">
-					</div>
-					<div class="carousel-item">
-						<img src="../images/티비3.png" width="1400px" height="500px" >
+								</div>
+							</div>
+							<div class="filterMenu" id="divStar">
+								<div class="filterMenuItem">
+									<button type="button" class="title"
+										onclick="search.etc.smartFilter(this);"
+										style="border: 1px solid black;">별점</button>
+									<hr />
+									<ul class="depth list-unstyled">
+										<li>
+											<div class="inpRadio">
+												<input type="radio" name="starRatingRb" id="starRatingAll"
+													onclick="javascript:search.btn.starSearch(this.id, '');">
+												<label for="starRatingAll"> <span class="text">전체</span>
+												</label>
+											</div>
+										</li>
+										<li>
+											<div class="inpRadio">
+												<input type="radio" name="starRatingRb" id="starRating1"
+													onclick="javascript:search.btn.starSearch(this.id, '40');">
+												<label for="starRating1">
+													<div class="star_sc starSm">
+														<span style="width: 80%;"></span>
+													</div> <span class="text">4점 이상</span>
+												</label>
+											</div>
+										</li>
+										<li>
+											<div class="inpRadio">
+												<input type="radio" name="starRatingRb" id="starRating2"
+													onclick="javascript:search.btn.starSearch(this.id, '30');">
+												<label for="starRating2">
+													<div class="star_sc starSm">
+														<span style="width: 60%;"></span>
+													</div> <span class="text">3점 이상</span>
+												</label>
+											</div>
+										</li>
+										<li>
+											<div class="inpRadio">
+												<input type="radio" name="starRatingRb" id="starRating3"
+													onclick=""> <label for="starRating3">
+													<div class="star_sc starSm">
+														<span style="width: 40%;"></span>
+													</div> <span class="text">2점 이상</span>
+												</label>
+											</div>
+										</li>
+										<li>
+											<div class="inpRadio">
+												<input type="radio" name="starRatingRb" id="starRating4"
+													onclick="javascript:search.btn.starSearch(this.id, '10');">
+												<label for="starRating4">
+													<div class="star_sc starSm">
+														<span style="width: 20%;"></span>
+													</div> <span class="text">1점 이상</span>
+												</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-
-				<!-- Left and right controls -->
-				<a class="carousel-control-prev" href="#demo" data-slide="prev"><span class="carousel-control-prev-icon"></span></a>
-				<a class="carousel-control-next" href="#demo" data-slide="next"><span class="carousel-control-next-icon"></span></a>
 			</div>
+
+
+			<div class="main col-xs-12 col-md-10 border">
+			<div class = "row border" > 
+					<h5><a href="/shopping/product/productList.html">홈 </a> 
+					></h5>
+					<h5><a href="/shopping/product/productList.html">	tv</a> 
+					</h5>
+					 
+					   
 				</div>
-				
 				<div class="row">
 					<table>
-					<tbody class="table table-borderless">
-						<tr>
-							<td>
-								<a href="/shopping/product/productDetail.html">
+						<tbody class="table table-borderless">
+							<tr>
+								<td><a href="/shopping/product/productDetail.html">
+										<div class="card">
+											<div class="card-header">
+												<img src="../images/티비4.png">
+											</div>
+											<div class="card-body">
+												<h4>LG 올레드 오브제컬렉션</h4>
+												<p>보지 않을 때도 계속되는 예술적 경험</p>
+												<p>2,832,000원 ~ 9,400,000원</p>
+											</div>
+										</div>
+								</a></td>
+								<td>
 									<div class="card">
-										<div class="card-header"><img src="../images/티비4.png"></div>
+										<div class="card-header">
+											<img src="../images/티비5.png">
+										</div>
 										<div class="card-body">
-											<h4>LG 올레드 오브제컬렉션</h4>
-											<p>보지 않을 때도 계속되는 예술적 경험</p>
-											<p>2,832,000원 ~ 9,400,000원</p>
+											<h4>LG 올레드 evo</h4>
+											<p>5세대 인공지능 알포9과 화질 알고리즘으로 더 진화한 올레드</p>
+											<p>1,750,0000원 ~ 41,800,000원</p>
 										</div>
 									</div>
-								</a>
-							</td>
-							<td>
-								<div class="card">
-									<div class="card-header"><img src="../images/티비5.png"></div>
-									<div class="card-body">
-										<h4>LG 올레드 evo</h4>
-										<p>5세대 인공지능 알포9과 화질 알고리즘으로 더 진화한 올레드</p>
-										<p>1,750,0000원 ~ 41,800,000원</p>
+								</td>
+								<td>
+									<div class="card">
+										<div class="card-header">
+											<img src="../images/티비6.png">
+										</div>
+										<div class="card-body">
+											<h4>LG 올레드 TV</h4>
+											<p>10년 차의 기술과 노하우, 혁신적인 자발광 기술로 완성</p>
+											<p>1,390,000원 ~ 8,890,000원</p>
+										</div>
 									</div>
-								</div>
-							</td>
-							<td>
-								<div class="card">
-									<div class="card-header"><img src="../images/티비6.png"></div>
-									<div class="card-body">
-										<h4>LG 올레드 TV</h4>
-										<p>10년 차의 기술과 노하우, 혁신적인 자발광 기술로 완성</p>
-										<p>1,390,000원 ~ 8,890,000원</p>
+								</td>
+								<td>
+									<div class="card">
+										<div class="card-header">
+											<img src="../images/티비7.png">
+										</div>
+										<div class="card-body">
+											<h4>LG 울트라 HD TV</h4>
+											<p>4K 울트라 화질이 보여주는 선명함의 차이</p>
+											<p>890,000원 ~ 3,590,000원</p>
+										</div>
 									</div>
-								</div>
-							</td>
-							<td>
-								<div class="card">
-									<div class="card-header"><img src="../images/티비7.png"></div>
-									<div class="card-body">
-										<h4>LG 울트라 HD TV</h4>
-										<p>4K 울트라 화질이 보여주는 선명함의 차이</p>
-										<p>890,000원 ~ 3,590,000원</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="card">
+										<div class="card-header">
+											<img src="../images/티비8.png">
+										</div>
+										<div class="card-body">
+											<h4>LG 울트라 HD TV</h4>
+											<p>4K 울트라 화질이 보여주는 선명함의 차이</p>
+											<p>890,000원 ~ 3,590,000원</p>
+										</div>
 									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="card">
-									<div class="card-header"><img src="../images/티비8.png"></div>
-									<div class="card-body">
-										<h4>LG 울트라 HD TV</h4>
-										<p>4K 울트라 화질이 보여주는 선명함의 차이</p>
-										<p>890,000원 ~ 3,590,000원</p>
+								</td>
+								<td>
+									<div class="card">
+										<div class="card-header">
+											<img src="../images/티비9.png">
+										</div>
+										<div class="card-body">
+											<h4>LG 일반 LED TV</h4>
+											<p>보는 즐거움이 다른 생생한 화질</p>
+											<p>540,000원 ~ 640,000원</p>
+										</div>
 									</div>
-								</div>
-							</td>
-							<td>
-								<div class="card">
-									<div class="card-header"><img src="../images/티비9.png"></div>
-									<div class="card-body">
-										<h4>LG 일반 LED TV</h4>
-										<p>보는 즐거움이 다른 생생한 화질</p>
-										<p>540,000원 ~ 640,000원</p>
+								</td>
+								<td>
+									<div class="card">
+										<div class="card-header">
+											<img src="../images/티비10.png">
+										</div>
+										<div class="card-body">
+											<h4>LG 나노셀 TV</h4>
+											<p>나노 입자로 완성한 퓨어 컬러</p>
+											<p>2,890,000원 ~ 4,090,000원</p>
+										</div>
 									</div>
-								</div>
-							</td>
-							<td>
-								<div class="card">
-									<div class="card-header"><img src="../images/티비10.png"></div>
-									<div class="card-body">
-										<h4>LG 나노셀 TV</h4>
-										<p>나노 입자로 완성한 퓨어 컬러</p>
-										<p>2,890,000원 ~ 4,090,000원</p>
+								</td>
+								<td>
+									<div class="card">
+										<div class="card-header">
+											<img src="../images/티비11.png">
+										</div>
+										<div class="card-body">
+											<h4>LG QNED TV(Mini LED)</h4>
+											<p>빛을 섬세하게 제어하는 미니 LED에 퀀텀닷+나노셀로 완성</p>
+											<p>7,490,000원 ~ 12,000,000원</p>
+										</div>
 									</div>
-								</div>
-							</td>
-							<td>
-								<div class="card">
-									<div class="card-header"><img src="../images/티비11.png"></div>
-									<div class="card-body">
-										<h4>LG QNED TV(Mini LED)</h4>
-										<p>빛을 섬세하게 제어하는 미니 LED에 퀀텀닷+나노셀로 완성</p>
-										<p>7,490,000원 ~ 12,000,000원</p>
-									</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 				<div class="row center">
-				 <ul class="pagination" >
-				    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				    <li class="page-item"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
-				    <li class="page-item"><a class="page-link" href="#">4</a></li>
-				    <li class="page-item"><a class="page-link" href="#">5</a></li>
-				    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-				  </ul>
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item active"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">4</a></li>
+						<li class="page-item"><a class="page-link" href="#">5</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 
