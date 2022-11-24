@@ -109,8 +109,8 @@
 			  justify-content: center;
 			}
 			.item__image .iphone {
-			  margin-top: -50px;
-			  margin-left: -100px;
+			  margin-left: 10px;
+			  margin-right: 10px;
 			  width: 200px;
 			}
 			.item__details {
@@ -184,7 +184,7 @@
 			
 			.text-validated {
 			  border-color: #7dc855;
-			  background-image: url("../images/icon-tick.png");
+			  background-image: url("../images/JH.png");
 			  background-repeat: no-repeat;
 			  background-position: right 18px center;
 			}
@@ -192,7 +192,7 @@
 			.ddl {
 			  border-color: #f0f4f7;
 			  background-color: #f0f4f7;
-			  width: 100px;
+			  width: 200px;
 			  margin-right: 10px;
 			}
 			
@@ -204,6 +204,7 @@
 			.field {
 			  padding-top: 15px;
 			  padding-right: 30px;
+			  padding-left: 20px;
 			  width: 50%;
 			}
 			.field.small {
@@ -316,8 +317,8 @@
 			}
 			.payment__type.active {
 			  color: #0a0a0a;
-			  background: #f6fcf7;
-			  border-color: #7dc855;
+			  background: #f6f9fc;
+			  border-color: navy;
 			}
 			.payment__type .icon {
 			  font-size: 32px;
@@ -417,7 +418,7 @@
 		        </div>
 		      </div>
 		      <div class="notification">
-		        Complete Your Purchase
+		       	 주문 결제
 		      </div>
 		    </div>
 		  </header>
@@ -437,11 +438,12 @@
 		            LG Oled Objet Collection
 		          </div>
 		          <div class="item__price">
-		            2,832,000
+		            \2,832,000
 		          </div>
 		          <div class="item__quantity">
-		            Quantity: 1
+		           	 수량: 1
 		          </div>
+		          <br/>
 		          <div class="item__description">
 		            <ul style="">
 		              <li>어떤 공간에도 자유롭게</li>
@@ -462,34 +464,33 @@
 		    <div class="container">
 		      <div class="payment">
 		        <div class="payment__title">
-		         	 결제 방법
+		         	 배송지 선택
 		        </div>
 		        <div class="payment__types">
-		          <div class="payment__type payment__type--cc active">
-		            <i class="icon icon-credit-card"></i>Credit Card</div>
-		          <div class="payment__type payment__type--paypal">
-		            <i class="icon icon-paypal"></i>Paypal</div>
-		          <div class="payment__type payment__type--paypal">
-		            <i class="icon icon-wallet"></i>SEPA</div>
-		          <div class="payment__type payment__type--paypal">
-		            <i class="icon icon-note"></i>Invoice</div>
+		          <div class="payment__type payment__type--cc active"> 신규 입력</div>
+		          <div class="payment__type payment__type--paypal"> 기본 정보</div>		 
 		        </div>
 		
 		        <div class="payment__info">
 		          <div class="payment__cc">
-		            <div class="payment__title">
-		              <i class="icon icon-user"></i>정보 입력
-		            </div>
+		            <div class="payment__title"> 정보 입력 </div>
 		            <form>
 		              <div class="form__cc">
 		                <div class="row">
 		                  <div class="field">
 		                    <div class="title">받는 사람
 		                    </div>
-		                    <input type="text" class="input txt text-validated" value="이름" />
+		                    <input type="text" class="input txt text" placeholder="이름" />
 		                  </div>
 		                </div>
 		                <div class="row">
+		                
+		                <div class="field sm">
+		                    <div class="title">전화 번호
+		                    </div>
+		                    <input type="text" class="input txt" placeholder="000-0000-0000"/>
+		                  </div>
+		                
 		                  <div class="field small">
 		                    <div class="title">요청 사항
 		                    </div>
@@ -509,32 +510,35 @@
 		                 
 		                    </select>
 		                  </div>
-		                  <div class="field small">
-		                    <div class="title">배송 주소
-		                    </div>
-		                    <input type="text" class="input txt" />
-		                  </div>
+		                  
 		                </div>
 		                <div class="row">
 		                  <div class="field">
-		                    <div class="title">전화 번호
+		                    <div class="title">배송 주소
 		                    </div>
-		                    <input type="text" class="input txt" />
+		                    <input type="text" class="input txt" placeholder="00도 00시 00구 00동 00로 00"/>
 		                  </div>
 		                </div>
+		                
+		                 <br/>
+		                 <input type="checkbox" name="confirm"/> 상기 구매 정보를 확인하였으며 결제 진행에 동의합니다.
 		
 		              </div>
 		            </form>
 		          </div>
 		          <div class="payment__shipping">
-		            <div class="payment__title">
-		              <i class="icon icon-plane"></i> 주문자 정보
-		            </div>
+		            <div class="payment__title">  주문자 정보 </div>
 		            <div class="details__user">
 		              <div class="user__name">이지호
 		                <br> 2022.11.23</div>
 		              <div class="user__address">이메일: LeeJiHo0304@oti.com
 		                <br>전화번호: 010-1234-1234</div>
+		            </div>
+		            
+		            <br/>
+		            <div >
+		                <div class="payment__title">  총 주문 금액  </div>
+		                <div class="item__price"> \2,832,000 </div>
 		            </div>
 		
 		          </div>
@@ -544,7 +548,7 @@
 		    <div class="container">
 		      <div class="actions">
 		
-		        <a href="#" class="btn action__submit">주문 정보 입력 완료
+		        <a href="#" class="btn action__submit">결제 하기
 		          <i class="icon icon-arrow-right-circle"></i>
 		        </a>
 		        <a href="#" class="backBtn">홈으로 돌아가기</a>
