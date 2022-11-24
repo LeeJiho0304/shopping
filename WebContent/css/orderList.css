@@ -164,28 +164,9 @@ my-dep1 {
 }
 
 @media screen and (max-width: 767px) .order-item .product-info {
-	padding
-	:
-	 
-	0
-	0
-	0
-	108
-	px
-	;
-	
-			    
-	width
-	:
-	 
-	100%;
-	flex
-	:
-	 
-	inherit
-	;
-	
-			
+	padding: 0 0 0 108px;
+	width: 100%;
+	flex: inherit;
 }
 
 .order-item .product-info {
