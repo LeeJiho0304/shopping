@@ -89,9 +89,10 @@
 		}
 		
 		</style>
+
 </head>
 		<body>
-		<nav class="navbar navbar-expand-lg navbar-light">
+		<nav class="navbar navbar-expand-lg navbar-light"">
 			<a class="navbar-brand" href="/shopping/product/productList.html"> <img src="../images/JH.png"
 					width="35px" height="35px"/> 지호전자
 				</a>
@@ -126,11 +127,19 @@
 		</div>
 		</nav>
 		<div class="tab">
-			<button class="tablinks" onmouseover="ElectronicProducts(event, 'TV')">TV</button>
-			<button class="tablinks" onmouseover="ElectronicProducts(event, 'PC')">PC</button>
-			<button class="tablinks" onmouseover="ElectronicProducts(event, 'Refrigerator')">냉장고</button>
-			<button class="tablinks" onmouseover="ElectronicProducts(event, 'Airconditioner')">에어컨</button>
-			<button class="tablinks" onmouseover="ElectronicProducts(event, 'Washingmachine')">세탁기</button>
+			<ul id="TV">
+				<li>
+					<span class="menu">TV</span>
+					<ul class="menu-sub">
+					<li>
+						<a href="shopping/oder/orderList.html" class="my-dep2">OLED</a>
+					</li>
+					<li>
+						<a href="shopping/oder/orderList.html" class="my-dep2"></a>
+					</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 		<div id="TV" class="tabcontent">
 			<h3>TV</h3>
@@ -220,7 +229,6 @@
 										<p>2,832,000원 ~ 9,400,000원</p>
 									</div>
 								</div>
-								
 							</td>
 							<td>
 								<div class="card">
