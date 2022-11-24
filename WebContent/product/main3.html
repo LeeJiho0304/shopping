@@ -88,10 +88,27 @@
 			width:250px;
 		}
 		
+		ul, li {
+			list-style: none;
+		}
 		</style>
+		<script>
+			$(document).ready(function(){
+	
+				$('#TV .menu-sub').hide();
+	
+				$('.menu').mouseover(function(){
+					$('.menu-sub').slideDown();
+	
+				});
+				$('.menu').mouseleave(function(){
+					$('.menu-sub').hide();
+				});
+			});
+		</script>
 </head>
 		<body>
-		<nav class="navbar navbar-expand-lg navbar-light">
+		<nav class="navbar navbar-expand-lg navbar-light"">
 			<a class="navbar-brand" href="/shopping/product/productList.html"> <img src="../images/JH.png"
 					width="35px" height="35px"/> 지호전자
 				</a>
@@ -126,56 +143,28 @@
 		</div>
 		</nav>
 		<div class="tab">
-			<button class="tablinks" onmouseover="ElectronicProducts(event, 'TV')">TV</button>
-			<button class="tablinks" onmouseover="ElectronicProducts(event, 'PC')">PC</button>
-			<button class="tablinks" onmouseover="ElectronicProducts(event, 'Refrigerator')">냉장고</button>
-			<button class="tablinks" onmouseover="ElectronicProducts(event, 'Airconditioner')">에어컨</button>
-			<button class="tablinks" onmouseover="ElectronicProducts(event, 'Washingmachine')">세탁기</button>
+			<ul id="TV">
+				<li>
+					<span class="menu">TV</span>
+					<ul class="menu-sub">
+					<li>
+						<a href="shopping/oder/orderList.html" class="my-dep2">OLED</a>
+					</li>
+					<li>
+						<a href="shopping/oder/orderList.html" class="my-dep2">벽걸이형</a>
+					</li>
+					<li>
+						<a href="shopping/oder/orderList.html" class="my-dep2">스탠드형</a>
+					</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
-		<div id="TV" class="tabcontent">
-			<h3>TV</h3>
-			<hr/>
-			<h5><a href="/shopping/product/productDetail2.html">OLED</a></h5> <hr/>
-			<h5><a href="/shopping/product/productDetail2.html">벽걸이형</a></h5><hr/>
-			<h5><a href="/shopping/product/productDetail2.html">스탠드형</a></h5><hr/>
-		</div>
-	
-		<div id="PC" class="tabcontent">
-			<h3>PC</h3>
-			<hr/>
-			<h5><a href="/shopping/product/productDetail2.html">노트북</a></h5><hr/>
-			<h5><a href="/shopping/product/productDetail2.html">모니터</a></h5><hr/>
-			<h5><a href="/shopping/product/productDetail2.html">컴퓨터</a></h5><hr/>
-		</div>
-	
-		<div id="Refrigerator" class="tabcontent">
-			<h3>냉장고</h3>
-			<hr/>
-			<h5><a href="/shopping/product/productDetail2.html">정수기형</a></h5><hr/>
-			<h5><a href="/shopping/product/productDetail2.html"">양문형</a></h5><hr/>
-			<h5><a href="/shopping/product/productDetail2.html">일반형</a></h5><hr/>
-			<h5><a href="/shopping/product/productDetail2.html">김치냉장고</a></h5><hr/>
-		</div>
-		<div id="Airconditioner" class="tabcontent">
-			<h3>에어컨</h3>
-			<hr/>
-			<h5><a href="/shopping/product/productDetail2.html">스탠드형</a></h5><hr/>
-			<h5><a href="/shopping/product/productDetail2.html">이동식</a></h5><hr/>
-			<h5><a href="/shopping/product/productDetail2.html">벽걸이형</a></h5><hr/>
-		</div>
-		<div id="Washingmachine" class="tabcontent">
-			<h3>세탁기</h3>
-			<hr/>
-			<h5><a href="/shopping/product/productDetail2.html">통돌이</a></h5><hr/>
-			<h5><a href="/shopping/product/productDetail2.html">드럼</a></h5><hr/>
-			<h5><a href="/shopping/product/productDetail2.html">워시타워</a></h5><hr/>
-		</div>
-		<div class="clearfix"></div>
-	
 		
 
 
-	<div id="demo" class="carousel slide" data-ride="carousel" data-interval="3000">
+	<div id="demo" class="carousel slide" data-ride="carousel"
+			data-interval="3000">
 			<ul class="carousel-indicators">
 				<li data-target="#demo" data-slide-to="0" class="active"></li>
 				<li data-target="#demo" data-slide-to="1"></li>
@@ -201,7 +190,7 @@
 			</a>
 		</div>
 		<nav class="nav nav-pills nav-fill" width="100%">
-			<a class="nav-item nav-link">BEST TV</a> 
+			<a class="nav-item nav-link" href="#">BEST TV</a> 
 			<a class="nav-item nav-link" href="#">BEST PC</a> 
 			<a class="nav-item nav-link" href="#">BEST 냉장고</a> 
 			<a class="nav-item nav-link" href="#">BEST 에어컨</a> 
@@ -219,7 +208,6 @@
 										<p>2,832,000원 ~ 9,400,000원</p>
 									</div>
 								</div>
-								
 							</td>
 							<td>
 								<div class="card">
