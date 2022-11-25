@@ -1,70 +1,61 @@
 <div class="user-nameInfo">
-	<span>회원정보 수정</span>
-</div>
-<form name="form1" action="join1.html" method="post"
-	onSubmit="return checkMember();">
-	<table class="table" align="center">
-		<tr>
-			<td>이름</td>
-			<td colspan="4"><input type="text" name="name" id="name"
-				placeholder="이지호"></td>
-		</tr>
-		<tr>
-			<td>비밀번호</td>
-			<td colspan="4"><input type="password" maxlength=12 name="tbPwd"
-				id="tbPwd"> <em style="color: #696969">4~12자리의 영문 대소문자와
-					숫자로만 입력</em></td>
-		</tr>
-		<tr>
-			<td>비밀번호확인</td>
-			<td colspan="4"><input type="password" maxlength=12
-				name="tbPwd2" id="tbPwd2"></td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td colspan="4"><input type="text" name="mail" id="mail"
-				placeholder="jiho@mycompany.com"></td>
-		</tr>
-		<tr>
-			<td>생년월일</td>
-			<td colspan="4"><input type="text" name="year" id="year"
-				style="width: 70px"> 년 <input type="text" name="month"
-				id="month" style="width: 70px"> 월 <input type="text"
-				name="day" id="day" style="width: 70px"> 일</td>
-		</tr>
-		<tr>
-			<td>주소</td>
-			<td colspan="4">
-				<div class="container address-box">
-					<div class="row border">
-						<div class="col-md-3">
-							<input type="text" class="form-control m-input" name="postcode"
-								id="postcode" placeholder="우편번호" readonly />
-						</div>
-						<div class="col-md-3 postcode-btn">
-							<button type="button" class="btn btn-info m-btn--air"
-								onclick="execDaumPostcode()">우편번호 찾기</button>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xs-12 offset-md-5" style="float: left;">
-							<input type="text" class="form-control m-input m--margin-top-10"
-								name="address" id="address" placeholder="도로명 주소" readonly />
-						</div>
-					</div>
-					<div class="row border">
-						<div class="col-xs-12 offset-md-5" style="float: left;">
-							<input type="text" class="form-control m-input m--margin-top-10"
-								name="detailAddress" placeholder="상세 주소" required />
-						</div>
-					</div>
-				</div>
-			</td>
-		</tr>
-	</table>
-	<p align="center">
-		<button type="submit" class="btn btn-dark">회원가입</button>
-		<button type="reset" class="btn btn-light">다시입력</button>
-	</p>
-</form>
+								<span>회원정보 수정</span>
+							</div>
+							<form name="form1" action="join1.html" method="post" onSubmit="return checkMember();">
+								<table class="table" align="center">
+								  <tr>
+								    <td>이름</td>
+								    <td colspan="4"><input type="text" name="name" id="name" placeholder="이지호"></td>
+								  </tr>  
+								  <tr>
+								    <td>비밀번호</td>
+								    <td colspan="4"><input type="password" maxlength=12 name="tbPwd" id="tbPwd"> <em style="color: #696969">4~12자리의 영문 대소문자와 숫자로만 입력</em></td>
+								  </tr>
+								  <tr>
+								    <td>비밀번호확인</td>
+								    <td colspan="4"><input type="password" maxlength=12 name="tbPwd2" id="tbPwd2"></td>
+								 </tr> 
+								 <tr>
+								    <td>이메일</td>
+								    <td colspan="4"><input type="text" name="mail" id="mail"  placeholder="jiho@mycompany.com"></td>
+								 </tr>
+								 <tr>
+								    <td>생년월일</td>
+								    <td colspan="4">
+								       <input type="text" name="year" id="year" style="width:70px"> 년
+								       <input type="text" name="month" id="month" style="width:70px"> 월
+								       <input type="text" name="day" id="day" style="width:70px"> 일
+								    </td>
+								 </tr>    
+								 <tr>
+								    <td>주소</td>
+								    <td colspan="4">
+									<div class="container address-box">
+										<div class="row border">
+										  <div class="col-md-3">
+										    <input type="text" class="form-control m-input" name="postcode" id="postcode" placeholder="우편번호" readonly />
+										  </div>
+										  <div class="col-md-3 postcode-btn">
+										    <button type="button" class="btn btn-info m-btn--air" onclick="execDaumPostcode()">우편번호 찾기</button>
+										  </div>
+										</div>
+										
+									  	<div class="row"> 
+									  		<div class="col-xs-12 offset-md-5" style="float: left;">
+									    		<input type="text" class="form-control m-input m--margin-top-10" name="address" id="address" placeholder="도로명 주소" readonly />
+									  		</div>
+									  	</div>
+									  	<div class="row border">
+										  	<div class="col-xs-12 offset-md-5" style="float: left;">
+										    	<input type="text" class="form-control m-input m--margin-top-10" name="detailAddress" placeholder="상세 주소" required />
+									  	 	</div>
+									  	</div>
+									</div>
+								    </td>
+								 </tr> 
+								</table>
+									<p align="center">
+									  <button type="submit" class="btn btn-dark">회원가입</button>
+									  <button type="reset" class="btn btn-light">다시입력</button>
+									</p>
+								</form>

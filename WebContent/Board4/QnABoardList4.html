@@ -27,6 +27,22 @@
 			    height: 2.3rem;
 			    width: 2.3rem;
 			}
+			
+			#myModal table {
+				width:100%;
+			}
+			#myModal th {
+				width:20%; 
+			}
+			#myModal tr, td {
+				border: 1px solid #ccc;
+			}
+			#inquiryTitleName{
+				width:100%;
+			}
+			#myModal textarea {
+				width:100%;
+			}
 		</style>
 	</head>
 	<body>
@@ -350,6 +366,7 @@
 		                    <!-- end project-list -->
 		
 		                    <div class="pt-3">
+		                    	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">상품문의 글쓰기</button>
 		                        <ul class="pagination justify-content-end mb-0">
 		                            <li class="page-item disabled">
 		                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
@@ -362,11 +379,108 @@
 		                            </li>
 		                        </ul>
 		                    </div>
+		                    
+		                    <!-- The Modal -->
+			<div class="modal fade" id="myModal">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+	
+						<!-- Modal Header -->
+						<div class="modal-header bg-secondary" >
+							<h4 class="modal-title text-white">상품 문의 작성</h4>
+							<button type="button" class="close btn-light"  data-dismiss="modal">&times;</button>
+						</div>
+	
+						<!-- Modal body -->
+						<div class="modal-body">
+							<h4>문의 유형을 선택하시고, 내용을 작성해 주세요.</h4>
+	
+							<form id="frmQuestDetail" name="frmQuestDetail" >
+	
+								<div class="qna">
+									<table >
+										<tbody>
+											<tr>
+												<th >문의유형</th>
+												<td>
+													<input type="checkbox" id="product" checked>
+  													<label for="product">상품관련 문의</label><br>
+  													
+  													<input type="checkbox" id="delivery">
+  													<label for="delivery">배송관련 문의</label><br>
+	
+												</td>
+											</tr>
+	
+											<tr>
+												<th >제목</th>
+												<td>
+													<div class="titWrite">
+														<input type="text" id="inquiryTitleName"
+															name="inquiryTitleName" maxlength="51" value=""
+															placeholder="제목을 입력해 주세요. (50자 이내)">
+	
+													</div>
+												</td>
+											</tr>
+	
+											<tr>
+												<th >문의내용</th>
+												<td class="QnaTxt"><textarea rows="8" cols="20"
+														name="inquiryContent" id="inquiryContent"
+														placeholder="문의 내용을 입력해 주세요. (500자 이내)"></textarea>
+												</td>
+											</tr>
+	
+										</tbody>
+									</table>
+								</div>
+								<div class="qnaNoti">
+									<p>개인정보 수집 및 이용에 대한 안내</p>
+									<table >
+										<tbody>
+											<tr>
+												<th>수집 항목</th>
+												<td>휴대폰 번호 및 상품 Q&amp;A 제목, 문의 내용 등 개인이 직접 입력한 내용</td>
+											</tr>
+											<tr>
+												<th >수집 목적</th>
+												<td>문의 접수 및 결과 회신</td>
+											</tr>
+											<tr>
+												<th >이용 기간</th>
+												<td>원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.<br>
+													단, 관계 법령의 규정에 의하여 보존할 필요가 있는 경우 아래와 같이 관계 법령에서 정한 일정 기간 동안
+													개인정보를 보관할 수 있습니다.<br> - 소비자의 불만 또는 분쟁처리에 관한 기록 :
+													3년(전자상거래등에서의 소비자보호에 관한 법률)
+												</td>
+											</tr>
+										</tbody>
+									</table>
+	
+								</div>
+								
+							</form>
+	
+						</div>
+	
+						<!-- Modal footer -->
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">등록</button>
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">취소</button>
+								
+						</div>
+	
+					</div>
+				</div>
 		                </div>
 		            </div>
 		        </div>
 		    </div>
 		    <!-- end row -->
+		</div>
 		</div>
 	</body>
 </html>

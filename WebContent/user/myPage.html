@@ -16,18 +16,6 @@
 			function requestContent(url) {
 				console.log(url);
 				$(".contents-wrap").load(url);
-				
-				/* var xhttp = new XMLHttpRequest();
-				
-				//응답 callback 함수 등록
-				xhttp.onload = function() {
-					console.log(xhttp.responseText);
-					document.querySelector(".contents-wrap").innerHTML = this.responseText;
-				};
-				
-				//요청하기
-				xhttp.open("GET", url);
-				xhttp.send();  */
 			}
 			
 			/** 우편번호 찾기 */
@@ -68,7 +56,7 @@
 								<span class="my-dep1">쇼핑 관리</span>
 								<ul class="my-sub">
 									<li>
-										<a href="javascript:requestContent('/shopping/user/orderList1.html')" class="my-dep2">주문 조회</a>
+										<a href="javascript:requestContent('/shopping/user/orderList.html')" class="my-dep2">주문 조회</a>
 									</li>
 								</ul>
 							</li>
@@ -76,13 +64,13 @@
 								<span class="my-dep1">회원정보 관리</span>
 								<ul class="my-sub">
 									<li>
-										<a href="javascript:requestContent('/shopping/user/updateUser3.html')" class="my-dep2">회원정보 수정</a>
+										<a href="javascript:requestContent('/shopping/user/updateUser.html')" class="my-dep2">회원정보 수정</a>
 									</li>
 									<li>
 										<a href="shopping/oder/orderList.html" class="my-dep2">내가 쓴 리뷰</a>
 									</li>
 									<li>
-										<a href="shopping/oder/orderList.html" class="my-dep2">내가 쓴 문의</a>
+										<a href="/shopping/Board4/QnABoardList4.html" class="my-dep2">내가 쓴 문의</a>
 									</li>
 								</ul>
 							</li>
@@ -128,6 +116,7 @@
 										</div>
 										<div class="product-payment">
 											<p class="total" id="paymentPrice0">2,937,000원</p>
+											<button type="button" class="btn btn-primary" onClick="location.href='/shopping/Board4/ReviewBoardList4.html'">리뷰 남기기</button>
 										</div>
 									</li>
 									<li class="order-item" id="orderItm_1">
@@ -150,6 +139,7 @@
 										</div>
 										<div class="product-payment">
 											<p class="total" id="paymentPrice1">2,937,000원</p>
+											<button type="button" class="btn btn-primary" >리뷰 남기기</button>
 										</div>
 									</li>
 									<li class="order-item" id="orderItm_2">
@@ -172,6 +162,7 @@
 										</div>
 										<div class="product-payment">
 											<p class="total" id="paymentPrice2">2,937,000원</p>
+											<button type="button" class="btn btn-primary" >리뷰 남기기</button>
 										</div>
 									</li>
 								</ul>
