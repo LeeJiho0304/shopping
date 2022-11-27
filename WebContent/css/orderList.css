@@ -56,6 +56,20 @@ div {
 	line-height: 24px;
 }
 
+.mypage .lnb-wrap .lnb {
+    float: left;
+    width: 16%;
+    padding-right: 24px;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.container .cont-wrap {
+    max-width: 1460px;
+    margin: 0 auto;
+    padding: 0 40px 120px;
+}
+
 .mypage-lnb>li {
 	margin-top: 10px;
 }
@@ -201,74 +215,75 @@ img {
 }
 
 .user-nameInfo {
-				font-size: 20px;
-				color: 	#696969;
-				border-bottom: 1px solid #DDDDDD;
-			}
-			input {
-			    writing-mode: horizontal-tb !important;
-			    font-style: ;
-			    font-variant-ligatures: ;
-			    font-variant-caps: ;
-			    font-variant-numeric: ;
-			    font-variant-east-asian: ;
-			    font-weight: ;
-			    font-stretch: ;
-			    font-size: ;
-			    font-family: ;
-			    text-rendering: auto;
-			    color: fieldtext;
-			    letter-spacing: normal;
-			    word-spacing: normal;
-			    line-height: normal;
-			    text-transform: none;
-			    text-indent: 0px;
-			    text-shadow: none;
-			    display: inline-block;
-			    text-align: start;
-			    appearance: auto;
-			    -webkit-rtl-ordering: logical;
-			    cursor: text;
-			    background-color: field;
-			    margin: 0em;
-			    padding: 1px 2px;
-			    border-width: 2px;
-			    border-style: inset;
-			    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-			    border-image: initial;
-			}
+	font-size: 20px;
+	color: 	#696969;
+	border-bottom: 1px solid #DDDDDD;
+}
+/* input {
+	writing-mode: horizontal-tb !important;
+	font-style: ;
+	font-variant-ligatures: ;
+	font-variant-caps: ;
+	font-variant-numeric: ;
+	font-variant-east-asian: ;
+	font-weight: ;
+	font-stretch: ;
+	font-size: ;
+	font-family: ;
+	text-rendering: auto;
+	color: fieldtext;
+	letter-spacing: normal;
+	word-spacing: normal;
+	line-height: normal;
+	text-transform: none;
+	text-indent: 0px;
+	text-shadow: none;
+	display: inline-block;
+	text-align: start;
+	appearance: auto;
+	-webkit-rtl-ordering: logical;
+	cursor: text;
+	background-color: field;
+	margin: 0em;
+	padding: 1px 2px;
+	border-width: 2px;
+	border-style: inset;
+	border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+	border-image: initial;
+} */
 			
-			input[type="hidden" i] {
-			    appearance: none;
-			    background-color: initial;
-			    cursor: default;
-			    display: none !important;
-			    padding: initial;
-			    border: initial;
-			}
+input[type="hidden" i] {
+	appearance: none;
+	background-color: initial;
+	cursor: default;
+	display: none !important;
+	padding: initial;
+	border: initial;
+}
 			
-			input, button {
-			    font-family: 'LGSmHaR';
-			    font-size: 14px;
-			    background: transparent;
-			    -webkit-border-radius: 0;
-			}
+input, button {
+	font-family: 'LGSmHaR';
+	font-size: 14px;
+	background: transparent;
+	-webkit-border-radius: 0;
+}
 			
-			.my_list {
-			    position: relative;
-			    line-height: 66px;
-			}
+.my_list {
+	position: relative;
+	line-height: 66px;
+}
 			
-			li {
-			    list-style: none;
-			}
+li {
+	list-style: none;
+}
 			
-			li {
-			    display: list-item;
-			    text-align: -webkit-match-parent;
-			}
-			.my_list:after {
-			    content: '';
-			    display: block;
-			    clear: both;
-			}
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+.my_list:after {
+	content: '';
+	display: block;
+	clear: both;
+}
