@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<link rel="stylesheet" href="adminStyle.css">
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@200;400;500&family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/981c920883.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+	<script src="adminScript.js"></script>
+	
+    <title>Admin Page</title>
+  </head>
+  <body>
+  	
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-light">
+    	<button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#sidebar">
+    		<span class="navbar-toggler-icon"></span>
+    	</button>
+    	<div class="collapse navbar-collapse" id="sidebar">
+    		<div class="container-fluid">
+    			<div class="row">
+    				<!-- sidebar -->
+    				<div class="col-xl-2 col-lg-3 sidebar fixed-top">
+    				  <a href="#" class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4 bottom-border">OTI전자</a>
+    					<div>
+    					  <img src="../images/adminimg.png" alt="" width="50" class="rounded-circle mr-3">
+    					  <a href="#" class="text-white">Lee Jiho</a>
+    					</div>
+    					<ul class="navbar-nav flex-column mt-4">
+	    					<!-- 대쉬보드 -->
+	    				  	<li class="nav-item">
+	    				  		<a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+	    				  		  <i class="fas fa-home text-white fa-lg mr-3"></i> Dashboard
+	    				  		</a>
+	    				  	</li>
+	    				  	<!-- 상품등록 -->
+	    				  	<li class="nav-item">
+	    				  		<a href="#" class="nav-link text-white p-3 mb-2 current">
+	    				  		  <i class="fas fa-pen-to-square text-white fa-lg mr-3"></i> 상품 등록
+	    				  		</a>
+	    				  	</li>
+	    				  	<!-- 주문 관리 -->
+	    				  	<li class="nav-item">
+	    				  		<a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+	    				  		  <i class="fas fa-shopping-cart text-white fa-lg mr-3"></i> 주문 관리
+	    				  		</a>
+	    				  	</li>
+	    				  	<!-- 문의게시글 관리 -->
+	    				  	<li class="nav-item">
+	    				  		<a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+	    				  		  <i class="fas fa-file-alt text-white fa-lg mr-3"></i> 문의 게시판 관리
+	    				  		</a>
+	    				  	</li>
+	    				  	<!-- 분석 -->
+	    				  	<li class="nav-item">
+	    				  		<a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+	    				  		  <i class="fas fa-chart-line text-white fa-lg mr-3"></i> 판매량 분석
+	    				  		</a>
+	    				  	</li>
+	    				</ul>
+    				</div>
+    				<!-- end of sidebar -->
+    				
+    				<!-- Contents -->
+    				<!-- <div class="content-wrapper container-fluid"> -->
+	    				<!-- top navbar -->
+	    				<div class="col-xl-10 col-lg-9 ml-auto bg-dark fixed-top py-2">
+	    					<div class="row top-navbar align-item-center mb-2">
+	    					  <div class="col-md-4">
+	    					    <h4 class="text-light text-uppdercase mb-0 ">상품 등록</h4>
+	    					  </div>
+	    					  
+	    					  <div class="col-md-5">
+	    					    <form action="">
+	    					      <div class="input-group">
+	    					        <input type="text" class="form-control search-input" placeholder="Search...">
+	    					        <button type="button" class="btn btn-light search-button">
+	    					          <i class="fas fa-search text-danger"></i>
+	    					        </button>
+	    					      </div>
+	    					    </form>
+	    					  </div>
+	    					  
+	    					  <div class="col-md-3">
+	    					    <ul class="navbar-nav">
+	    					      <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-comments text-muted fa-lg"></i></a></li>
+	    					      <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-bell text-muted fa-lg"></i></a></li>
+	    					      <li class="nav-item ml-md-auto"><a href="#" class="nav-link"><i class="fas fa-sign-out-alt text-danger fa-lg"></i></a></li>
+	    					    </ul>
+	    					  </div>
+	    					</div>
+	    					<!-- end of top navbar -->
+	    					
+	    					<!-- 내용 -->
+	    					<div class="row bg-white">
+	    						<!-- Card section -->
+		    					<section>
+		    						<div class="container-fluid">
+		    							<div class="row">
+		    								<div class="col-lg-9 ml-auto">
+		    									<div class="row pt-5 mt-3 mb-5">
+		    										<div class="col-sm-6 p-2">
+		    										
+		    											<div class="card">
+		    												<div class="card-body">
+		    													<div class="d-flex justify-content-between">
+		    													  <i class="fas fa-pen-to-square fa-3x text-warning"></i>
+		    													  <div class="text-right text-secondary">
+		    													  	<h5>add Product</h5>
+		    													  	<h3>상품 등록</h3>
+		    													  </div>
+		    													</div>
+		    												</div>
+		    												<div class="card-footer text-secondary">
+		    												  <i class="fas fa-sync mr-3"></i>
+		    												  <span>Updated Now</span>
+		    												</div>
+		    											</div>
+		    											
+		    											<div class="card">
+		    												<div class="card-body">
+		    													<div class="d-flex justify-content-between">
+		    													  <i class="fas fa-pen-to-square fa-3x text-warning"></i>
+		    													  <div class="text-right text-secondary">
+		    													  	<h5>add Product</h5>
+		    													  	<h3>상품 등록</h3>
+		    													  </div>
+		    													</div>
+		    												</div>
+		    												<div class="card-footer text-secondary">
+		    												  <i class="fas fa-sync mr-3"></i>
+		    												  <span>Updated Now</span>
+		    												</div>
+		    											</div>
+		    											
+		    											<div class="card">
+		    												<div class="card-body">
+		    													<div class="d-flex justify-content-between">
+		    													  <i class="fas fa-pen-to-square fa-3x text-warning"></i>
+		    													  <div class="text-right text-secondary">
+		    													  	<h5>add Product</h5>
+		    													  	<h3>상품 등록</h3>
+		    													  </div>
+		    													</div>
+		    												</div>
+		    												<div class="card-footer text-secondary">
+		    												  <i class="fas fa-sync mr-3"></i>
+		    												  <span>Updated Now</span>
+		    												</div>
+		    											</div>
+		    										</div>
+		    										
+		    									</div>
+		    								</div>
+		    							</div>
+		    						</div>
+		    					</section>
+		    					<!-- end of Card Section -->
+	    					</div>
+	    					<!-- end of 내용 -->
+	    					
+	    				</div>
+	    				<!-- column 끝 -->
+    					
+    				
+    				
+    			</div>
+    		</div>
+    	</div>
+    </nav>
+
+
+    
+  </body>
+</html>
