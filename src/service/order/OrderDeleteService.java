@@ -2,11 +2,18 @@ package service.order;
 
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
+
 import dao.OrderDAO;
 import dto.order.OrderDTO;
 
 public class OrderDeleteService {
-	OrderDAO orderDAO = new OrderDAO();
+	private ServletContext application;
+	OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
+	
+	public OrderDeleteService(ServletContext application) {
+		this.application=application;
+	}
 	
 	public void deleteOrder(OrderDTO order) throws SQLException {
 		orderDAO.deleteOrder(order);

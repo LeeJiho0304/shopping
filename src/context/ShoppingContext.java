@@ -62,3 +62,4 @@ public class ShoppingContext implements ServletContextListener {
 		application.setAttribute("userDAO", new UserDAO());
 	}
 }
+
