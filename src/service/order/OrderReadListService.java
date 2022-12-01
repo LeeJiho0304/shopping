@@ -17,6 +17,10 @@ public class OrderReadListService {
 	private ServletContext application;
 	OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
 	
+	public OrderReadListService(ServletContext application) {
+		this.application=application;
+	}
+	
 	public int getTotalRows(OrderReadListDTO receivedDTO) throws SQLException {
 		return orderDAO.getTotalRows(receivedDTO);
 	}

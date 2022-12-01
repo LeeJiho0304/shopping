@@ -11,6 +11,10 @@ import dto.order.OrderDetailDTO;
 public class OrderCreateService {
 	private ServletContext application;
 	OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
+	
+	public OrderCreateService(ServletContext application) {
+		this.application=application;
+	}
 		
 	public void order(OrderDTO receivedDTO, OrderDetailDTO detailDTO) throws SQLException {
 		orderDAO.insertOrder(receivedDTO, detailDTO);

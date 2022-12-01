@@ -12,10 +12,13 @@ public class CategoryService {
 	List<CategoryDTO> cgDTO;
 	private ServletContext application;
 	
-	public List<CategoryDTO> getList() {
-		
+	public CategoryService(ServletContext application) {
+		this.application=application;
+	}
+	
+	public List<CategoryDTO> getList() {		
 		try {
-			CategoryDAO categoryDao = (CategoryDAO) application.getAttribute("categoryDao");
+			CategoryDAO categoryDao = (CategoryDAO) application.getAttribute("categoryDAO");
 			cgDTO = categoryDao.selectCategoryAllList();
 		} catch (SQLException e) {
 			e.printStackTrace();
