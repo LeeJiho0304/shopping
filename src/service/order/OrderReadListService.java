@@ -3,6 +3,8 @@ package service.order;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.json.JSONException;
 
 import dao.OrderDAO;
@@ -12,7 +14,8 @@ import dto.order.OrderReadListDTO;
 public class OrderReadListService {
 	List<OrderDTO> orders;
 	OrderDTO orderDTO;
-	OrderDAO orderDAO = new OrderDAO();
+	private ServletContext application;
+	OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
 	
 	public int getTotalRows(OrderReadListDTO receivedDTO) throws SQLException {
 		return orderDAO.getTotalRows(receivedDTO);
