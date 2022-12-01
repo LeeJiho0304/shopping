@@ -3,7 +3,10 @@
 <%@ page import="dto.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<!DOCTYPE>
+<html>
+<head></head>
+<body>
 		<div class="card" >
 			<div class="card-header">exam01_view.jsp</div>
 			<div class="card-body">
@@ -32,6 +35,6 @@
 				</table>
 			</div>
 		</div>
+</body>
+</html>		
 		
-		
-	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
