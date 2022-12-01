@@ -11,6 +11,10 @@ public class OrderUpdateService {
 	private ServletContext application;
 	OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
 	
+	public OrderUpdateService(ServletContext application) {
+		this.application=application;
+	}
+	
 	public void updateOrder(OrderDTO order) throws SQLException {
 		orderDAO.updateOrder(order);
 	}

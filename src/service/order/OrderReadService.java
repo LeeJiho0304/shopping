@@ -11,6 +11,10 @@ public class OrderReadService {
 	private ServletContext application;
 	OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
 	
+	public OrderReadService(ServletContext application) {
+		this.application=application;
+	}
+	
 	public OrderDTO getOrder(String id) throws SQLException {
 		return orderDAO.selectOrder(id);
 	}

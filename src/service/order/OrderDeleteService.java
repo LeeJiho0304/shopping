@@ -11,6 +11,10 @@ public class OrderDeleteService {
 	private ServletContext application;
 	OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
 	
+	public OrderDeleteService(ServletContext application) {
+		this.application=application;
+	}
+	
 	public void deleteOrder(OrderDTO order) throws SQLException {
 		orderDAO.deleteOrder(order);
 	}
