@@ -21,7 +21,7 @@ public class MainController extends HttpServlet {
 		System.out.println("MainController.service() 실행");
 		
 		//JSP로 이동
-		request.getRequestDispatcher("/WEB-INF/views/homePage/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 	
 	@Override

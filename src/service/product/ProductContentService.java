@@ -17,7 +17,7 @@ public class ProductContentService {
 	public ProductDTO getContent(int product_id) {
 		System.out.println("서비스 들어왔고");
 		ProductDAO productDAO = (ProductDAO)application.getAttribute("productDAO");
-		productDTO = productDAO.selectProductContent(product_id);
+		//productDTO = productDAO.selectProductContent(product_id);
 		
 		return productDTO;
 	}

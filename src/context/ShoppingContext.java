@@ -34,7 +34,7 @@ public class ShoppingContext implements ServletContextListener {
 //		application.setAttribute("orderUpdateService", new OrderUpdateService(application));
 		
 		application.setAttribute("productContentService", new ProductContentService(application));
-//		application.setAttribute("productService", new ProductService(application));
+		application.setAttribute("productService", new ProductService(application));
 //		
 //		application.setAttribute("qnABoardAnswerService", new QnABoardAnswerService(application));
 //		application.setAttribute("qnABoardCreateService", new QnABoardCreateService(application));

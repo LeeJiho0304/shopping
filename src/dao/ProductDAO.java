@@ -13,11 +13,10 @@ import dto.product.ProductListDTO;
 
 
 public class ProductDAO {
-	Connection conn = ConnectionProvider.getConnection();
 	List<ProductListDTO> productListDTOs = new ArrayList<>();
 
 	//상품 총 갯수 출력
-	public int getTotalRows(ProductListDTO productListDTO) {
+	public int getTotalRows(ProductListDTO productListDTO, Connection conn) {
 		int totalRows = 0;
 		try {
 			String sql = "SELECT count(*) " +
@@ -47,7 +46,7 @@ public class ProductDAO {
 	}
 	
 	//상품 목록 조회
-	public List<ProductListDTO> selectAllList(int pageNo, ProductListDTO productListDTO) {
+	public List<ProductListDTO> selectAllList(int pageNo, ProductListDTO productListDTO, Connection conn) {
 		try {
 			String sql = "SELECT rnum, product_id, product_name, product_price, category_id, category_name, subcategory_id, subcategory_name, product_totalpoint " +
 					 "FROM ( " + 
@@ -104,7 +103,7 @@ public class ProductDAO {
 	}
 	
 	//상품 상세 정보 출력
-	public ProductDTO selectProductContent(int product_id) {
+	public ProductDTO selectProductContent(int product_id, Connection conn) {
 		ProductDTO productDTO = null;
 		
 		try {
@@ -148,6 +147,26 @@ public class ProductDAO {
 		}
 
 		return productDTO;
+	}
+	
+	//상품 추가
+	public int insert(ProductDTO product, Connection conn) throws Exception {
+		
+		String sql = "insert into boards2 (bno, btitle, bcontent, bwriter, bdate, bhitcount, bfilename, bsavedname, bfiletype) " +
+					"values(seq_boards2_bno.nextval, ?, ?, ?, sysdate, 0, ?, ?, ?) ";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+//		pstmt.setString(1, product.getBtitle());
+//		pstmt.setString(2, product.getBcontent());
+//		pstmt.setString(3, product.getBwriter());
+//		pstmt.setString(4, product.getBfileName());
+//		pstmt.setString(5, product.getBsavedName());
+//		pstmt.setString(6, product.getBfileType());
+		
+		int rows = pstmt.executeUpdate();
+		pstmt.close();
+		
+		return rows;
 	}
 	
 }

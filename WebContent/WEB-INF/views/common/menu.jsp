@@ -70,4 +70,11 @@
 			<a class="text-white" href="/servletjsp/exam10/ContentController">예외 처리</a>
 		</h6>
 	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam11.</span>
+			<a class="text-white" href="/servletjsp/exam11/ContentController">EL</a>
+		</h6>
+	</li>
 </ul>
