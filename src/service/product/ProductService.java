@@ -20,7 +20,7 @@ public class ProductService {
 		this.application = application;
 		try {
 			InitialContext ic = new InitialContext();
-			ds = (DataSource) ic.lookup("java:comp/env/jdbc/team1");
+			ds = (DataSource) application.getAttribute("dataSource");
 			Connection conn = ds.getConnection();
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -12,10 +12,9 @@ import dto.category.CategoryDTO;
 
 public class CategoryDAO {
 	List<CategoryDTO> cgDTO = new ArrayList<>();
-	Connection conn = ConnectionProvider.getConnection();
 	
 	//DB에서 받아서 DTO로 저장하여 리턴하는 메소드 
-	public List<CategoryDTO> selectCategoryAllList() throws SQLException {
+	public List<CategoryDTO> selectCategoryAllList(Connection conn) throws Exception {
 		String sql = "Select category_name from category";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
