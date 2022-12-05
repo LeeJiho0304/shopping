@@ -125,8 +125,16 @@
 							<i class="fa fa-user"></i>
 						</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/shopping/user/loginForm.html">로그인</a> 
-							<a class="dropdown-item" href="/shopping/user/joinForm.html">회원가입</a> 
+							<c:if test="${loginId == null}">
+								<a href="${pageContext.request.contextPath}/LoginController">로그인</a>
+							</c:if>
+						
+							<c:if test="${loginId != null}">
+								<span class="mr-2">${loginId}</span>
+								<a href="${pageContext.request.contextPath}/MainController">로그아웃</a>
+							</c:if>
+							
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/JoinController">회원가입</a> 
 							<a class="dropdown-item" href="/shopping/user/myPage.html">마이페이지</a>
 						</div>
 					</li>

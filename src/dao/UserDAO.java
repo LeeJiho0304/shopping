@@ -68,9 +68,11 @@ public class UserDAO {
 		return users;
 	}
 	
-	public UserDTO selectUser(String id, String password, Connection conn) throws Exception {
+	public int selectUser(String id, String password, Connection conn) throws Exception {
+		int result =0;
+		
 		String sql
-			="SELECT USERS_PASSWORD, USERS_NAME, USERS_LEVEL, USERS_POINT, USERS_ADDRESS "
+			="SELECT USERS_ID "
 			+"FROM USERS "
 			+"WHERE USERS_ID = ? AND USERS_PASSWORD = ?"
 			;
@@ -82,23 +84,16 @@ public class UserDAO {
 		
 		ResultSet rs = pstmt.executeQuery();
 		
-		UserDTO userDTO = new UserDTO();
-		
 		if(rs.next()) {
-			userDTO.setUser_id(id);
-			userDTO.setUser_name(rs.getString("USERS_NAME"));
-			userDTO.setUser_level(rs.getInt("USERS_LEVEL"));
-			userDTO.setUser_point(rs.getInt("USERS_POINT"));
-			userDTO.setUser_address(rs.getString("USERS_ADDRESS"));
+			result = 1;
 		}
 		else {
-			userDTO = null;
+			result = 0;
 		}
 		
 		rs.close();
 		pstmt.close();
-		conn.close();
-		return userDTO;
+		return result;
 	}
 	
 	public JSONObject insertUser(UserDTO receivedDTO, Connection conn) throws Exception {

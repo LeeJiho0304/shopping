@@ -1,255 +1,277 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
    <head>
       <meta charset="UTF-8">
-   <title>Shopping Mall</title>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-      <link href="/shopping/css/sidebar.css" rel="stylesheet" id="bootstrap-css">
-      <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+      <title>Insert title here</title>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-        <style>
-        @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
-
-      * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-      }
-        .card {
-           width: 306px;
-           height: 458px;
+        
+      <script>
+      function ElectronicProducts(evt, ProductsName) {
+           var i, tabcontent, tablinks;
+           tabcontent = document.getElementsByClassName("tabcontent");
+           for (i = 0; i < tabcontent.length; i++) {
+             tabcontent[i].style.display = "none";
+           }
+           tablinks = documenst.getElementsByClassName("tablinks");
+           for (i = 0; i < tablinks.length; i++) {
+             tablinks[i].className = tablinks[i].className.replace(" active", "");
+           }
+           document.getElementById(ProductsName).style.display = "block";
+           evt.currentTarget.className += " active";
+         }
+      function selectAll(selectAll)  {
+           const checkboxes 
+                = document.getElementsByName('product');
            
-        }
-        .w-btn-red {
-          background-color: #ff5f2e;
-          color: #e1eef6;
+           checkboxes.forEach((checkbox) => {
+             checkbox.checked = selectAll.checked;
+           })
+         }
+      </script>
+      <style>
+         * {box-sizing: border-box}
+      body {font-family: "Lato", sans-serif;}
+      
+      /* Style the tab */
+      .tab {
+       overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
       }
       
+      /* Style the buttons inside the tab */
+      .tab button {
+          background-color: inherit;
+           float: left;
+           border: none;
+           outline: none;
+           cursor: pointer;
+           padding: 14px 16px;
+           transition: 0.3s;
+           font-size: 17px;
+      }
+      
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #ddd;
+      }
+      
+      /* Create an active/current "tab button" class */
+      .tab button.active {
+        background-color: #ccc;
+      }
+      
+      /* Style the tab content */
+      .tabcontent {
+        float: top;
+        padding: 0px 12px;
+        border: 1px solid #ccc;
+        width: 70%;
+        border-left: none;
+        height: 300px;
+        display: none;
+      }
+      
+      /* Clear floats after the tab */
+      .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+      .card {
+         width:295px;
+         height:470px;
+         margin-left: 10px;
+         margin-right: 10px;
+      }
+      
+      .card-header {
+         background-color: white;
+      }
+      .card-header > img {
+         width:250px;
+      }
+      
+      
       button {
-         font-size: 30px;
-          margin: 20px;
-          width: 200px;
-          height: 100px;
+         font-size: 12px;
+         margin:5px;
+          width: 120px;
+          height: 50px;
       }
       
       .w-btn {
           position: relative;
           border: none;
           display: inline-block;
-          padding: 15px 30px;
+          padding: 10px 15px;
           border-radius: 15px;
           font-family: "paybooc-Light", sans-serif;
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+          
           text-decoration: none;
           font-weight: 600;
           transition: 0.25s;
       }
       
-      .w-btn-outline {
-          position: relative;
-          padding: 15px 30px;
-          border-radius: 15px;
-          font-family: "paybooc-Light", sans-serif;
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-          text-decoration: none;
-          font-weight: 600;
-          transition: 0.25s;
+      .w-btn-gray {
+          background-color: #a3a1a1;
+          color: #e3dede;
       }
-      
-      .w-btn-red-outline {
-          border: 3px solid #ff5f2e;
+      .w-btn-gray-outline {
+          border: 3px solid #a3a1a1;
           color: #6e6e6e;
       }
-      .w-btn-red-outline:hover {
-          background-color: #ff5f2e;
-          color: #e1eef6;
+      .w-btn-gray-outline:hover {
+          background-color: #a3a1a1;
+          color: #e3dede;
       }
+      .w-btn-red {
+    background-color: #ff5f2e;
+    color: #e1eef6;
+}
+      
       .w-btn:hover {
-          letter-spacing: 2px;
-          transform: scale(1.2);
+          letter-spacing: 1px;
+          transform: scale(1.1);
           cursor: pointer;
       }
       
       .w-btn-outline:hover {
-          letter-spacing: 2px;
-          transform: scale(1.2);
+          letter-spacing: 1px;
+          transform: scale(1.1);
           cursor: pointer;
       }
       
-      .w-btn:active {
-          transform: scale(1.5);
-      }
+      .
       
-      .w-btn-outline:active {
-          transform: scale(1.5);
-      }
-      
-      table{
-         font-family: "Audiowide", sans-serif;
-         font-size: 30px;
-         width:100%;
-         
-      }
-      
-      input[type=text] {
-         width: 1680px;
-         box-sizing: border-box;
-         border: 2px solid #ccc;
-         border-radius: 4px;
-         font-size: 16px;
-         background-color: white;
-         background-image: url('searchicon.png');
-         background-position: 10px 10px;
-         background-repeat: no-repeat;
-         padding: 12px 20px 12px 40px;
-      }
-      
-      nav {
-      font-size:20px;
-      }
-      
-       
-      
-      .modal{
-      font-size :25px;
-      }
-      
-      
-        </style>
-   </head>
-   <body>
-      <div id="menu" class="container-fluid">
-      
-         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/shopping/product/productList.html"> <img src="../images/JH.png"
-               width="35px" height="35px" /> 지호전자
+      </style>
+      </head>
+      <body>
+      <nav class="navbar navbar-expand-lg navbar-light">
+         <a class="navbar-brand" href="/shopping/product/productList.html"> <img src="../images/JH.png"
+               width="35px" height="35px"/> 지호전자
             </a>
          <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-            aria-expanded="false" aria-label="Toggle navigation">
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
          </button>
-         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-               <ul class="nav nav-pills nav-fill">
-                  <li class="nav-item"><a class="nav-link" href="/shopping/product/productList.html"><i class="fa fa-home"></i>Home</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/shopping/user/loginForm.html"><i class="fa fa-user"></i>로그인</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/shopping/user/joinForm3.html"> <i class="fa fa-user-plus"></i>회원가입</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i>장바구니</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-question-circle"></i>고객센터</a></li>
-               </ul>
-            </div>
-         </nav>
    
-         <form class="form-inline">
-              <input type="text" name="search" placeholder="Search..">
+         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" >
+
+         <ul class="navbar-nav" >
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" ><i class="fa fa-user"></i></a>
+               <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/shopping/user/loginForm.html">로그인</a> 
+                  <a class="dropdown-item" href="/shopping/user/joinForm.html">회원가입</a> 
+                  <a class="dropdown-item" href="/shopping/user/orderList.html">주문내역</a>
+               </div>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="/shopping/product/productList2.html"><i class="fa fa-shopping-cart"></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-question-circle"></i></a></li>
+         </ul>
+         <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search"
+               placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color:white; font-color:black;">Search</button>
          </form>
-      
-   </div>
+
+      </div>
+      </nav>
+      <div class="tab">
+         <button class="tablinks" onmouseover="ElectronicProducts(event, 'TV')">TV</button>
+         <button class="tablinks" onmouseover="ElectronicProducts(event, 'PC')">PC</button>
+         <button class="tablinks" onmouseover="ElectronicProducts(event, 'Refrigerator')">냉장고</button>
+         <button class="tablinks" onmouseover="ElectronicProducts(event, 'Airconditioner')">에어컨</button>
+         <button class="tablinks" onmouseover="ElectronicProducts(event, 'Washingmachine')">세탁기</button>
+      </div>
+      <div id="TV" class="tabcontent">
+         <h3>TV</h3>
+         <hr/>
+         <h5><a href="/shopping/product/productDetail2.html">OLED</a></h5> <hr/>
+         <h5><a href="/shopping/product/productDetail2.html">벽걸이형</a></h5><hr/>
+         <h5><a href="/shopping/product/productDetail2.html">스탠드형</a></h5><hr/>
+      </div>
    
-   <div id="content" class="container-fluid border">
-      <div class="row">
-         <div id ="sidebar" class="nav-side-menu col-xs-0 col-md-2 border" style="height: 600px">
-            <div class="brand">All Categories</div>
-            <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
-            <div class="menu-list">
-<!--             TV -----------------------------------------------------------------------------------------------------------z
- -->               <ul id="menu-content" class="menu-content collapse out">
-                  <li data-toggle="collapse" data-target="#TV" class="collapsed">
-                     <a href="#"><i class="fa fa-television fa-lg"></i> TV <span class="arrow"></span></a>
-                  </li>
-                  <ul class="sub-menu collapse" id="TV">
-                     <li class="active"><a href="https://www.lge.co.kr/tvs?subCateId=CT50000028">OLED</a></li>
-                     <li><a href="https://www.lge.co.kr/search/result?search=%EB%B2%BD%EA%B1%B8%EC%9D%B4%ED%98%95&force=false#iihntcky">Wall Type</a></li>
-                     <li><a href="https://www.lge.co.kr/search/result?search=%EC%8A%A4%ED%83%A0%EB%93%9C%ED%98%95&force=false#0jnjw2bq">Stand Type</a></li>
-                  </ul>
-<!--                   pc ----------------------------------------------------------------------------------------------------------------------
- -->                  <li data-toggle="collapse" data-target="#PC" class="collapsed">
-                     <a href="#"><i class="fa fa-desktop fa-lg"></i> PC <span class="arrow"></span></a>
-                  </li>
-                  <ul class="sub-menu collapse" id="PC">
-                     <li class="active"><a href="https://www.lge.co.kr/notebook">Laptop</a></li>
-                     <li><a href="https://www.lge.co.kr/monitors">Monitor</a></li>
-                     <li><a href="https://www.lge.co.kr/all-in-one-pc-and-desktop">Desktop</a></li>
-                  </ul>
-
-<!--                 냉장고 ------------------------------------------------------------------------------------------------------------------------
- -->                  <li data-toggle="collapse" data-target="#Refrigerator" class="collapsed">
-                     <a href="#"><i class="fa fa-snowflake-o fa-lg"></i> Refrigerator <span class="arrow"></span></a>
-                  </li>
-                  <ul class="sub-menu collapse" id="Refrigerator">
-                     <li class="active"><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000070">Water Purifier Type</a></li>
-                     <li><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000066">Double Door</a></li>
-                     <li><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000067">Standard</a></li>
-                     <li><a href="https://www.lge.co.kr/kimchi-refrigerators">Kimchi Refrigerator</a></li>
-                  </ul> 
-
-<!--                   세탁기 --------------------------------------------------------------------------------------------------------------------
- -->                  <li data-toggle="collapse" data-target="#washingmachine" class="collapsed">
-                     <a href="#"><i class="fa fa-tint fa-lg"></i> washing machine <span
-                        class="arrow"></span></a>
-                  </li>
-                  <ul class="sub-menu collapse" id="washingmachine">
-                     <li class="active"><a href="https://www.lge.co.kr/refrigerators?subCateId=CT50000070">Roundabout</a></li>
-                     <li><a href="https://www.lge.co.kr/washing-machines?subCateId=CT50000102">Drum</a></li>
-                     <li><a href="https://www.lge.co.kr/washing-machines?subCateId=CT50000105">Wash Tower</a></li>
-                  </ul>
-<!--                   에어컨 ----------------------------------------------------------------------------------------------------------------------------
- -->                  <li data-toggle="collapse" data-target="#airconditioner" class="collapsed">
-                     <a href="#"><i class="fa-thin fa-air-conditioner"></i> air conditioner <span
-                        class="arrow"></span></a>
-                  </li>
-                  <ul class="sub-menu collapse" id="airconditioner">
-                     <li class="active"><a href="https://www.lge.co.kr/air-conditioners?subCateId=CT50000134">Stand Type</a></li>
-                     <li><a href="https://www.lge.co.kr/search/result?search=%EC%9D%B4%EB%8F%99%EC%8B%9D%20%EC%97%90%EC%96%B4%EC%BB%A8&force=false#3t05wsb7">Portable</a></li>
-                     <li><a href="https://www.lge.co.kr/air-conditioners?subCateId=CT50000135">Wall Type</a></li>
-                  </ul>
-
-               </ul>
+      <div id="PC" class="tabcontent">
+         <h3>PC</h3>
+         <hr/>
+         <h5><a href="/shopping/product/productDetail2.html">노트북</a></h5><hr/>
+         <h5><a href="/shopping/product/productDetail2.html">모니터</a></h5><hr/>
+         <h5><a href="/shopping/product/productDetail2.html">컴퓨터</a></h5><hr/>
+      </div>
+   
+      <div id="Refrigerator" class="tabcontent">
+         <h3>냉장고</h3>
+         <hr/>
+         <h5><a href="/shopping/product/productDetail2.html">정수기형</a></h5><hr/>
+         <h5><a href="/shopping/product/productDetail2.html"">양문형</a></h5><hr/>
+         <h5><a href="/shopping/product/productDetail2.html">일반형</a></h5><hr/>
+         <h5><a href="/shopping/product/productDetail2.html">김치냉장고</a></h5><hr/>
+      </div>
+      <div id="Airconditioner" class="tabcontent">
+         <h3>에어컨</h3>
+         <hr/>
+         <h5><a href="/shopping/product/productDetail2.html">스탠드형</a></h5><hr/>
+         <h5><a href="/shopping/product/productDetail2.html">이동식</a></h5><hr/>
+         <h5><a href="/shopping/product/productDetail2.html">벽걸이형</a></h5><hr/>
+      </div>
+      <div id="Washingmachine" class="tabcontent">
+         <h3>세탁기</h3>
+         <hr/>
+         <h5><a href="/shopping/product/productDetail2.html">통돌이</a></h5><hr/>
+         <h5><a href="/shopping/product/productDetail2.html">드럼</a></h5><hr/>
+         <h5><a href="/shopping/product/productDetail2.html">워시타워</a></h5><hr/>
+      </div>
+      <div>
+      <section class="h-100 h-custom">
+        <div class="container h-100 py-5">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+      
+            <div class="container-sm " style="width:1200px">
+               <div class="main row ">
+            
+               <a href="/shopping/product/productList.html">홈 </a> 
+               >
+               <a href="/shopping/product/productList.html">   tv   /   냉장고      /   세탁기      /   건조기      </a> 
+               >
+               <a href="/shopping/product/productList.html">tv</a> 
+                
             </div>
-         </div>
-         
-         <div class="main col-xs-12 col-md-10 border">
-            <div class = "row border" > 
-               <h3><a href="/shopping/product/productList.html">홈 </a> 
-               ></h3>
-               <h3><a href="/shopping/product/productList.html">   tv   /   냉장고      /   세탁기      /   건조기      </a> 
-               ></h3>
-               <h3><a href="/shopping/product/productList.html">tv</a> 
-               </h3>
-                  
-            </div>
-            <div class = "row border" >
+          
+            <div class = "row" >
             
             <table id="table" >
-              <tr>
-                <th colspan="2" style="text-align: center"><h1>올레드 오브제컬렉션</h1></th>
+              <tr style="border-bottom: 2px solid black">
+                <th colspan="2" style="text-align: start ">
+                   <h1>올레드 오브제컬렉션 55LX1QKNB.AKR</h1>
+                   
+                </th>
                 
               </tr>
-             <tr>
+             <tr style="border-bottom: 1px solid gray">
                 <th rowspan="4"><img src="../images/올레드1.jpg" width="700px" /></th>
-                <td>모델명 : 55LX1QKNB.AKR</td>
+                <td width="500px" >모델명 : 55LX1QKNB.AKR</td>
               </tr>
-              <tr>
+              <tr style="border-bottom: 1px solid gray">
                 <td>판매가 3,390,000</td>
               </tr>
-              <tr>
+              <tr style="border-bottom: 1px solid gray">
                 <td>평점: 5</td>
               </tr>
                <tr>
                 <td >
                       구매수량: <input class="ml-5" id="form1" min="0" name="quantity" value="1" type="number"
-                      style="width: 50px; height: 50px" />
+                      style="width: 50px; height: 30px" />
                 
                 </td>
               </tr>
@@ -297,14 +319,21 @@
               </div>
          
             </div>
-            <nav class="nav nav-pills nav-fill" width="100%">
+            <div class="row" style="height:100px">
+            
+            </div>
+            
+            <nav class="nav nav-pills nav-fill" style="border-bottom: 1px solid gray">
                   <a class="nav-item nav-link" href="#">상품 정보</a> <a
                      class="nav-item nav-link" href="#">상품평</a> <a
                      class="nav-item nav-link" href="#">질문</a> <a
                      class="nav-item nav-link" href="#">배송</a>
-               </nav>
-            <div class = "row border">
+            </nav>
+            
+            <div class = "row">
+            
                <img src="../images/올레드2.jpg" width="100%"/>   
+               
                <img src="../images/올레드4.jpg" width="100%"/>
                <img src="../images/올레드6.jpg" width="100%"/>
                <img src="../images/올레드7.jpg" width="100%"/>
@@ -324,6 +353,20 @@
             <div class = "row border">배송
    
             </div>
-         </div>   
+         
+          </div>
+      
+              
+      
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
+   
+      
+
+
+   
    </body>
 </html>
