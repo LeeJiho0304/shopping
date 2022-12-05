@@ -6,86 +6,102 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-		 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  		 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
- 		 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
- 		 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-		<link rel="stylesheet" href="/shopping/resources/css/homePage/common.css">
-		<script>
-			$(document).ready(function(){
-	
-				$('#TV .menu-sub').hide();
-				$('#PC .menu-sub').hide();
-				$('#Refrigerator .menu-sub').hide();
-				$('#Airconditioner .menu-sub').hide();
-				$('#Washingmachine .menu-sub').hide();
-				
-				$('nav').mouseover(function() {
-					$('#TV .menu-sub').hide();
-					$('#PC .menu-sub').hide	();
-					$('#Refrigerator .menu-sub').hide();
-					$('#Airconditioner .menu-sub').hide();
-					$('#Washingmachine .menu-sub').hide();
-				});
-				$('.menu1').mouseover(function(){
-					$('#TV .menu-sub').show	();
-					$('#PC .menu-sub').hide	();
-					$('#Refrigerator .menu-sub').hide();
-					$('#Airconditioner .menu-sub').hide();
-					$('#Washingmachine .menu-sub').hide();
-
-				});
-				$('.menu2').mouseover(function(){
-					$('#PC .menu-sub').show();
-					$('#TV .menu-sub').hide();
-					$('#Refrigerator .menu-sub').hide();
-					$('#Airconditioner .menu-sub').hide();
-					$('#Washingmachine .menu-sub').hide();
-	
-				});
-				$('.menu3').mouseover(function(){
-					$('#Refrigerator .menu-sub').show();
-					$('#TV .menu-sub').hide();
-					$('#PC .menu-sub').hide	();
-					$('#Airconditioner .menu-sub').hide();
-					$('#Washingmachine .menu-sub').hide();
-	
-				});
-				$('.menu4').mouseover(function(){
-					$('#Airconditioner .menu-sub').show();
-					$('#TV .menu-sub').hide();
-					$('#PC .menu-sub').hide	();
-					$('#Refrigerator .menu-sub').hide();
-					$('#Washingmachine .menu-sub').hide();
-	
-				});
-				$('.menu5').mouseover(function(){
-					$('#Washingmachine .menu-sub').show();
-					$('#TV .menu-sub').hide();
-					$('#PC .menu-sub').hide	();
-					$('#Refrigerator .menu-sub').hide();
-					$('#Airconditioner .menu-sub').hide();
-	
-				});
-				
-				$('#TV').mouseleave(function(){
-					$('#TV .menu-sub').hide();
-				});
-				$('#PC').mouseleave(function(){
-					$('#PC .menu-sub').hide();
-				});
-				$('#Refrigerator').mouseleave(function(){
-					$('#Refrigerator .menu-sub').hide();
-				});
-				$('#Airconditioner').mouseleave(function(){
-					$('#Airconditioner .menu-sub').hide();
-				});
-				$('#Washingmachine').mouseleave(function(){
-					$('#Washingmachine .menu-sub').hide();
-				});
-				
-			});
-		</script>
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+ 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+ 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@200;400;500&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+		<style>
+		font-family: 'Hahmlet', serif;
+		font-family: 'Nanum Gothic', sans-serif;
+		.dropmenu{
+			border:none;
+			border:0px;
+			margin:0px;
+			padding:0px;
+			font-size:18px;
+		}
+		
+		.dropmenu ul{
+			background:red;
+			height:50px;
+			list-style:none;
+			margin:0;
+			padding:0;
+		}
+		
+		.dropmenu li{
+			float:left;
+			padding:0px;
+		}
+		
+		.dropmenu li a{
+			background: red;
+			color:#fff;
+			display:block;
+			line-height:50px;
+			margin:0px;
+			padding:0px 20px;
+			text-align:center;
+			text-decoration:none;
+		}
+		
+		.dropmenu li a:hover, .dropmenu ul li:hover a{
+			background: rgb(31,31,31);
+			color:#FFFFFF;
+			text-decoration:none;
+		}
+		
+		.dropmenu li ul{
+			background: #FEBEBE;
+			display:none; 
+			height:auto;
+			border:0px;
+			position:absolute;
+			width:200px;
+			z-index:200;
+			/*top:1em;
+			/*left:0;*/
+		}
+		
+		.dropmenu li:hover ul{
+			display:block;
+		}
+		
+		.dropmenu li li {
+			background: rgb(171,171,171);
+			display:block;
+			float:none;
+			margin:0px;
+			padding:0px;
+			width:200px;
+		}
+		
+		.dropmenu li:hover li a{
+			background:none;
+		}
+		
+		.dropmenu li ul a{
+			display:block;
+			height:80px;
+			font-size:14px;
+			margin:0px;
+			padding:0px 10px 0px 15px;
+			text-align:left;
+		}
+		
+		.dropmenu li ul a:hover, .dropmenu li ul li:hover a{
+			background: red;
+			border:0px;
+			color:#ffffff;
+			text-decoration:none;
+		}
+		
+		.dropmenu p{
+			clear:left;
+		}
+		</style>
 	</head>
 	
 	<body>
@@ -136,86 +152,45 @@
 				</form>
 			</div>
 		</nav>
-		
-		<div class="tab">
-			<button class="menu1">TV</button>
-			<button class="menu2">PC</button>
-			<button class="menu3">냉장고</button>
-			<button class="menu4">에어컨</button>
-			<button class="menu5">세탁기</button>
-			<br/>
-			<br/>
-			<br/>
-			<ul id="TV">
-				<li>
-					<ul class="menu-sub">
-						<li><a href="shopping/oder/orderList.html" class="my-dep2">OLED</a>
-						<hr /> <a href="shopping/oder/orderList.html" class="my-dep2">벽걸이형</a>
-						<hr /> <a href="shopping/oder/orderList.html" class="my-dep2">스탠드형</a>
-						<hr /></li>
-					</ul>
-				</li>
-			</ul>
-			<ul id="PC">
-				<li>
-					<ul class="menu-sub">
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">노트북</a><hr/>
-						<a href="shopping/oder/orderList.html" class="my-dep2">모니터</a><hr/>
-						<a href="shopping/oder/orderList.html" class="my-dep2">컴퓨터</a><hr/>
-					</li>	
-					</ul>
-				</li>
-			</ul>
-			<ul id="Refrigerator">
-				<li>
-					<ul class="menu-sub">
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">정수기형</a><hr/>
-					</li>
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">양문형</a><hr/>
-					</li>
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">일반형</a><hr/>
-					</li>
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">김치냉장고</a><hr/>
-					</li>
-					</ul>
-				</li>
-			</ul>
-			<ul id="Airconditioner">
-				<li>
-					<ul class="menu-sub">
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">스탠드형</a><hr/>
-					</li>
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">이동식</a><hr/>
-					</li>
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">벽걸이형</a><hr/>
-					</li>
-					</ul>
-				</li>
-			</ul>
-			<ul id="Washingmachine">
-				<li>
-					<ul class="menu-sub">
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">통돌이</a><hr/>
-					</li>
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">드럼</a><hr/>
-					</li>
-					<li>
-						<a href="shopping/oder/orderList.html" class="my-dep2">워시타워</a><hr/>
-					</li>
-					</ul>
-				</li>
-			</ul>
 	
+		 <div class="dropmenu">
+			<ul>
+			 <li><a href="#" id="current">TV</a>
+				  <ul>
+				     <li><a href="#">OLED</a></li>
+				     <li><a href="#">벽걸이형</a></li>
+				     <li><a href="#">스탠드형</a></li>
+				  </ul>
+			 </li>
+			 <li><a href="#" id="current">냉장고</a>
+				  <ul>
+				     <li><a href="#">정수기형</a></li>
+				     <li><a href="#">양문형</a></li>
+				     <li><a href="#">일반형</a></li>
+				     <li><a href="#">김치냉장고</a></li>
+				  </ul>
+			 </li>
+			 <li><a href="#" id="current">에어컨</a>
+				  <ul>
+				     <li><a href="#">스탠드형</a></li>
+				     <li><a href="#">이동식</a></li>
+				     <li><a href="#">벽걸이형</a></li>
+				  </ul>
+			 </li>
+			 <li><a href="#" id="current">세탁기</a>
+				  <ul>
+				     <li><a href="#">통돌이</a></li>
+				     <li><a href="#">드럼</a></li>
+				     <li><a href="#">워시타워</a></li>
+				  </ul>
+			 </li>
+			 <li><a href="#" id="current">PC</a>
+				  <ul>
+				     <li><a href="#">노트북</a></li>
+				     <li><a href="#">모니터</a></li>
+				     <li><a href="#">컴퓨터</a></li>
+				  </ul>
+			 </li>
+			</ul>
 		</div>
-		
-		
+</body>
