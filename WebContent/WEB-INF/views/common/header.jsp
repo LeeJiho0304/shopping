@@ -106,7 +106,7 @@
 	
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light">
-			<a class="navbar-brand" href="/shopping/product/productList.html"> 
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/MainController"> 
 				<img src="/shopping/resources/images/homePage/JH.png" width="35px" height="35px"/> OTI전자
 			</a>
 			
@@ -120,25 +120,26 @@
 			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" >
 
 				<ul class="navbar-nav" >
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" >
+					 <li class="nav-item">
+               			 <c:if test="${loginId == null}">
+								<a href="${pageContext.request.contextPath}/LoginController" class="nav-link">Login</a>
+						</c:if>
+					
+						<c:if test="${loginId != null}">
+							<a href="${pageContext.request.contextPath}/LogoutController" class="nav-link">Logout</a>
+						</c:if>
+            		</li>
+            		<c:if test="${loginId == null}">
+						<li class="nav-item">
+			                <a class="nav-link" href="${pageContext.request.contextPath}/JoinController">Register</a>
+			            </li>
+		            </c:if>
+		            <li class="nav-item">
+						<a class="nav-link" href="/shopping/product/productList2.html">
 							<i class="fa fa-user"></i>
 						</a>
-						<div class="dropdown-menu">
-							<c:if test="${loginId == null}">
-								<a href="${pageContext.request.contextPath}/LoginController">로그인</a>
-							</c:if>
-						
-							<c:if test="${loginId != null}">
-								<span class="mr-2">${loginId}</span>
-								<a href="${pageContext.request.contextPath}/MainController">로그아웃</a>
-							</c:if>
-							
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/JoinController">회원가입</a> 
-							<a class="dropdown-item" href="/shopping/user/myPage.html">마이페이지</a>
-						</div>
 					</li>
-	
+					
 					<li class="nav-item">
 						<a class="nav-link" href="/shopping/product/productList2.html">
 							<i class="fa fa-shopping-cart"></i>
@@ -201,4 +202,3 @@
 			 </li>
 			</ul>
 		</div>
-</body>
