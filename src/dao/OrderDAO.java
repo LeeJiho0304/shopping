@@ -13,7 +13,7 @@ import dto.order.OrderDetailDTO;
 import dto.order.OrderReadListDTO;
 
 public class OrderDAO {
-	public void insertOrder(OrderDTO order, OrderDetailDTO orderDetail) throws SQLException {
+	public void insertOrder(OrderDTO order, OrderDetailDTO orderDetail, Connection conn) throws Exception {
 		int price = order.getOrders_price();
 		String userId = order.getUsers_id();
 		String address = order.getOrders_address();
@@ -24,7 +24,6 @@ public class OrderDAO {
 			+"SEQ_ORDERS_ID.nextval, SYSDATE, ?, ?, ?, DEFAULT"
 			+")";
 		
-		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
 		pstmt.setInt(1, price);
 		pstmt.setString(2, userId);
@@ -48,7 +47,7 @@ public class OrderDAO {
 		conn.close();
 	}
 	
-	public OrderDTO selectOrder(String id) throws SQLException {
+	public OrderDTO selectOrder(String id, Connection conn) throws Exception {
 		String SQL
 			="SELECT ORDERS.USER_ID, ORDERS.ORDERS_ID, PRODUCT_NAME, ORDER_DETAIL_ITEM_COUNT, ORDERS_DATE, ORDERS_PRICE, ORDERS_STATUS, ORDERS_ADDRESS "
 			+"FROM ORDERS, ORDER_DETAIL, PRODUCT "
@@ -56,7 +55,6 @@ public class OrderDAO {
 		    +"ORDERS.ORDERS_ID = ORDER_DETAIL.ORDERS_ID AND "
 		    +"ORDER_DETAIL.PRODUCT_ID = PRODUCT.PRODUCT_ID";
 		
-		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
 		pstmt.setString(1, id);
 		
@@ -81,7 +79,7 @@ public class OrderDAO {
 		return order;
 	}
 	
-	public OrderDTO selectOrder(int id) throws SQLException {
+	public OrderDTO selectOrder(int id, Connection conn) throws Exception {
 		String SQL
 			="SELECT ORDERS.USERS_ID, ORDERS.ORDERS_ID, PRODUCT_NAME, ORDER_DETAIL_ITEM_COUNT, ORDERS_DATE, ORDERS_PRICE, ORDERS_STATUS, ORDERS_ADDRESS "
 			+"FROM ORDERS, ORDER_DETAIL, PRODUCT "
@@ -89,7 +87,6 @@ public class OrderDAO {
 	    	+"ORDERS.ORDERS_ID = ORDER_DETAIL.ORDERS_ID AND "
 	    	+"ORDER_DETAIL.PRODUCT_ID = PRODUCT.PRODUCT_ID";
 		
-		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
 		pstmt.setInt(1, id);
 		
@@ -114,7 +111,7 @@ public class OrderDAO {
 		return order;
 	}
 	
-	public List<OrderDTO> selectOrderList(int pageNo, OrderReadListDTO receivedDTO) throws SQLException {
+	public List<OrderDTO> selectOrderList(int pageNo, OrderReadListDTO receivedDTO, Connection conn) throws Exception {
 		StringBuilder sqlBuilder = new StringBuilder();
 		sqlBuilder.append("SELECT USERS_ID, ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, RNUM ");
 		sqlBuilder.append("FROM ( ");
@@ -144,7 +141,6 @@ public class OrderDAO {
 		sqlBuilder.append("	) ");
 		sqlBuilder.append("WHERE (RNUM - 1) > = ?");
 
-		Connection conn = ConnectionProvider.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement(sqlBuilder.toString());
 		
@@ -192,11 +188,10 @@ public class OrderDAO {
 		return orders;
 	}
 	
-	public int getTotalRows(OrderReadListDTO receivedDTO) throws SQLException {
+	public int getTotalRows(OrderReadListDTO receivedDTO, Connection conn) throws Exception {
 		String SQL
 				="SELECT COUNT(*) as total "
-				+"FROM ORDERS "
-				;
+				+"FROM ORDERS ";
 		
 		if (!(receivedDTO.getCondition() == null)) {
 			if (receivedDTO.getCondition().equals("LIKE")) {
@@ -208,7 +203,6 @@ public class OrderDAO {
 			
 		}
 		
-		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
 		
 		if (!(receivedDTO.getCondition() == null)) {
@@ -235,7 +229,7 @@ public class OrderDAO {
 		return result;
 	}
 	
-	public int getTotalJoinRows(OrderReadListDTO receivedDTO) throws SQLException {
+	public int getTotalJoinRows(OrderReadListDTO receivedDTO, Connection conn) throws Exception {
 		String SQL
 				="SELECT COUNT(*) as total "
 				+"FROM ORDERS, ORDER_DETAIL, PRODUCT "
@@ -252,7 +246,6 @@ public class OrderDAO {
 			
 		}
 		
-		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
 		
 		if (!(receivedDTO.getCondition() == null)) {
@@ -279,7 +272,7 @@ public class OrderDAO {
 		return result;
 	}
 	
-	public void updateOrder(OrderDTO order) throws SQLException {
+	public void updateOrder(OrderDTO order, Connection conn) throws Exception {
 		int id = order.getOrders_id();
 		String status = order.getOrders_status();
 		
@@ -289,7 +282,6 @@ public class OrderDAO {
 			+"SET ORDERS_STATUS = ? "
 			+"WHERE ORDERS_ID = ?";
 		
-			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, status);
 			pstmt.setInt(2, id);
@@ -301,10 +293,9 @@ public class OrderDAO {
 		
 	}
 	
-	public void deleteOrder(OrderDTO order) throws SQLException { 
+	public void deleteOrder(OrderDTO order, Connection conn) throws Exception { 
 		int id = order.getOrders_id();
 		String SQL = "DELETE FROM ORDERS WHERE ORDERS_ID = ?";
-		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
 		pstmt.setInt(1, id);
 		pstmt.executeUpdate();

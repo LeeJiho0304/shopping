@@ -23,9 +23,4 @@ public class ProductListController extends HttpServlet {
 		//JSP로 이동
 		request.getRequestDispatcher("/WEB-INF/views/homePage/product/productList.jsp").forward(request, response);
 	}
-	
-	@Override
-	public void destroy() {
-		System.out.println("ProductListController.destroy()");
-	}
 }

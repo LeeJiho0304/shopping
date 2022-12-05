@@ -73,87 +73,81 @@
 											</div></li>
 									</ul>
 
-								</div>
-							</div>
-							<div class="filterMenu" id="divStar">
-								<div class="filterMenuItem">
-									별점
-									<hr />
-									<ul class="depth list-unstyled">
-										<li>
-											<div class="inpRadio">
-												<input type="radio" name="starRatingRb" id="starRatingAll"
-													onclick="javascript:search.btn.starSearch(this.id, '');">
-												<label for="starRatingAll"> <span class="text">전체</span>
-												</label>
-											</div>
-										</li>
-										<li>
-											<div class="inpRadio">
-												<input type="radio" name="starRatingRb" id="starRating1"
-													onclick="javascript:search.btn.starSearch(this.id, '40');">
-												<label for="starRating1">
-													<div class="star_sc starSm">
-														<span style="width: 80%;"></span>
-													</div> <span class="text">4점 이상</span>
-												</label>
-											</div>
-										</li>
-										<li>
-											<div class="inpRadio">
-												<input type="radio" name="starRatingRb" id="starRating2"
-													onclick="javascript:search.btn.starSearch(this.id, '30');">
-												<label for="starRating2">
-													<div class="star_sc starSm">
-														<span style="width: 60%;"></span>
-													</div> <span class="text">3점 이상</span>
-												</label>
-											</div>
-										</li>
-										<li>
-											<div class="inpRadio">
-												<input type="radio" name="starRatingRb" id="starRating3"
-													onclick=""> <label for="starRating3">
-													<div class="star_sc starSm">
-														<span style="width: 40%;"></span>
-													</div> <span class="text">2점 이상</span>
-												</label>
-											</div>
-										</li>
-										<li>
-											<div class="inpRadio">
-												<input type="radio" name="starRatingRb" id="starRating4"
-													onclick="javascript:search.btn.starSearch(this.id, '10');">
-												<label for="starRating4">
-													<div class="star_sc starSm">
-														<span style="width: 20%;"></span>
-													</div> <span class="text">1점 이상</span>
-												</label><hr/>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="filterMenu" id="divComment">
-								<div class="filterMenuItem">
-									상품평
-									<hr />
-									<ul class="depth list-unstyled">
-										<li><div class="inpRadio">
-												<input type="radio" name="Comment" id="highComment"
-													onclick="javascript:search.btn.checkedComment(this.id,'high');">
-													<label for="highComment">많은 순</label>
-											</div></li>
-										<li><div class="inpRadio">
-												<input type="radio" name="Comment" id="lowComment"
-													onclick="javascript:search.btn.checkedComment(this.id,'low');">
-													<label for="lowComment">적은 순</label>
-												<hr />
-											</div></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<ul class="nav flex-column">
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam01.</span>
+			<a class="text-white" href="/servletjsp/exam01/ContentController">JSP와 Servlet 차이점</a>
+		</h6>
+	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam02.</span>
+			<a class="text-white" href="/servletjsp/exam02/ContentController">요청 방식(GET/POST)</a>
+		</h6>
+	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam03.</span>
+			<a class="text-white" href="/servletjsp/exam03/ContentController">서블릿 라이프사이클(callback 메소드)</a>
+		</h6>
+	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam04.</span>
+			<a class="text-white" href="/servletjsp/exam04/ContentController">응답 생성</a>
+		</h6>
+	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam05.</span>
+			<a class="text-white" href="/servletjsp/exam05/ContentController">요청 정보 얻기</a>
+		</h6>
+	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam06.</span>
+			<a class="text-white" href="/servletjsp/exam06/ContentController">상태 유지 - 쿠키(클라이언트측 저장)</a>
+		</h6>
+	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam07.</span>
+			<a class="text-white" href="/servletjsp/exam07/ContentController">상태 유지 - HttpSession(서버측 저장, 해당 클라이언트)</a>
+		</h6>
+	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam08.</span>
+			<a class="text-white" href="/servletjsp/exam08/ContentController">상태 유지 - ServletContext(서버측 저장, 모든 클라이언트)</a>
+		</h6>
+	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam09.</span>
+			<a class="text-white" href="/servletjsp/HomeController">필터 테스트</a>
+		</h6>
+	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam10.</span>
+			<a class="text-white" href="/servletjsp/exam10/ContentController">예외 처리</a>
+		</h6>
+	</li>
+	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-2">Exam11.</span>
+			<a class="text-white" href="/servletjsp/exam11/ContentController">EL</a>
+		</h6>
+	</li>
+</ul>

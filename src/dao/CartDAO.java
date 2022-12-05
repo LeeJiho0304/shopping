@@ -12,10 +12,8 @@ import dto.product.ProductListDTO;
 import connection.ConnectionProvider;
 
 public class CartDAO {
-	Connection conn = ConnectionProvider.getConnection();
-
 	// 장바구니에 담기
-	public String insertCart(CartDTO cartDTO) {
+	public String insertCart(CartDTO cartDTO, Connection conn) throws Exception {
 		String result = null;
 		int rsResult = 0;
 
@@ -101,7 +99,7 @@ public class CartDAO {
 	}
 
 	//장바구니 총 갯수 출력
-	public int getTotalRows(CartDTO cartDTO) {
+	public int getTotalRows(CartDTO cartDTO, Connection conn) throws Exception {
 		int totalRows = 0;
 		try {
 			String sql = "SELECT count(*) " 
@@ -130,7 +128,7 @@ public class CartDAO {
 	}
 
 	// 장바구니 목록
-	public List<CartDTO> selectAllList(int pageNo, CartDTO cartDTO) {
+	public List<CartDTO> selectAllList(int pageNo, CartDTO cartDTO, Connection conn) throws Exception {
 		List<CartDTO> cartDTOs = new ArrayList<>();
 		try {
 			String sql = "" +

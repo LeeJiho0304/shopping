@@ -3,7 +3,9 @@ package context;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.sql.DataSource;
 
+import connection.ConnectionProvider;
 import dao.*;
 
 import service.cart.CartService;
@@ -23,7 +25,13 @@ public class ShoppingContext implements ServletContextListener {
 		//ServletContext 객체 얻기
 		ServletContext application = sce.getServletContext();
 		
+		//ConnectionPool(javax.sql.DataSource) 객체 얻기
+		DataSource dataSource = ConnectionProvider.getDataSource();
+		application.setAttribute("dataSource", dataSource);
+		
 		//ServletContext 객체에 데이터(객체) 저장
+		application.setAttribute("productDAO", new ProductDAO());
+		
 		application.setAttribute("cartService", new CartService(application));
 		application.setAttribute("categoryService", new CategoryService(application));
 		
@@ -34,7 +42,7 @@ public class ShoppingContext implements ServletContextListener {
 //		application.setAttribute("orderUpdateService", new OrderUpdateService(application));
 		
 		application.setAttribute("productContentService", new ProductContentService(application));
-//		application.setAttribute("productService", new ProductService(application));
+		application.setAttribute("productService", new ProductService(application));
 //		
 //		application.setAttribute("qnABoardAnswerService", new QnABoardAnswerService(application));
 //		application.setAttribute("qnABoardCreateService", new QnABoardCreateService(application));
@@ -62,7 +70,7 @@ public class ShoppingContext implements ServletContextListener {
 //		application.setAttribute("cartDAO", new CartDAO());
 //		application.setAttribute("categoryDAO", new CategoryDAO());
 //		application.setAttribute("orderDAO", new OrderDAO());
-		application.setAttribute("productDAO", new ProductDAO());
+		
 //		application.setAttribute("qnABoardDAO", new QnABoardDAO());
 //		application.setAttribute("reviewBoardDAO", new ReviewBoardDAO());
 //		application.setAttribute("subCategoryDAO", new SubCategoryDAO());
