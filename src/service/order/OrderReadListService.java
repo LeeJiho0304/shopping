@@ -15,21 +15,23 @@ public class OrderReadListService {
 	List<OrderDTO> orders;
 	OrderDTO orderDTO;
 	private ServletContext application;
-	OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
 	
 	public OrderReadListService(ServletContext application) {
 		this.application=application;
 	}
 	
 	public int getTotalRows(OrderReadListDTO receivedDTO) throws SQLException {
+		OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
 		return orderDAO.getTotalRows(receivedDTO);
 	}
 	
 	public int getTotalJoinRows(OrderReadListDTO receivedDTO) throws SQLException {
+		OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
 		return orderDAO.getTotalJoinRows(receivedDTO);
 	}
 	
 	public List<OrderDTO> getOrderList(int pageNo, OrderReadListDTO receivedDTO) throws JSONException, SQLException {
+		OrderDAO orderDAO = (OrderDAO) application.getAttribute("orderDAO");
 		return orderDAO.selectOrderList(pageNo, receivedDTO);
 	}
 }

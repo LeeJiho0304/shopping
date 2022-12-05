@@ -12,11 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name="MainController", urlPatterns="/MainController")
 public class MainController extends HttpServlet {
 	@Override
-	public void init(ServletConfig config) throws ServletException {
-		System.out.println("MainController.init() 실행");
-	}
-	
-	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MainController.service() 실행");
 		
@@ -24,8 +19,4 @@ public class MainController extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 	
-	@Override
-	public void destroy() {
-		System.out.println("MainController.destroy()");
-	}
 }
