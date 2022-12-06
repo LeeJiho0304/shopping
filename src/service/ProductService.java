@@ -15,13 +15,14 @@ public class ProductService {
 	List<ProductListDTO> productDTOs;
 	private DataSource ds;
 	private  ServletContext application;
-	ProductDAO productDAO = (ProductDAO)application.getAttribute("productDAO");
+	ProductDAO productDAO;
 	
 	public ProductService (ServletContext application) {
 		this.application = application;
 		try {
 			ds = (DataSource) application.getAttribute("dataSource");
 			Connection conn = ds.getConnection();
+			productDAO = (ProductDAO)application.getAttribute("productDAO");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
