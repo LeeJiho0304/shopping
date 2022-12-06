@@ -16,7 +16,8 @@ public class CategoryService {
 		this.application=application;
 	}
 	
-	public List<CategoryDTO> getList() {		
+	//수정전
+	/*public List<CategoryDTO> getList() {		
 		try {
 			CategoryDAO categoryDao = (CategoryDAO) application.getAttribute("categoryDAO");
 			cgDTO = categoryDao.selectCategoryAllList();
@@ -24,6 +25,6 @@ public class CategoryService {
 			e.printStackTrace();
 		}
 		return cgDTO;
-	}
+	}*/
 
 }

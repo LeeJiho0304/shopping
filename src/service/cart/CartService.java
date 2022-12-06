@@ -14,7 +14,9 @@ public class CartService {
 		this.application=application;
 	}
 	
-	public String createCart(CartDTO cartDto) {
+	//수정 전
+	
+	/*public String createCart(CartDTO cartDto) {
 		CartDAO cartDAO = (CartDAO) application.getAttribute("cartDAO");
 		String result = cartDAO.insertCart(cartDto);
 		return result;
@@ -35,6 +37,6 @@ public class CartService {
 		cartDTOs = cartDAO.selectAllList(pageNo, cartDTO);
 		
 		return cartDTOs;
-	}
+	}*/
 
 }

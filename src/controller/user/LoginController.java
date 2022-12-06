@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/homePage/user/loginForm.jsp").forward(request, response);
 		}
-		//JSP로 이동
+	
 	}
 	
 }

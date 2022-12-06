@@ -12,107 +12,121 @@
  		 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		<link rel="stylesheet" href="/shopping/resources/css/homePage/common.css">
 		<style>
-		/* Navbar container */
-		.navbar  {
-		  overflow: hidden;
-		  background-color: #333;
-		  font-family: Arial;
-		}
-		
-		/* Links inside the navbar */
-		.navbar a {
-		  float: left;
-		  font-size: 16px;
-		  color: white;
-		  text-align: center;
-		  padding: 14px 16px;
-		  text-decoration: none;
-		}
-		
-		/* The dropdown container */
-		.dropdown {
-		  float: left;
-		  overflow: hidden;
-		}
-		
-		/* Dropdown button */
-		.dropdown .dropbtn {
-		  font-size: 16px;
-		  border: none;
-		  outline: none;
-		  color: white;
-		  padding: 14px 16px;
-		  background-color: inherit;
-		  font: inherit; /* Important for vertical align on mobile phones */
-		  margin: 0; /* Important for vertical align on mobile phones */
-		}
-		
-		/* Add a red background color to navbar links on hover */
-		.navbar a:hover, .dropdown:hover .dropbtn {
-		  background-color: red;
-		}
-		
-		/* Dropdown content (hidden by default) */
-		.dropdown-content {
-		  display: none;
-		  position: absolute;
-		  background-color: #f9f9f9;
-		  width: 100%;
-		  left: 0;
-		  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-		  z-index: 1;
-		}
-		
-		/* Mega Menu header, if needed */
-		.dropdown-content .header {
-		  background: red;
-		  padding: 16px;
-		  color: white;
-		}
-		
-		/* Show the dropdown menu on hover */
-		.dropdown:hover .dropdown-content {
-		  display: block;
-		}
-		
-		/* Create three equal columns that floats next to each other */
-		.column {
-		  float: left;
-		  width: 33.33%;
-		  padding: 10px;
-		  background-color: #ccc;
-		  height: 250px;
-		}
-		
-		/* Style links inside the columns */
-		.column a {
-		  float: none;
-		  color: black;
-		  padding: 16px;
-		  text-decoration: none;
-		  display: block;
-		  text-align: left;
-		}
-		
-		/* Add a background color on hover */
-		.column a:hover {
-		  background-color: #ddd;
-		}
-		
-		/* Clear floats after the columns */
-		.row:after {
-		  content: "";
-		  display: table;
-		  clear: both;
-		}
+		/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
 
-	@media screen and (max-width: 600px) {
-	  .column {
-	    width: 100%;
-	    height: auto;
-	  }
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
 
+/* Add an active class to highlight the current page */
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
 
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+/* Dropdown container - needed to position the dropdown content */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Style the dropdown button to fit inside the topnav */
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+/* Add a grey background to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
 
 		</style>
 	</head>
@@ -165,39 +179,22 @@
 				</form>
 			</div>
 		</nav>
-	
-	<div class="navbar menu">
-	  <a href="#home">Home</a>
-	  <a href="#news">News</a>
-	  <div class="dropdown">
-	    <button class="dropbtn">Dropdown
-	      <i class="fa fa-caret-down"></i>
-	    </button>
-	    <div class="dropdown-content">
-	      <div class="header">
-	        <h2>Mega Menu</h2>
-	      </div>
-	      <div class="row menu">
-	        <div class="column menu">
-	          <h3>Category 1</h3>
-	          <a href="#">Link 1</a>
-	          <a href="#">Link 2</a>
-	          <a href="#">Link 3</a>
-	        </div>
-	        <div class="column menu">
-	          <h3>Category 2</h3>
-	          <a href="#">Link 1</a>
-	          <a href="#">Link 2</a>
-	          <a href="#">Link 3</a>
-	        </div>
-	        <div class="column menu">
-	          <h3>Category 3</h3>
-	          <a href="#">Link 1</a>
-	          <a href="#">Link 2</a>
-	          <a href="#">Link 3</a>
-	        </div>
-	      </div>
-	    </div>
+		<div class="topnav" id="myTopnav">
+		    <a href="#home" class="active">Home</a>
+		    <a href="#news">News</a>
+		    <a href="#contact">Contact</a>
+		    <div class="dropdown">
+		    <button class="dropbtn">Dropdown
+		      <i class="fa fa-caret-down"></i>
+		    </button>
+		    <div class="dropdown-content">
+		        <a href="#">Link 1</a>
+		        <a href="#">Link 2</a>
+		        <a href="#">Link 3</a>
+		    </div>
+		  </div>
+		  <a href="#about">About</a>
+		  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 	  </div>
-	</div>
+	
 		

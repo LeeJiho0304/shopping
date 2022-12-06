@@ -16,7 +16,7 @@ public class SubCategoryService {
 		this.application = application;
 	}
 	
-	public List<SubCategoryDTO> getList(int category_id) {
+	/*public List<SubCategoryDTO> getList(int category_id) {
 		try {
 			SubCategoryDAO subcategoryDAO = (SubCategoryDAO)application.getAttribute("subCategoryDAO");
 			subcategoryDTO = subcategoryDAO.selectSubCategoryAllList(category_id);
@@ -24,5 +24,5 @@ public class SubCategoryService {
 			e.printStackTrace();
 		}
 		return subcategoryDTO;
-	}
+	}*/
 }
