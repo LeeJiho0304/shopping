@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.product.ProductDTO;
 import dto.product.ProductListDTO;
-import service.product.ProductService;
+import service.ProductService;
 
 @WebServlet(name="admin.AdminProductListController", urlPatterns="/admin/AdminProductListController")
 public class AdminProductListController extends HttpServlet {

@@ -1,4 +1,4 @@
-package service.reviewBoard;
+package service;
 
 import java.util.List;
 

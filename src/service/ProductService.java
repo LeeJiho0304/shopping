@@ -1,4 +1,4 @@
-package service.product;
+package service;
 
 import java.sql.Connection;
 import java.util.List;

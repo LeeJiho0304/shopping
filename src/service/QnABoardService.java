@@ -1,4 +1,4 @@
-package service.qnaBoard;
+package service;
 
 import java.util.List;
 

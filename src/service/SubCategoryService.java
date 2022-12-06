@@ -1,4 +1,4 @@
-package service.subcategory;
+package service;
 
 import java.sql.SQLException;
 import java.util.List;
