@@ -1,7 +1,6 @@
 package controller.admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -12,8 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.product.ProductDTO;
-import dto.product.ProductListDTO;
-import service.product.ProductService;
+import service.ProductService;
 import dto.Pager;
 
 @WebServlet(name="admin.AdminProductListController", urlPatterns="/admin/AdminProductListController")
