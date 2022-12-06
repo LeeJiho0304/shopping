@@ -6,7 +6,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
-import dao.ProductDAO;
+import dao.ProductDAO3;
 import dto.Pager;
 import dto.product.ProductDTO;
 import dto.product.ProductListDTO;
@@ -15,14 +15,15 @@ public class ProductService {
 	List<ProductListDTO> productDTOs;
 	private DataSource ds;
 	private  ServletContext application;
-	ProductDAO productDAO;
+	ProductDAO3 productDAO;
 	
 	public ProductService(ServletContext application) {
 		this.application = application;
+		productDAO = (ProductDAO3)application.getAttribute("productDAO");
+		ds = (DataSource) application.getAttribute("dataSource");
+		
 		try {
-			ds = (DataSource) application.getAttribute("dataSource");
 			Connection conn = ds.getConnection();
-			productDAO = (ProductDAO)application.getAttribute("productDAO");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -125,5 +126,4 @@ public class ProductService {
 		return result;
 	}
 
-	
 }

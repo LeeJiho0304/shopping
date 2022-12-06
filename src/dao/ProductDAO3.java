@@ -13,7 +13,7 @@ import dto.product.ProductDTO;
 import dto.product.ProductListDTO;
 
 
-public class ProductDAO {
+public class ProductDAO3 {
 	//해당 카테고리 상품 총 갯수 출력
 	public int getTotalRows(ProductListDTO productListDTO, Connection conn) {
 		int totalRows = 0;
@@ -151,10 +151,9 @@ public class ProductDAO {
 	
 	//상품 추가
 	public int insert(ProductDTO product, Connection conn) throws Exception {
-		System.out.println("insert");
-		String sql = "insert into product (product_id, product_name, product_price, product_company, category_id, subcategory_id, product_content, ";
-		sql += "main_filename, main_savedname, main_content_type, detail_filename, detail_savedname, detail_content_type) ";
-		sql += "values(seq_product_id.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into product (product_id, product_name, product_price, product_company, category_id, subcategory_id, product_content, " +
+				"main_filename, main_savedname, main_content_type, detail_filename, detail_savedname, detail_content_type) " + 
+				"values(seq_product_id.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, product.getProduct_name());

@@ -35,10 +35,9 @@ public class AddProductController extends HttpServlet {
 		product.setProduct_name(request.getParameter("product_name"));
 		product.setProduct_price(Integer.parseInt(request.getParameter("product_price")));
 		product.setProduct_company(request.getParameter("product_company"));
+		product.setProduct_content(request.getParameter("product_content"));
 		product.setCategory_id(Integer.parseInt(request.getParameter("category_id")));
 		product.setSubcategory_id(Integer.parseInt(request.getParameter("subcategory_id")));
-		
-		System.out.println(request.getParameter("product_name"));
 		
 		//파일 파트
 		Part filePart1 = request.getPart("productMainPhoto");
@@ -46,11 +45,6 @@ public class AddProductController extends HttpServlet {
 			String fileName = filePart1.getSubmittedFileName();
 			String savedName = new Date().getTime() + "-" + fileName;
 			String fileType = filePart1.getContentType();
-			
-			System.out.println("main");
-			System.out.println(fileName);
-			System.out.println(savedName);
-			System.out.println(fileType);
 			
 			product.setMain_filename(fileName);
 			product.setMain_savedname(savedName);
@@ -65,11 +59,6 @@ public class AddProductController extends HttpServlet {
 			String fileName = filePart2.getSubmittedFileName();
 			String savedName = new Date().getTime() + "-" + fileName;
 			String fileType = filePart2.getContentType();
-			
-			System.out.println("detail");
-			System.out.println(fileName);
-			System.out.println(savedName);
-			System.out.println(fileType);
 			
 			product.setDetail_filename(fileName);
 			product.setDetail_savedname(savedName);

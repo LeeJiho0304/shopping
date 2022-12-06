@@ -76,7 +76,7 @@
 	                                    </div>
 	                                    <div class="form-group">
 	                                        <label for="productCompany">제품 설명</label>
-	                                        <input type="text" class="form-control" id="product_cotent" name="product_cotent" placeholder="제품 설명">
+	                                        <input type="text" class="form-control" id="product_content" name="product_content" placeholder="제품 설명">
 	                                    </div>
 	                                    <div class="row">
 											<div class="col-sm-6">
@@ -121,7 +121,6 @@
 	                                        <div class="input-group">
 	                                            <div class="custom-file">
 	                                                <input type="file" class="form-control" id="productMainPhoto" name="productMainPhoto">
-	                                                <label class="custom-file-label" for="productMainPhoto">제품 메인 사진</label>
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -131,7 +130,6 @@
 	                                        <div class="input-group">
 	                                            <div class="custom-file">
 	                                                <input type="file" class="form-control" id="productDetailPhoto" name="productDetailPhoto">
-	                                                <label class="custom-file-label" for="productDetailPhoto">제품 상세정보 사진</label>
 	                                            </div>
 	                                        </div>
 	                                    </div>
