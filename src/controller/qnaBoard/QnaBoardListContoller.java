@@ -41,7 +41,6 @@ public class QnaBoardListContoller extends HttpServlet {
 				
 		//페이징 대상이 되는 전체 행수 얻기		
 		int totalBoardNum = qboardService.getTotalRows();
-		System.out.println(totalBoardNum);
 				
 		//Pager 생성
 		Pager pager = new Pager(10,5, totalBoardNum, pageNo);

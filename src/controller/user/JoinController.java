@@ -24,29 +24,36 @@ public class JoinController extends HttpServlet {
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+				
 		String userId = request.getParameter("uid");
 		String userPwd = request.getParameter("pw");
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
 		String uPhone = request.getParameter("phone");
 		String uName = request.getParameter("name");
-		String birthday = request.getParameter("userPwd");
-		
-		
-		HttpSession session = request.getSession();
+		String birthday = request.getParameter("year");
+		birthday+= request.getParameter("month");
+		birthday+= request.getParameter("day");
 		
 		UserDTO user = new UserDTO();
 		user.setUser_id(userId);
 		user.setUser_password(userPwd);
+		user.setUser_email(email);
+		user.setUser_address(address);
+		user.setUser_phone(uPhone);
+		user.setUser_name(uName);
+		user.setUser_birthday(birthday);
 		
 		ServletContext application = request.getServletContext();
-		UserService userLoginService = (UserService)application.getAttribute("userLoginService");
+		UserService userService = (UserService)application.getAttribute("userService");
+		int result = userService.join(user);
 		
-		if(userLoginService.login(user)==1) {
+		if(result==2) {
 			session.setAttribute("loginId", userId);	
 			response.sendRedirect("MainController");
 		}else {
-			request.getRequestDispatcher("/WEB-INF/views/homePage/user/loginForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/homePage/user/joinForm.jsp").forward(request, response);
 		}
 	}	
 	

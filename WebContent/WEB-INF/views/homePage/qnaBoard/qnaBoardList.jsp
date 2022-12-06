@@ -125,15 +125,23 @@
 		                                </tr>
 		                            </thead>
 		                            <tbody>
-		                                <tr>
-		                                    <th scope="row">1</th>		                                   
-		                                    <td>${qnaBoardDTO.qna_board_id}</td>
-		                                    <td><fmt:formatDate value="${qnaboard.qna_board_date}" pattern = "yyyy.MM.dd"/></td>
+		                            <c:forEach var ="qboard" items="${pageList}">
+		                                <tr>	                                
+		                                    <th scope="row">${qboard.qna_board_id}</th>		                                   
+		                                    <td>${qboard.qna_board_title}</td>
+		                                    <td><fmt:formatDate value="${qboard.qna_board_date}" pattern = "yyyy.MM.dd"/></td>
 		                                    <td>
-		                                        <span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> Completed</span>
+		                                        
+		                                        	<c:if test="${qboard.qna_board_answer == 'Y'}"> 
+		                                        		<span class="text-primary font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> 답변 완료</span>
+		                                        	</c:if>
+		                                        	<c:if test="${qboard.qna_board_answer == 'N'}"> 
+		                                        		<span class="text-warning font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> 답변 대기</span>
+		                                        	</c:if>
+		                                        	
 		                                    </td>
 		                                    <td>
-		                                        <div class="team text-primary">${qnaboard.users_id}
+		                                        <div class="team text-success">${qboard.users_id}
 		                                        </div>
 		                                    </td>
 		                                    
@@ -144,7 +152,8 @@
 		                                        </div>
 		                                    </td>
 		                                </tr>
-		
+										</c:forEach>
+										<!-- 
 		                                <tr>
 		                                    <th scope="row">2</th>
 		                                    <td>문의합니다.</td>
@@ -303,27 +312,52 @@
 		                                            <a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa fa-remove h5 m-0"></i></a>
 		                                        </div>
 		                                    </td>
-		                                </tr>
+		                                </tr> -->
 		                            </tbody>
 		                        </table>
 		                    </div>
 		                    <!-- end project-list -->
-		
+							
 		                    <div class="pt-3">
-		                    	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">상품문의 글쓰기</button>
-		                        <ul class="pagination justify-content-end mb-0">
-		                            <li class="page-item disabled">
-		                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
-		                            </li>
-		                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-		                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                            <li class="page-item">
-		                                <a class="page-link" href="#">다음</a>
-		                            </li>
-		                        </ul>
+		                    	<div>
+		                    		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">상품문의 글쓰기</button>
+			                        <!--<ul class="pagination justify-content-end mb-0">
+			                            <li class="page-item disabled">
+			                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+			                            </li>
+			                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+			                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+			                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+			                            <li class="page-item">
+			                                <a class="page-link" href="#">다음</a>
+			                            </li>
+			                        </ul>-->
+		                   		 </div>
+			                    <div class="text-center">
+			                    	 
+				                     <a href="QnaBoardListContoller?pageNo=1" class="btn btn-outline-primary btn-sm">처음</a>
+				                     
+				                     <c:if test="${pager.groupNo > 1}">
+				                        <a href="QnaBoardListContoller?pageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm">이전</a>
+				                     </c:if>
+				                     
+				                     <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+				                        <c:if test="${pager.pageNo != i}">
+				                           <a href="QnaBoardListContoller?pageNo=${i}" class="btn btn-outline-success btn-sm">${i}</a>
+				                        </c:if>
+				                        <c:if test="${pager.pageNo == i}">
+				                           <a href="QnaBoardListContoller?pageNo=${i}" class="btn btn-danger btn-sm">${i}</a>
+				                        </c:if>
+				                     </c:forEach>
+				                     
+				                     <c:if test="${pager.groupNo < pager.totalGroupNo}">
+				                        <a href="QnaBoardListContoller?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">다음</a>
+				                     </c:if>
+				                     
+				                     <a href="QnaBoardListContoller?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">맨끝</a>
+				                  
+			                    </div>
 		                    </div>
-		                    
 		                    <!-- The Modal -->
 			<div class="modal fade" id="myModal">
 				<div class="modal-dialog modal-lg">
@@ -339,10 +373,10 @@
 						<div class="modal-body">
 							<h4>문의 유형을 선택하시고, 내용을 작성해 주세요.</h4>
 	
-							<form id="frmQuestDetail" name="frmQuestDetail" method="post" action="QnaWriteController" enctype="multipart/form-data">
+							<form id="frmQuestDetail" name="frmQuestDetail" method="get" action="QnaWriteContoller" enctype="multipart/form-data">
 
 								<div class="qna">
-									<table >
+									<table>
 										<tbody>
 											<tr>
 												<th >문의유형</th>
@@ -361,7 +395,7 @@
 												<td>
 													<div class="titWrite">
 														<input type="text" id="inquiryTitleName"
-															name="inquiryTitleName" maxlength="51" value=""
+															name="inquiryTitleName" maxlength="51"
 															placeholder="제목을 입력해 주세요. (50자 이내)">
 	
 													</div>
@@ -403,20 +437,16 @@
 									</table>
 	
 								</div>
-								
+									<!-- 로그인 아이디, 제품 아이디 넣기 -->	
+									<!-- Modal footer -->
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-secondary" data-dismiss="modal">등록</button>								
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>								
+								</div>								
 							</form>
 	
 						</div>
-						<!-- 로그인 아이디, 제품 아이디 넣기 -->	
-						<!-- Modal footer -->
-						<div class="modal-footer">
-						<button type="submit" class="btn btn-secondary"
-								data-dismiss="modal">등록</button>
-							<button type="button" class="btn btn-secondary" 
-								data-dismiss="modal">취소</button>
-								
-						</div>
-	
+							
 					</div>
 				</div>
 		                </div>

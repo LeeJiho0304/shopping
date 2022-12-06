@@ -25,7 +25,7 @@ public class QnABoardDAO {
 			if (rs.next()) {
 				totalRows = rs.getInt(1);
 			}
-		return 100; //totalRows;
+		return totalRows;
 	}
 
 	public int getTotalSearchRows(String search, Connection conn) throws Exception {
@@ -99,34 +99,36 @@ public class QnABoardDAO {
 	}
 	
 	public List<QnABoardDTO> selectAllList(Pager pager, Connection conn) throws Exception {
+		List<QnABoardDTO> qnaBoardDTOs = new ArrayList<>();
 		try {
 			// sql문 작성
 			String sql = ""
-					+ " SELECT RNUM, qna_board_id, product_name, qna_board_title,users_id,qna_board_date "
+					+ " SELECT RNUM, qna_board_id, product_name, qna_board_title, QNA_BOARD_ANSWER, users_id, qna_board_date "
 					+ " FROM ("
-					+ "    SELECT ROWNUM AS RNUM, qna_board_id, product_name, qna_board_title,users_id,qna_board_date  "
+					+ "    SELECT ROWNUM AS RNUM, qna_board_id, product_name, qna_board_title, QNA_BOARD_ANSWER, users_id, qna_board_date  "
 					+ "    FROM ( "
-					+ "       SELECT qna_board_id, product_name, qna_board_title,users_id,qna_board_date  "
-					+ "        FROM QNA_BOARD q , product p" + " 		WHERE q.product_id = p.product_id"
-					+ "        ORDER BY qna_board_date desc)" + "   WHERE ROWNUM < (? * 5) + 1 "
-					+ ") WHERE RNUM >= ((? - 1) * 5) + 1 ";
+					+ "       SELECT qna_board_id, product_name, qna_board_title, QNA_BOARD_ANSWER, users_id, qna_board_date  "
+					+ "        FROM QNA_BOARD q , product p" 
+					+ " 		WHERE q.product_id = p.product_id"
+					+ "        ORDER BY qna_board_date desc)" + "   WHERE ROWNUM <= ?"  //(? * 5) + 1 "
+					+ ") WHERE RNUM >= ? "; //((? - 1) * 5) + 1 ";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, pager.getPageNo()*pager.getRowsPerPage());
 			pstmt.setInt(2, (pager.getPageNo()-1)*pager.getRowsPerPage()+1);
 			ResultSet rs = pstmt.executeQuery();
 
-			QnABoardDTO qnaBoardDTO;
+			//QnABoardDTO qnaBoardDTO;
 
 			while (rs.next()) {
-
-				qnaBoardDTO = new QnABoardDTO();
+				QnABoardDTO qnaBoardDTO = new QnABoardDTO();
 
 				// 답변은 답변여부만 담아서 리스트 DTO로 담기 위해 삼항연산자 사용
 				String YN = rs.getString("qna_board_answer") != null ? "Y" : "N";
 
 				// 한 행의 데이터를 DTO에 담아준다
 				qnaBoardDTO.setQna_board_id(rs.getInt("qna_board_id"));
-				qnaBoardDTO.setProduct_id(rs.getInt("product_id"));
+				//qnaBoardDTO.setProduct_id(rs.getInt("product_id"));
+				//System.out.println(qnaBoardDTO.getProduct_id());
 				qnaBoardDTO.setQna_board_title(rs.getString("qna_board_title"));
 				qnaBoardDTO.setUsers_id(rs.getString("users_id"));
 				qnaBoardDTO.setQna_board_date(rs.getDate("qna_board_date"));
@@ -168,8 +170,7 @@ public class QnABoardDAO {
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		} 
-		System.out.println("dao-qna 생성");
+		} 		
 		return result;
 	}
 

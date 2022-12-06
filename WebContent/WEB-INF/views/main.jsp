@@ -40,7 +40,7 @@
 				<tbody >
 					<tr>
 						<td>
-							<div class="card" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController'">
+							<div class="card" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController2'">
 								<div class="card-header"><img src="../images/티비4.png"></div>
 									<div class="card-body">
 									<h4>LG 올레드 오브제컬렉션</h4>
