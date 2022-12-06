@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,6 +11,35 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		
+		<script>
+		function activeBasicClass() {
+			var basicinfo = $("#basicInfo");
+			basicinfo.addClass("active");
+			var newinfo= $("#newInfo");
+			newinfo.removeClass("active");
+			var inputName = $("#inputName");
+			inputName.attr("value", "이지호");		
+			var inputTel = $("#inputTel");
+			inputTel.attr("value", "010-1234-1234");
+			var inputAddress = $("#inputAddress");
+			inputAddress.attr("value", "서울시 종로구 창경궁로 254");
+		}
+		
+		function activeNewClass() {
+			var basicinfo = $("#basicInfo");
+			basicinfo.removeClass("active");
+			var newinfo= $("#newInfo");
+			newinfo.addClass("active");			
+			var inputName = $("#inputName");
+			inputName.attr("value", "");
+			var inputTel = $("#inputTel");
+			inputTel.attr("value", "");
+			var inputAddress = $("#inputAddress");
+			inputAddress.attr("value", "");
+		}
+
+		</script>
 		
 		<style>
 			*,
@@ -72,7 +101,7 @@
 			  margin-right: 5px;
 			}
 			
-			img {
+			#productimg {
 			  width: 100%;
 			  border-radius: 8px 0 0 8px;
 			}
@@ -415,7 +444,7 @@
 		          <i class="icon icon-basket"></i>Oti 전자</div>
 		        <div class="secure">
 		          <i class="icon icon-shield"></i>
-		          <span>Secure Checkout</span>
+		          <span>Order Product</span>
 		
 		        </div>
 		      </div>
@@ -433,7 +462,7 @@
 		      <div class="details__item">
 		
 		        <div class="item__image">
-		          <img class="iphone" src="../images/티비5.png" alt="">
+		          <img class="iphone" id="productimg" src="../images/티비5.png" alt="">
 		        </div>
 		        <div class="item__details">
 		          <div class="item__title">
@@ -469,8 +498,8 @@
 		         	 배송지 선택
 		        </div>
 		        <div class="payment__types">
-		          <div class="payment__type payment__type--cc active"> 신규 입력</div>
-		          <div class="payment__type payment__type--paypal"> 기본 정보</div>		 
+		          <div class="payment__type payment__type--cc active" onclick="activeNewClass()" id="newInfo"> 신규 입력</div>
+		          <div class="payment__type payment__type--paypal" onclick="activeBasicClass()" id="basicInfo"> 기본 정보</div>	
 		        </div>
 		
 		        <div class="payment__info">
@@ -482,7 +511,7 @@
 		                  <div class="field">
 		                    <div class="title">받는 사람
 		                    </div>
-		                    <input type="text" class="input txt text" placeholder="이름" />
+		                    <input type="text" class="input txt text" placeholder="이름" id="inputName"/>
 		                  </div>
 		                </div>
 		                <div class="row">
@@ -490,7 +519,7 @@
 		                <div class="field sm">
 		                    <div class="title">전화 번호
 		                    </div>
-		                    <input type="text" class="input txt" placeholder="000-0000-0000"/>
+		                    <input type="text" class="input txt" placeholder="000-0000-0000" id="inputTel"/>
 		                  </div>
 		                
 		                  <div class="field small">
@@ -518,7 +547,7 @@
 		                  <div class="field">
 		                    <div class="title">배송 주소
 		                    </div>
-		                    <input type="text" class="input txt" placeholder="00도 00시 00구 00동 00로 00"/>
+		                    <input type="text" class="input txt" placeholder="00도 00시 00구 00로 00" id="inputAddress"/>
 		                  </div>
 		                </div>
 		                
@@ -550,9 +579,7 @@
 		    <div class="container">
 		      <div class="actions">
 		
-		        <a href="#" class="btn action__submit">결제 하기
-		          <i class="icon icon-arrow-right-circle"></i>
-		        </a>
+		        <a href="#" class="btn action__submit">결제 하기</a>
 		        <a href="#" class="backBtn">홈으로 돌아가기</a>
 		
 		      </div>
