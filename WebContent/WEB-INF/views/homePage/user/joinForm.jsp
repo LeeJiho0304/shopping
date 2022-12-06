@@ -9,7 +9,7 @@
 		var uid = document.querySelector("#uid");
 		//var uid = document.joinForm.uid;
 		var uidValue = uid.value;
-		var uidPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$/;
+		var uidPattern = /^(?=.*\d)(?=.*[a-z]).{6,10}$/;
 		var uidTest = uidPattern.test(uidValue);
 		if (uidTest) {
 			uid.classList.remove("bg-danger");
@@ -71,23 +71,23 @@
 						onsubmit="return handleCheckData()" novalidate>
 						<div class="mb-3">
 							<label for="uid">아이디</label> <input type="text"
-								class="form-control" id="uid" placeholder="" value="" required>
+								class="form-control" id="uid" placeholder="소문자 포함한 6~10글자" value="" required>
 						</div>
 						<div class="mb-3">
 							<label for="password">비밀번호</label> <input type="password"
-								class="form-control" id="password" placeholder="" value=""
+								class="form-control" id="password" placeholder="대, 소문자포함 8~15글자" value=""
 								required>
 						</div>
 
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<label for="name">이름</label> <input type="text"
-									class="form-control" id="name" placeholder="" value="" required>
+									class="form-control" id="name" placeholder="홍길동" value="" required>
 								<div class="invalid-feedback">이름을 입력해주세요.</div>
 							</div>
 							<div class="col-md-6 mb-3">
 								<label for="phone">전화번호</label> <input type="text"
-									class="form-control" id="phone" placeholder="" value=""
+									class="form-control" id="phone" placeholder="000-0000-0000" value=""
 									required>
 								<div class="invalid-feedback">010-1234-1234</div>
 							</div>
