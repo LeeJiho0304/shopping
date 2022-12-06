@@ -96,72 +96,40 @@ public class UserDAO {
 		return result;
 	}
 	
-	public JSONObject insertUser(UserDTO receivedDTO, Connection conn) throws Exception {
-		JSONObject result = new JSONObject();
-
-		try {
-			String sql1
-			= "INSERT INTO USERS "
-			+ "VALUES (?, ?, ?, ?, ?, 1, ?, ?, 0)";
-		
-			conn.setAutoCommit(false);
-			
-			PreparedStatement pstmt1 = conn.prepareStatement(sql1);
-			pstmt1.setString(1, receivedDTO.getUser_id());
-			pstmt1.setString(2, receivedDTO.getUser_password());
-			pstmt1.setString(3, receivedDTO.getUser_email());
-			pstmt1.setString(4, receivedDTO.getUser_address());
-			pstmt1.setString(5, receivedDTO.getUser_phone());
-			pstmt1.setString(6, receivedDTO.getUser_name());
-			pstmt1.setString(7, receivedDTO.getUser_birthday());
-			
-			int rows1 = pstmt1.executeUpdate();
-			if(rows1 == 0) throw new Exception("회원가입 실패");
-			pstmt1.close();
-			
-			String sql2
-			= "INSERT INTO USER_CART "
-			+ "VALUES (0, ?)";
-			
-			PreparedStatement pstmt2 = conn.prepareStatement(sql2);
-			pstmt2.setString(1, receivedDTO.getUser_id());
-		
-			int rows2 = pstmt2.executeUpdate();
-			if(rows2 == 0) throw new Exception("회원 장바구니 만들기 실패");
+	public int insertUser(UserDTO receivedDTO, Connection conn) throws Exception {
+		String sql1
+		= "INSERT INTO USERS "
+		+ "VALUES (?, ?, ?, ?, ?, 1, ?, ?, 0) ";
 	
-			pstmt2.close();
-			
-			int update = rows1 + rows2;
-			if (update == 2) {
-				result.put("status", "success");
-			}
-			else {
-				result.put("status", "fail");
-			}
-			
-		} catch(Exception e) {
-			try {
-				//수동 롤백 -> 모두 실패 처리
-				conn.rollback();
-				result.put("status", "fail");
-			} catch(SQLException e1) {
-			}
-			System.out.println("회원가입, 장바구니 생성 실패");
-			e.printStackTrace();
-		} finally {
-			if(conn != null) {
-				try {
-					//자동 커밋 기능 켜기
-					conn.setAutoCommit(true);
-					conn.close();
-				} catch (SQLException e) {
-					
-				}
-			}
-		}
+		PreparedStatement pstmt1 = conn.prepareStatement(sql1);
+		pstmt1.setString(1, receivedDTO.getUser_id());
+		pstmt1.setString(2, receivedDTO.getUser_password());
+		pstmt1.setString(3, receivedDTO.getUser_email());
+		pstmt1.setString(4, receivedDTO.getUser_address());
+		pstmt1.setString(5, receivedDTO.getUser_phone());
+		pstmt1.setString(6, receivedDTO.getUser_name());
+		pstmt1.setString(7, receivedDTO.getUser_birthday());
 		
-		return result;
+		int rows1 = pstmt1.executeUpdate();
+		if(rows1 == 0) throw new Exception("회원가입 실패");
+		pstmt1.close();
+		
+		String sql2
+		= "INSERT INTO USER_CART "
+		+ "VALUES (0, ?)";
+		
+		PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+		pstmt2.setString(1, receivedDTO.getUser_id());
+	
+		int rows2 = pstmt2.executeUpdate();
+		if(rows2 == 0) throw new Exception("회원 장바구니 만들기 실패");
+
+		pstmt2.close();
+		
+		
+		return rows1+rows2 ;
 	}
+	
 	
 	public UserDTO selectUserInfo(String id, Connection conn) throws Exception {
 		String sql

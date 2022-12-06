@@ -28,12 +28,10 @@ public class UserService {
 
 	//유저 로그인 
 	public int login(UserDTO user) {
-		System.out.println(user.getUser_id());
 		int result = 0;
 		Connection conn = null;
 		 try {
 	    	  conn = ds.getConnection();
-	    	  System.out.println(user.getUser_id());
 	    	  result = userDao.selectUser(user.getUser_id(), user.getUser_password(), conn);
 	      }catch(Exception e) {
 	    	  e.printStackTrace();
@@ -44,13 +42,34 @@ public class UserService {
 	}
 	
 	
+	//유저 가입(생성) 
+	public int join(UserDTO receivedDTO) {
+		int result = 0;
+		Connection conn = null;
+		 try {
+	    	  conn = ds.getConnection();
+	    	  conn.setAutoCommit(false);
+	    	  result = userDao.insertUser(receivedDTO, conn);
+	    	  conn.commit();
+	      }catch(Exception e) {
+	    	  e.printStackTrace();
+	    	  
+	    	  try {
+				conn.rollback();
+			} catch (SQLException e1) {	e1.printStackTrace();}
+	    	  
+	      }finally {
+	    	  try {
+					//자동 커밋 기능 켜기
+					conn.setAutoCommit(true);
+					conn.close();
+				} catch (SQLException e) {}
+	      }
+		return result;
+	}
+	
 	//수정 전 
 	/*
-	//유저 가입(생성) 
-	public JSONObject join(UserDTO receivedDTO) throws SQLException {
-		UserDAO userDAO = (UserDAO)application.getAttribute("userDAO");
-		return userDAO.insertUser(receivedDTO);
-	}
 	//유저 탈퇴(삭제)
 	public void withdraw(String id) throws SQLException {
 		UserDAO userDAO = (UserDAO)application.getAttribute("userDAO");

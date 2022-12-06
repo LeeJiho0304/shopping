@@ -13,34 +13,26 @@ import dto.product.ProductDTO;
 import dto.product.ProductListDTO;
 
 
-public class ProductDAO {
+public class ProductDAO2 {
 	//해당 카테고리 상품 총 갯수 출력
-	public int getTotalRows(ProductListDTO productListDTO, Connection conn) {
+	public int getTotalRows(ProductListDTO productListDTO, Connection conn)throws Exception {
 		int totalRows = 0;
-		try {
-			String sql = "SELECT count(*) " +
-						"FROM product " + 
-						"WHERE category_id = ? and subcategory_id =? ";
-			
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, productListDTO.getCategory_id());
-			pstmt.setInt(2, productListDTO.getSubcategory_id());
-			ResultSet rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				totalRows = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				//Connection 반납
-				conn.close();
-				System.out.println("반납 성공");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		
+		String sql = "SELECT count(*) " +
+					"FROM product " + 
+					"WHERE category_id = ? and subcategory_id =? ";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, productListDTO.getCategory_id());
+		pstmt.setInt(2, productListDTO.getSubcategory_id());
+		ResultSet rs = pstmt.executeQuery();
+		
+		if (rs.next()) {
+			totalRows = rs.getInt(1);
 		}
+		rs.close();
+		pstmt.close();
+			
 		return totalRows;
 	}
 	

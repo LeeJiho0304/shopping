@@ -15,8 +15,8 @@ import dao.ProductDAO;
 import dto.product.ProductDTO;
 import service.ProductService;
 
-@WebServlet(name="ProductDetailController", urlPatterns="/ProductDetailController")
-public class ProductDetailController extends HttpServlet {
+@WebServlet(name="ProductDetailController2", urlPatterns="/ProductDetailController2")
+public class ProductDetailController2 extends HttpServlet {
 	ProductDTO productDTO;
 	
 	@Override

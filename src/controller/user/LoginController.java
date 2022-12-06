@@ -25,19 +25,19 @@ public class LoginController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
-		HttpSession session = request.getSession();
 		
 		UserDTO user = new UserDTO();
 		user.setUser_id(userId);
 		user.setUser_password(userPwd);
 		
 		ServletContext application = request.getServletContext();
-		UserService userLoginService = (UserService)application.getAttribute("userLoginService");
+		UserService userService = (UserService)application.getAttribute("userService");
 		
-		if(userLoginService.login(user)==1) {
+		if(userService.login(user)==1) {
 			session.setAttribute("loginId", userId);	
 			response.sendRedirect("MainController");
 		}else {

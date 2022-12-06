@@ -166,7 +166,7 @@
 			<ul>
 			 <li><a href="#" id="current">TV</a>
 				  <ul>
-				     <li><a href="#">OLED</a></li>
+				     <li><a href="${pageContext.request.contextPath}/ProductListController2?categoryId=2&subCategoryId=1">OLED</a></li>
 				     <li><a href="#">벽걸이형</a></li>
 				     <li><a href="#">스탠드형</a></li>
 				  </ul>
