@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -92,12 +92,7 @@
 			  padding-bottom: 0;
 			  border-bottom: none;
 			}
-			img {
-			    width: 100%;
-			    max-width: 100%;
-			    height: auto;
-			    -webkit-backface-visibility: hidden;
-			}
+			
 			.rounded {
 			    border-radius: 5px !important;
 			}
@@ -448,7 +443,10 @@
 	</head>
 	<body>
 		<div>
-		
+		<div class="card-header">
+     	 	문의 게시판> 문의글 상세 보기
+   		</div>
+   		<div class="card-body"> 
 			<div class="container">
 			        <div>
 			           
@@ -461,7 +459,7 @@
 				           		<p><b>문의 유형:</b> 상품 관련 문의</p>
 				           		<p><b>제목:</b> 문의 합니다.</p>
 				           		<p><b>내용:</b> 옵션에서 벽걸이 선택할 수 있던데 각도조절 벽걸이 인가요?</p>
-				                <p><b>작성자:</b> 지도리우동</p>
+				                <p><b>작성자:</b> test1</p>
 				                <p><b>작성 일자:</b> 2022.11.27</p>	
 				                <p style="padding-left: 640px">
 				                	<button type="button" class="btn btn-info btn-sm">수정</button>
@@ -490,7 +488,7 @@
 			        </div><!-- / column -->
  
 			</div>
-			
+			</div>
 			<div id="footer"></div>
 		</div>
 	</body>

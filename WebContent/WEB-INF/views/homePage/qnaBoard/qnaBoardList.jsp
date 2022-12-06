@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -50,8 +50,10 @@
 		</style>
 	</head>
 	<body>
-		
-
+		<div class="card-header">
+     	 	문의 게시판
+   		</div>
+		<br/>
 		<div class="container">
 		    <div class="row">
 		        <div class="col-xl-3 col-md-6">
@@ -128,7 +130,7 @@
 		                            <c:forEach var ="qboard" items="${pageList}">
 		                                <tr>	                                
 		                                    <th scope="row">${qboard.qna_board_id}</th>		                                   
-		                                    <td>${qboard.qna_board_title}</td>
+		                                    <td><a href="QnaBoardDetailContoller">${qboard.qna_board_title}</a></td>
 		                                    <td><fmt:formatDate value="${qboard.qna_board_date}" pattern = "yyyy.MM.dd"/></td>
 		                                    <td>
 		                                        
