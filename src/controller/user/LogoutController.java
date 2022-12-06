@@ -1,6 +1,6 @@
 package controller.user;
 
-import java.io.IOException;
+import java.io.IOException; 
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.user.UserDTO;
-import service.user.UserLoginService;
+
 
 @WebServlet(name="LogoutController", urlPatterns="/LogoutController")
 public class LogoutController extends HttpServlet {	

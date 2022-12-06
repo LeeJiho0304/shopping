@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -118,30 +120,23 @@
 		                                    <th scope="col">작성 일자</th>
 		                                    <th scope="col">답변 여부</th>
 		                                    <th scope="col">작성자</th>
-		                                    <th scope="col">Progress</th>
+		                                    
 		                                    <th scope="col">수정</th>
 		                                </tr>
 		                            </thead>
 		                            <tbody>
 		                                <tr>
-		                                    <th scope="row">1</th>
-		                                    <td>문의합니다.</td>
-		                                    <td>02/5/2019</td>
+		                                    <th scope="row">1</th>		                                   
+		                                    <td>${qnaBoardDTO.qna_board_id}</td>
+		                                    <td><fmt:formatDate value="${qnaboard.qna_board_date}" pattern = "yyyy.MM.dd"/></td>
 		                                    <td>
 		                                        <span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> Completed</span>
 		                                    </td>
 		                                    <td>
-		                                        <div class="team text-primary">이지호
+		                                        <div class="team text-primary">${qnaboard.users_id}
 		                                        </div>
 		                                    </td>
-		                                    <td>
-		                                        <p class="mb-0">Progress<span class="float-right">100%</span></p>
-		
-		                                        <div class="progress mt-2" style="height: 5px;">
-		                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-		                                        </div>
-		                                    </td>
-		
+		                                    
 		                                    <td>
 		                                        <div class="action">
 		                                            <a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
@@ -161,14 +156,7 @@
 		                                        <div class="team text-primary"> 족발집 알바생
 		                                        </div>
 		                                    </td>
-		                                    <td>
-		                                        <p class="mb-0">Progress<span class="float-right">78%</span></p>
-		
-		                                        <div class="progress mt-2" style="height: 5px;">
-		                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 78%;" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-		                                        </div>
-		                                    </td>
-		
+		                                   
 		                                    <td>
 		                                        <div class="action">
 		                                            <a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
@@ -188,13 +176,7 @@
 		                                        <div class="team text-primary">고르곤졸라
 		                                        </div>
 		                                    </td>
-		                                    <td>
-		                                        <p class="mb-0">Progress<span class="float-right">100%</span></p>
-		
-		                                        <div class="progress mt-2" style="height: 5px;">
-		                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-		                                        </div>
-		                                    </td>
+		                                    
 		
 		                                    <td>
 		                                        <div class="action">
@@ -214,14 +196,7 @@
 		                                        <div class="team text-primary"> 김치볶음밥
 		                                        </div>
 		                                    </td>
-		                                    <td>
-		                                        <p class="mb-0">Progress<span class="float-right">100%</span></p>
-		
-		                                        <div class="progress mt-2" style="height: 5px;">
-		                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-		                                        </div>
-		                                    </td>
-		
+		                                   
 		                                    <td>
 		                                        <div class="action">
 		                                            <a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
@@ -241,14 +216,7 @@
 		                                        <div class="team text-primary">대천재
 		                                        </div>
 		                                    </td>
-		                                    <td>
-		                                        <p class="mb-0">Progress<span class="float-right">54%</span></p>
-		
-		                                        <div class="progress mt-2" style="height: 5px;">
-		                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 54%;" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100"></div>
-		                                        </div>
-		                                    </td>
-		
+		                                    
 		                                    <td>
 		                                        <div class="action">
 		                                            <a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
@@ -268,13 +236,7 @@
 		                                        <div class="team text-primary">월드컵
 		                                        </div>
 		                                    </td>
-		                                    <td>
-		                                        <p class="mb-0">Progress<span class="float-right">41%</span></p>
-		
-		                                        <div class="progress mt-2" style="height: 5px;">
-		                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 41%;" aria-valuenow="41" aria-valuemin="0" aria-valuemax="100"></div>
-		                                        </div>
-		                                    </td>
+		                                    
 		
 		                                    <td>
 		                                        <div class="action">
@@ -294,13 +256,7 @@
 		                                        <div class="team text-primary"> 감자바
 		                                        </div>
 		                                    </td>
-		                                    <td>
-		                                        <p class="mb-0">Progress<span class="float-right">100%</span></p>
-		                                        <div class="progress mt-2" style="height: 5px;">
-		                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-		                                        </div>
-		                                    </td>
-		
+		                                   
 		                                    <td>
 		                                        <div class="action">
 		                                            <a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
@@ -320,14 +276,7 @@
 		                                        <div class="team text-primary"> 양파 빼주세요
 		                                        </div>
 		                                    </td>
-		                                    <td>
-		                                        <p class="mb-0">Progress<span class="float-right">84%</span></p>
-		
-		                                        <div class="progress mt-2" style="height: 5px;">
-		                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 84%;" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100"></div>
-		                                        </div>
-		                                    </td>
-		
+		                                    
 		                                    <td>
 		                                        <div class="action">
 		                                            <a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
@@ -347,14 +296,7 @@
 		                                        <div class="team text-primary"> 홀리몰리
 		                                        </div>
 		                                    </td>
-		                                    <td>
-		                                        <p class="mb-0">Progress<span class="float-right">100%</span></p>
-		
-		                                        <div class="progress mt-2" style="height: 5px;">
-		                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-		                                        </div>
-		                                    </td>
-		
+		                                   		
 		                                    <td>
 		                                        <div class="action">
 		                                            <a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
@@ -397,8 +339,8 @@
 						<div class="modal-body">
 							<h4>문의 유형을 선택하시고, 내용을 작성해 주세요.</h4>
 	
-							<form id="frmQuestDetail" name="frmQuestDetail" >
-	
+							<form id="frmQuestDetail" name="frmQuestDetail" method="post" action="QnaWriteController" enctype="multipart/form-data">
+
 								<div class="qna">
 									<table >
 										<tbody>
@@ -465,12 +407,12 @@
 							</form>
 	
 						</div>
-	
+						<!-- 로그인 아이디, 제품 아이디 넣기 -->	
 						<!-- Modal footer -->
 						<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
+						<button type="submit" class="btn btn-secondary"
 								data-dismiss="modal">등록</button>
-							<button type="button" class="btn btn-secondary"
+							<button type="button" class="btn btn-secondary" 
 								data-dismiss="modal">취소</button>
 								
 						</div>

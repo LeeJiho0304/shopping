@@ -1,4 +1,4 @@
-package service.cart;
+package service;
 
 import java.util.List;
 

@@ -2,7 +2,6 @@ package controller.user;
 
 import java.io.IOException;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.user.UserDTO;
-import service.user.UserLoginService;
+import service.UserService;
+
 
 @WebServlet(name="JoinController", urlPatterns="/JoinController")
 public class JoinController extends HttpServlet {	
@@ -40,7 +40,7 @@ public class JoinController extends HttpServlet {
 		user.setUser_password(userPwd);
 		
 		ServletContext application = request.getServletContext();
-		UserLoginService userLoginService = (UserLoginService)application.getAttribute("userLoginService");
+		UserService userLoginService = (UserService)application.getAttribute("userLoginService");
 		
 		if(userLoginService.login(user)==1) {
 			session.setAttribute("loginId", userId);	

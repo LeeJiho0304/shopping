@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.user.UserDTO;
-import service.user.UserLoginService;
+import service.UserService;
+
 
 @WebServlet(name="LoginController", urlPatterns="/LoginController")
 public class LoginController extends HttpServlet {	
@@ -34,7 +35,7 @@ public class LoginController extends HttpServlet {
 		user.setUser_password(userPwd);
 		
 		ServletContext application = request.getServletContext();
-		UserLoginService userLoginService = (UserLoginService)application.getAttribute("userLoginService");
+		UserService userLoginService = (UserService)application.getAttribute("userLoginService");
 		
 		if(userLoginService.login(user)==1) {
 			session.setAttribute("loginId", userId);	

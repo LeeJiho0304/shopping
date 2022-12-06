@@ -1,4 +1,4 @@
-package service.order;
+package service;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,15 +1,14 @@
-package service.qnaBoard;
+package service;
 
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
-import dao.ProductDAO;
 import dao.QnABoardDAO;
-import dao.UserDAO;
+import dto.Pager;
 import dto.qna.QnABoardDTO;
-import dto.qna.QnABoardProductDTO;
 
 public class QnABoardService {
 	private  ServletContext application;
@@ -24,35 +23,14 @@ public class QnABoardService {
 	}
 	
 	/*
-	//총 행수 가져오기
-	public int getTotalRows() {
-		QnABoardDAO dao =  (QnABoardDAO)application.getAttribute("qnABoardDAO");
-		int totalRows = dao.getTotalRows();
-		return totalRows;
-	}
-	
+
 	//큐앤에이 답변
 	public String answerQnABoard(QnABoardDTO dto) {
 		QnABoardDAO dao = (QnABoardDAO)application.getAttribute("QnABoardDAO");
 		String result = dao.updateAnswerQnABoard(dto);
 		return result;
 	}
-	
-	//큐앤에이 작성
-	public String createQnABoard(QnABoardDTO dto) {
-		QnABoardDAO dao = (QnABoardDAO)application.getAttribute("QqnABoardDAO");
-		String result = dao.insertQnABoard(dto);
-		return result;
-	}
-	
-	//큐앤에이 리스트 보기
-	public List<QnABoardProductDTO> getList(int pageNo) {
-		QnABoardDAO dao =  (QnABoardDAO)application.getAttribute("qnABoardDAO");
-		List<QnABoardProductDTO> qnaDTO = dao.selectAllList(pageNo);
-		return qnaDTO;
-	}
 
-	
 	//큐앤에이 내용보기
 	public QnABoardProductDTO getContent(int idNo) {
 		QnABoardDAO dao =  (QnABoardDAO)application.getAttribute("qnABoardDAO");
@@ -95,5 +73,51 @@ public class QnABoardService {
 		return result;
 	}
 	*/
+	
+	//큐앤에이 작성	
+	public String createQnABoard(QnABoardDTO dto) {
+		String result=null;
+		Connection conn = null;
+		try {
+			conn=ds.getConnection();
+			result = qnaDao.insertQnABoard(dto, conn);
+			conn.close(); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+		System.out.println("service-qna 생성");
+		return result;
+	}
+	
+	//큐앤에이 리스트 보기	
+	public List<QnABoardDTO> getList(Pager pager) {
+		List<QnABoardDTO> qnaDTO = null;
+		Connection conn = null;
+		try {
+			conn=ds.getConnection();
+			qnaDTO = qnaDao.selectAllList(pager, conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {conn.close(); } catch(Exception e) {}
+		}
+		return qnaDTO;
+	}
+	
+	//총 행수 가져오기		
+	public int getTotalRows() {
+		Connection conn = null;
+		int totalRows = 0;
+		try {
+			conn=ds.getConnection();
+			totalRows = qnaDao.getTotalRows(conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {conn.close(); } catch(Exception e) {}
+		}
+		return totalRows;
+	}
+
 	
 }
