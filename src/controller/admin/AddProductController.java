@@ -38,29 +38,45 @@ public class AddProductController extends HttpServlet {
 		product.setCategory_id(Integer.parseInt(request.getParameter("category_id")));
 		product.setSubcategory_id(Integer.parseInt(request.getParameter("subcategory_id")));
 		
-		//두 개 이상의 파일 파트의 정보 얻기
-		Collection<Part> parts = request.getParts();  //문자 파트도 포함되어 있음
-		System.out.println(parts.size());  //파트의 총 갯수 
-		for(Part part : parts) {
-			//파일 파트인지 확인
-			//파일이 실제로 전송되었는지 확인
-			if(part.getSubmittedFileName() != null && !part.getSubmittedFileName().equals("")) { 
-				//파일 정보 얻기
-				String filename = part.getSubmittedFileName();
-				//long fileSize = part.getSize();
-				String contentType = part.getContentType();
-				
-				System.out.println("fileName: " + filename);
-				//System.out.println("fileSize: " + fileSize);
-				System.out.println("contentType: " + contentType);
-				System.out.println();
-				
-				//파일을 파일 시스템에 저장
-				String savedName = new Date().getTime() + "-" + filename;
-				String filePath = "C:/Project/product/" + savedName;  //실제 저장되는 경로
-				part.write(filePath);
-			}
+		System.out.println(request.getParameter("product_name"));
+		
+		//파일 파트
+		Part filePart1 = request.getPart("productMainPhoto");
+		if(!filePart1.getSubmittedFileName().equals("")) {
+			String fileName = filePart1.getSubmittedFileName();
+			String savedName = new Date().getTime() + "-" + fileName;
+			String fileType = filePart1.getContentType();
 			
+			System.out.println("main");
+			System.out.println(fileName);
+			System.out.println(savedName);
+			System.out.println(fileType);
+			
+			product.setMain_filename(fileName);
+			product.setMain_savedname(savedName);
+			product.setMain_content_type(fileType);
+			
+			String filePath = "C:/Temp/download/" + savedName;  //실제 저장되는 경로
+			filePart1.write(filePath);
+		}
+		
+		Part filePart2 = request.getPart("productDetailPhoto");
+		if(!filePart2.getSubmittedFileName().equals("")) {
+			String fileName = filePart2.getSubmittedFileName();
+			String savedName = new Date().getTime() + "-" + fileName;
+			String fileType = filePart2.getContentType();
+			
+			System.out.println("detail");
+			System.out.println(fileName);
+			System.out.println(savedName);
+			System.out.println(fileType);
+			
+			product.setDetail_filename(fileName);
+			product.setDetail_savedname(savedName);
+			product.setDetail_content_type(fileType);
+			
+			String filePath = "C:/Temp/download/" + savedName;  //실제 저장되는 경로
+			filePart2.write(filePath);
 		}
 		productService.addProduct(product);
 		
