@@ -32,50 +32,21 @@ public class ShoppingContext implements ServletContextListener {
 		//ServletContext 객체에 데이터(객체) 저장
 		application.setAttribute("productDAO", new ProductDAO());
 		application.setAttribute("userDAO", new UserDAO());
+		application.setAttribute("cartDAO", new CartDAO());
+		application.setAttribute("categoryDAO", new CategoryDAO());
+		application.setAttribute("orderDAO", new OrderDAO());		
+		application.setAttribute("qnABoardDAO", new QnABoardDAO());
+		application.setAttribute("reviewBoardDAO", new ReviewBoardDAO());
+		application.setAttribute("subCategoryDAO", new SubCategoryDAO());
 		
+		application.setAttribute("productService", new ProductService(application));
+		application.setAttribute("userService", new UserService(application));
 		application.setAttribute("cartService", new CartService(application));
 		application.setAttribute("categoryService", new CategoryService(application));
-		
-//		application.setAttribute("orderCreateService", new OrderCreateService(application));
-//		application.setAttribute("orderDeleteService", new OrderDeleteService(application));
-//		application.setAttribute("orderReadListService", new OrderReadListService(application));
-//		application.setAttribute("orderReadService", new OrderReadService(application));
-//		application.setAttribute("orderUpdateService", new OrderUpdateService(application));
-		
-		application.setAttribute("productContentService", new ProductContentService(application));
-		application.setAttribute("productService", new ProductService(application));
-//		
-//		application.setAttribute("qnABoardAnswerService", new QnABoardAnswerService(application));
-//		application.setAttribute("qnABoardCreateService", new QnABoardCreateService(application));
-//		application.setAttribute("qnABoardListService", new QnABoardListService(application));
-//		application.setAttribute("qnABoardReadService", new QnABoardReadService(application));
-//		application.setAttribute("qnABoardSearchService", new QnABoardSearchService(application));
-//		application.setAttribute("qnABoardUpdateService", new QnABoardUpdateService(application));
-//
-//		application.setAttribute("reviewBoardCreateService", new ReviewBoardCreateService(application));
-//		application.setAttribute("reviewBoardListService", new ReviewBoardListService(application));
-//		application.setAttribute("reviewBoardReadService", new ReviewBoardReadService(application));
-//		application.setAttribute("reviewBoardSearchService", new ReviewBoardSearchService(application));
-//		application.setAttribute("reviewBoardUpdateService", new ReviewBoardUpdateService(application));
-//		
-//		application.setAttribute("subCategoryService", new SubCategoryService(application));
-//		
-//		
-//		application.setAttribute("userCreateService", new UserCreateService(application));
-//		application.setAttribute("userDeleteService", new UserDeleteService(application));
-		application.setAttribute("userLoginService", new UserLoginService(application));
-//		application.setAttribute("userMyPageService", new UserMyPageService(application));
-//		application.setAttribute("userReadListService", new UserReadListService(application));
-//		application.setAttribute("userUpdateService", new UserUpdateService(application));
-//		
-//		
-//		application.setAttribute("cartDAO", new CartDAO());
-//		application.setAttribute("categoryDAO", new CategoryDAO());
-//		application.setAttribute("orderDAO", new OrderDAO());
-		
-//		application.setAttribute("qnABoardDAO", new QnABoardDAO());
-//		application.setAttribute("reviewBoardDAO", new ReviewBoardDAO());
-//		application.setAttribute("subCategoryDAO", new SubCategoryDAO());
+		application.setAttribute("orderService", new OrderService(application));
+		application.setAttribute("qnABoardService", new QnABoardService(application));
+		application.setAttribute("reviewBoardService", new ReviewBoardService(application));
+		application.setAttribute("subCategoryService", new SubCategoryService(application));
 	}
 }
 

@@ -1,6 +1,7 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -16,7 +17,7 @@ import service.product.ProductService;
 
 
 @WebServlet(name="admin.AddProductController", urlPatterns="/admin/AddProductController")
-@MultipartConfig(maxFileSize=1024*1024*10, maxRequestSize=1024*1024*20)
+@MultipartConfig(maxFileSize=1024*1024*30, maxRequestSize=1024*1024*80)
 public class AddProductController extends HttpServlet {
 	
 	@Override
@@ -28,7 +29,6 @@ public class AddProductController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductService productService = (ProductService)request.getServletContext().getAttribute("productService");
-
 		ProductDTO product = new ProductDTO();
 		
 		//문자 파트
@@ -37,21 +37,30 @@ public class AddProductController extends HttpServlet {
 		product.setProduct_company(request.getParameter("product_company"));
 		product.setCategory_id(Integer.parseInt(request.getParameter("category_id")));
 		product.setSubcategory_id(Integer.parseInt(request.getParameter("subcategory_id")));
-		productService.addProduct(product);
 		
-		//파일 파트
-		Part filePart = request.getPart("battach");
-		if(!filePart.getSubmittedFileName().equals("")) {
-			String fileName = filePart.getSubmittedFileName();
-			String savedName = new Date().getTime() + "-" + fileName;
-			String fileType = filePart.getContentType();
+		//두 개 이상의 파일 파트의 정보 얻기
+		Collection<Part> parts = request.getParts();  //문자 파트도 포함되어 있음
+		System.out.println(parts.size());  //파트의 총 갯수 
+		for(Part part : parts) {
+			//파일 파트인지 확인
+			//파일이 실제로 전송되었는지 확인
+			if(part.getSubmittedFileName() != null && !part.getSubmittedFileName().equals("")) { 
+				//파일 정보 얻기
+				String filename = part.getSubmittedFileName();
+				//long fileSize = part.getSize();
+				String contentType = part.getContentType();
+				
+				System.out.println("fileName: " + filename);
+				//System.out.println("fileSize: " + fileSize);
+				System.out.println("contentType: " + contentType);
+				System.out.println();
+				
+				//파일을 파일 시스템에 저장
+				String savedName = new Date().getTime() + "-" + filename;
+				String filePath = "C:/Project/product/" + savedName;  //실제 저장되는 경로
+				part.write(filePath);
+			}
 			
-//			board.setBfileName(fileName);
-//			board.setBsavedName(savedName);
-//			board.setBfileType(fileType);
-			
-			String filePath = "C:/Project/product/" + savedName;  //실제 저장되는 경로
-			filePart.write(filePath);
 		}
 		productService.addProduct(product);
 		

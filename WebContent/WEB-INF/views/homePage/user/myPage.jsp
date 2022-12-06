@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link rel="stylesheet" href="/shopping/resources/css/homePage/orderList.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/homePage/myPage.css">
 		<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -36,8 +36,9 @@
 		</script>
 	</head>
 	<body>
+		<%@ include file="/WEB-INF/views/common/header.jsp" %>
 		<div class="breadcrumb">
-			<ul >
+			<ul>
 				<li>
 					<a href="/shopping/product/main.html">
 						<span>홈</span>

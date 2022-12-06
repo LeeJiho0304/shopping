@@ -5,6 +5,35 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Admin Main</title>
+	<script>
+		function Activity(category, list){
+			this.category = category;
+			this.list = list;
+		}
+		
+		var category = new Array();
+		category[0] = new Activity("1", ['1', '2', '3', '4']);
+		category[1] = new Activity("2", ['1', '2', '3']);
+		category[2] = new Activity("3", ['1', '2', '3']);
+		category[3] = new Activity("4", ['1', '2', '3']);
+		category[4] = new Activity("5", ['1', '2', '3']);
+		
+		function updateList(str) {
+			var frm = document.myForm;
+			var oriLen = frm.subcategory_id.length;
+			var numCategory;
+		
+			for (var i = 0; i < category.length; i++) { 
+				if (str == category[i].category) {
+					numCategory = category[i].list.length;
+					for (var j = 0; j < numCategory; j++)
+						frm.subcategory_id.options[j] = new Option(category[i].list[j],category[i].list[j]);
+					for (var j = numCategory; j < oriLen; j++)
+						frm.subcategory_id.options[numCategory] = null;
+				}
+			}
+		}
+	</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -31,43 +60,46 @@
 	                                <h3 class="card-title">상품 등록</h3>
 	                            </div>
 	
-	                            <form>
+	                            <form method="post" name="myForm" action="AddProductController" enctype="multipart/form-data">
 	                                <div class="card-body">
 	                                    <div class="form-group">
 	                                        <label for="productName">제품 이름</label>
-	                                        <input type="text" class="form-control" id="productName" placeholder="제품 이름">
+	                                        <input type="text" class="form-control" id="product_name" name="product_name" placeholder="제품 이름">
 	                                    </div>
 	                                    <div class="form-group">
 	                                        <label for="productPrice">제품 가격</label>
-	                                        <input type="text" class="form-control" id="productPrice" placeholder="제품 가격">
+	                                        <input type="text" class="form-control" id="product_price" name="product_price" placeholder="제품 가격">
 	                                    </div>
 	                                    <div class="form-group">
 	                                        <label for="productCompany">제조사</label>
-	                                        <input type="text" class="form-control" id="productCompany" placeholder="제조사">
+	                                        <input type="text" class="form-control" id="product_company" name="product_company" placeholder="제조사">
+	                                    </div>
+	                                    <div class="form-group">
+	                                        <label for="productCompany"></label>
+	                                        <input type="text" class="form-control" id="product_company" name="product_company" placeholder="제조사">
 	                                    </div>
 	                                    <div class="row">
-	                                    	
 											<div class="col-sm-6">
 												<label>상품 카테고리</label>
 												<div class="form-group">
 													<div class="form-check">
-														<input class="form-check-input" type="radio" name="category" id="category1" value="fridge" checked>
+														<input onClick="updateList(this.value)" class="form-check-input" type="radio" name="category_id" id="category1" value="1" checked>
 														<label class="form-check-label" for="category1">냉장고</label>
 													</div>
 													<div class="form-check">
-														<input class="form-check-input" type="radio" name="category" id="category2" value="tv">
+														<input onClick="updateList(this.value)" class="form-check-input" type="radio" name="category_id" id="category2" value="2">
 														<label class="form-check-label" for="category2">TV</label>
 													</div>
 													<div class="form-check">
-														<input class="form-check-input" type="radio" name="category" id="category3" value="washer">
+														<input onClick="updateList(this.value)" class="form-check-input" type="radio" name="category_id" id="category3" value="3">
 														<label class="form-check-label" for="category3">세탁기</label>
 													</div>
 													<div class="form-check">
-														<input class="form-check-input" type="radio" name="category" id="category4" value="aircon">
+														<input onClick="updateList(this.value)" class="form-check-input" type="radio" name="category_id" id="category4" value="4">
 														<label class="form-check-label" for="category4">에어컨</label>
 													</div>
 													<div class="form-check">
-														<input class="form-check-input" type="radio" name="category" id="category5" value="pc">
+														<input onClick="updateList(this.value)" class="form-check-input" type="radio" name="category_id" id="category5" value="5">
 														<label class="form-check-label" for="category5">PC</label>
 													</div>
 												</div>
@@ -75,49 +107,21 @@
 											<div class="col-sm-6">
 												<div class="form-group">
 												<label>서브 카테고리</label>
-													<select class="form-control fridgeSubCategory" name="fridgeSubCategory" id="fridgeSubCategory">
+													<select class="form-control fridgeSubCategory" name="subcategory_id" id="fridgeSubCategory">
 													<option value="1">정수기형</option>
 													<option value="2">양문형</option>
 													<option value="3">일반형</option>
 													<option value="4">김치냉장고</option>
 													</select>
-													
-													<select class="form-control tvSubCategory" name="tvSubCategory" id="tvSubCategory">
-													<option value="1">올레드</option>
-													<option value="2">벽걸이형</option>
-													<option value="3">스탠드형</option>
-													</select>
-													
-													<select class="form-control washerSubCategory" name="washerSubCategory" id="washerSubCategory">
-													<option value="1">통돌이</option>
-													<option value="2">드럼</option>
-													<option value="3">워시타워</option>
-													</select>
-													
-													<select class="form-control airconSubCategory" name="airconSubCategory" id="airconSubCategory">
-													<option value="1">스탠드형</option>
-													<option value="2">이동식</option>
-													<option value="3">벽걸이형</option>
-													</select>
-													
-													<select class="form-control pcSubCategory" name="pcSubCategory" id="pcSubCategory">
-													<option value="1">노트북</option>
-													<option value="2">모니터</option>
-													<option value="3">데스크톱</option>
-													</select>
 												</div>
-												
 											</div>
 										</div>
 	                                    <div class="form-group">
 	                                        <label for="exampleInputFile">제품 이미지</label>
 	                                        <div class="input-group">
 	                                            <div class="custom-file">
-	                                                <input type="file" class="custom-file-input" id="exampleInputFile">
-	                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-	                                            </div>
-	                                            <div class="input-group-append">
-	                                                <span class="input-group-text">Upload</span>
+	                                                <input type="file" class="custom-file-input" id="productMainPhoto" name="productMainPhoto">
+	                                                <label class="custom-file-label" for="productMainPhoto">Choose file</label>
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -126,11 +130,8 @@
 	                                        <label for="exampleInputFile">상세 내용 이미지</label>
 	                                        <div class="input-group">
 	                                            <div class="custom-file">
-	                                                <input type="file" class="custom-file-input" id="exampleInputFile">
-	                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-	                                            </div>
-	                                            <div class="input-group-append">
-	                                                <span class="input-group-text">Upload</span>
+	                                                <input type="file" class="custom-file-input" id="productDetailPhoto" name="productDetailPhoto">
+	                                                <label class="custom-file-label" for="productDetailPhoto">Choose file</label>
 	                                            </div>
 	                                        </div>
 	                                    </div>

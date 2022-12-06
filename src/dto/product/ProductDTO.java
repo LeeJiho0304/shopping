@@ -21,4 +21,12 @@ public class ProductDTO {
 	private String category_name;
 	private String subcategory_name;
 	
+	private String main_filename;
+	private String main_savedname;
+	private String main_content_type;
+	private String detail_filename;
+	private String detail_savedname;
+	private String detail_content_type;
+	
+	
 }

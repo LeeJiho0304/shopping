@@ -15,6 +15,20 @@
   	<listener-class>context.ShoppingContext</listener-class>
   </listener>
   
+  <!-- Filter 설정 -->
+  <filter>
+  	<filter-name>CharacterEncodingFilter</filter-name>
+  	<filter-class>filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CharacterEncodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
   <!-- Connection Pool 참조 -->
   <resource-ref>
 	<res-ref-name>jdbc/team1</res-ref-name>

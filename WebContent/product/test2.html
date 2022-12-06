@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>kevinet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+		function Activity(category, list){
+			this.category = category;
+			this.list = list;
+		}
+		
+		var category = new Array();
+		category[0] = new Activity("냉장고", ['정수기형', '양문형','일반형', '김치냉장고']);
+		category[1] = new Activity("TV", ['올레드', '벽걸이형','스탠드형']);
+		category[2] = new Activity("세탁기", ['통돌이', '드럼','워시타워']);
+		category[3] = new Activity("에어컨", ['스탠드형', '이동식', '벽걸이형']);
+		category[4] = new Activity("PC", ['노트북', '모니터', '데스크톱']);
+		
+		function updateList(str) {
+			var frm = document.myForm;
+			var oriLen = frm.myList.length;
+			var numCategory;
+		
+			for (var i = 0; i < category.length; i++) { 
+				if (str == category[i].category) {
+					numCategory = category[i].list.length;
+					for (var j = 0; j < numCategory; j++)
+						frm.myList.options[j] = new Option(category[i].list[j],category[i].list[j]);
+					for (var j = numCategory; j < oriLen; j++)
+						frm.myList.options[numCategory] = null;
+				}
+			}
+		}
+	</script>
+</head>
+
+<body>
+<center>
+<br/><br/>
+<font size=-1>
+<form name=myForm>
+<input type=radio name=kevin value="1" onClick="updateList(this.value)" checked >1</input>
+<input type=radio name=kevin value="2" onClick="updateList(this.value)">
+2 분야</input>
+<input type=radio name=kevin value="3" onClick="updateList(this.value)">
+소설 분야</input>
+<input type=radio name=kevin value="4" onClick="updateList(this.value)">
+경제경영 분야</input>
+<br><br>
+<select name=myList>
+	<option>가시고기</option>
+	<option>해리포터와 마법사의 돌</option>
+	<option>부자 아빠 가난한 아빠</option>
+</select>
+</form>
+</font>
+</center>
+</body>
+</html>

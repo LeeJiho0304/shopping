@@ -15,11 +15,11 @@ public class ProductService {
 	List<ProductListDTO> productDTOs;
 	private DataSource ds;
 	private  ServletContext application;
+	ProductDAO productDAO = (ProductDAO)application.getAttribute("productDAO");
 	
 	public ProductService (ServletContext application) {
 		this.application = application;
 		try {
-			InitialContext ic = new InitialContext();
 			ds = (DataSource) application.getAttribute("dataSource");
 			Connection conn = ds.getConnection();
 		} catch(Exception e) {
@@ -28,7 +28,6 @@ public class ProductService {
 	}
 	
 	public List<ProductListDTO> getList(int pageNo, ProductListDTO productListDTO) {
-		ProductDAO productDAO = (ProductDAO)application.getAttribute("productDAO");
 		
 		Connection conn = null;
 		try {
@@ -66,14 +65,11 @@ public class ProductService {
 		return totalRows;
 	}
 	
-	public void addProduct(ProductDTO product) {
-		System.out.println("게시글을 작성합니다.");
-		ProductDAO productDao = (ProductDAO) application.getAttribute("productDAO");
-		
+	public void addProduct(ProductDTO prdoduct) {
 		Connection conn = null;
 		try {
 			conn = ds.getConnection();
-			productDao.insert(product, conn);
+			productDAO.insert(prdoduct, conn);
 		} catch(Exception e) {
 			
 		} finally {
@@ -83,6 +79,7 @@ public class ProductService {
 				e.printStackTrace();
 			}
 		}
+		
 	}
 	
 }

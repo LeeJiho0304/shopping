@@ -52,7 +52,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">product</h6>
 						<a class="collapse-item" href="${pageContext.request.contextPath}/admin/AdminProductListController">상품 목록</a> 
-						<a class="collapse-item" href="admin_enroll_product">상품 추가</a>
+						<a class="collapse-item" href="${pageContext.request.contextPath}/admin/AddProductController">상품 추가</a>
 					</div>
 				</div>
 		</li>

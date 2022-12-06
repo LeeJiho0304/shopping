@@ -15,7 +15,7 @@ import dto.product.ProductListDTO;
 public class ProductDAO {
 	List<ProductListDTO> productListDTOs = new ArrayList<>();
 
-	//상품 총 갯수 출력
+	//해당 카테고리 상품 총 갯수 출력
 	public int getTotalRows(ProductListDTO productListDTO, Connection conn) {
 		int totalRows = 0;
 		try {
@@ -150,23 +150,28 @@ public class ProductDAO {
 	}
 	
 	//상품 추가
-	public int insert(ProductDTO product, Connection conn) throws Exception {
+	public void insert(ProductDTO product, Connection conn) throws Exception {
 		
-		String sql = "insert into boards2 (bno, btitle, bcontent, bwriter, bdate, bhitcount, bfilename, bsavedname, bfiletype) " +
-					"values(seq_boards2_bno.nextval, ?, ?, ?, sysdate, 0, ?, ?, ?) ";
+		String sql = "insert into product (product_id, product_name, product_price, product_company, category_id, subcategory_id, product_content, " + 
+				"main_filename, main_savedname, main_content_type, detail_filename, detail_savedname, detail_content_type) " + 
+				"values (seq_product_id.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-//		pstmt.setString(1, product.getBtitle());
-//		pstmt.setString(2, product.getBcontent());
-//		pstmt.setString(3, product.getBwriter());
-//		pstmt.setString(4, product.getBfileName());
-//		pstmt.setString(5, product.getBsavedName());
-//		pstmt.setString(6, product.getBfileType());
+		pstmt.setString(1, product.getSubcategory_name());
+		pstmt.setInt(2, product.getProduct_price());
+		pstmt.setString(3, product.getProduct_company());
+		pstmt.setInt(4, product.getCategory_id());
+		pstmt.setInt(5, product.getSubcategory_id());
+		pstmt.setString(6, product.getProduct_content());
+		pstmt.setString(7, product.getMain_filename());
+		pstmt.setString(8, product.getMain_savedname());
+		pstmt.setString(9, product.getMain_content_type());
+		pstmt.setString(10, product.getDetail_filename());
+		pstmt.setString(11, product.getDetail_savedname());
+		pstmt.setString(12, product.getDetail_content_type());
 		
 		int rows = pstmt.executeUpdate();
 		pstmt.close();
-		
-		return rows;
 	}
-	
+
 }

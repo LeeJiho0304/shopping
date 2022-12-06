@@ -6,6 +6,10 @@
 	word-break: keep-all;
 }
 
+.breadcrumb {
+	height: 50px;	
+}
+
 .breadcrumb li {
 	display: inline-block;
 }
@@ -202,7 +206,7 @@ my-dep1 {
 	font-size: 20px;
 }
 
-img {
+.item-image img {
 	width:250px;
 }
 
@@ -219,38 +223,6 @@ img {
 	color: 	#696969;
 	border-bottom: 1px solid #DDDDDD;
 }
-/* input {
-	writing-mode: horizontal-tb !important;
-	font-style: ;
-	font-variant-ligatures: ;
-	font-variant-caps: ;
-	font-variant-numeric: ;
-	font-variant-east-asian: ;
-	font-weight: ;
-	font-stretch: ;
-	font-size: ;
-	font-family: ;
-	text-rendering: auto;
-	color: fieldtext;
-	letter-spacing: normal;
-	word-spacing: normal;
-	line-height: normal;
-	text-transform: none;
-	text-indent: 0px;
-	text-shadow: none;
-	display: inline-block;
-	text-align: start;
-	appearance: auto;
-	-webkit-rtl-ordering: logical;
-	cursor: text;
-	background-color: field;
-	margin: 0em;
-	padding: 1px 2px;
-	border-width: 2px;
-	border-style: inset;
-	border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-	border-image: initial;
-} */
 			
 input[type="hidden" i] {
 	appearance: none;
