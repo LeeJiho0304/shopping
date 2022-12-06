@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.ProductDAO;
 import dto.product.ProductDTO;
-import service.product.ProductContentService;
+import service.product.ProductService;
 
 @WebServlet(name="ProductDetailController", urlPatterns="/ProductDetailController")
 public class ProductDetailController extends HttpServlet {
@@ -22,8 +22,8 @@ public class ProductDetailController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = request.getServletContext();
-		ProductContentService productContentService = (ProductContentService)application.getAttribute("productContentService");
-		productDTO = productContentService.getContent(50);
+		ProductService productService = (ProductService)application.getAttribute("productContentService");
+		//productDTO = productService.getContent(50);
 		
 		request.setAttribute("productDTO", productDTO);
 		

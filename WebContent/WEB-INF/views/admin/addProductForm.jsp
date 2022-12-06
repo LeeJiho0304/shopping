@@ -75,8 +75,8 @@
 	                                        <input type="text" class="form-control" id="product_company" name="product_company" placeholder="제조사">
 	                                    </div>
 	                                    <div class="form-group">
-	                                        <label for="productCompany"></label>
-	                                        <input type="text" class="form-control" id="product_company" name="product_company" placeholder="제조사">
+	                                        <label for="productCompany">제품 설명</label>
+	                                        <input type="text" class="form-control" id="product_cotent" name="product_cotent" placeholder="제품 설명">
 	                                    </div>
 	                                    <div class="row">
 											<div class="col-sm-6">
@@ -120,8 +120,8 @@
 	                                        <label for="exampleInputFile">제품 이미지</label>
 	                                        <div class="input-group">
 	                                            <div class="custom-file">
-	                                                <input type="file" class="custom-file-input" id="productMainPhoto" name="productMainPhoto">
-	                                                <label class="custom-file-label" for="productMainPhoto">Choose file</label>
+	                                                <input type="file" class="form-control" id="productMainPhoto" name="productMainPhoto">
+	                                                <label class="custom-file-label" for="productMainPhoto">제품 메인 사진</label>
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -130,8 +130,8 @@
 	                                        <label for="exampleInputFile">상세 내용 이미지</label>
 	                                        <div class="input-group">
 	                                            <div class="custom-file">
-	                                                <input type="file" class="custom-file-input" id="productDetailPhoto" name="productDetailPhoto">
-	                                                <label class="custom-file-label" for="productDetailPhoto">Choose file</label>
+	                                                <input type="file" class="form-control" id="productDetailPhoto" name="productDetailPhoto">
+	                                                <label class="custom-file-label" for="productDetailPhoto">제품 상세정보 사진</label>
 	                                            </div>
 	                                        </div>
 	                                    </div>
