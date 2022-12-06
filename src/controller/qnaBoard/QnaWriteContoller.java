@@ -21,7 +21,7 @@ public class QnaWriteContoller extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		QnABoardService qboardService = (QnABoardService) request.getServletContext().getAttribute("qnABoardCreateService");
+		QnABoardService qboardService = (QnABoardService) request.getServletContext().getAttribute("qnABoardService");
 				
 		QnABoardDTO qboard = new QnABoardDTO();
 		

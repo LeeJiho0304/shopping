@@ -36,7 +36,7 @@ public class QnaBoardListContoller extends HttpServlet {
 				
 		//boardService 객체 얻기
 		ServletContext application = request.getServletContext();
-		QnABoardService qboardService = (QnABoardService) application.getAttribute("qnABoardListService");
+		QnABoardService qboardService = (QnABoardService) application.getAttribute("qnABoardService");
 				
 				
 		//페이징 대상이 되는 전체 행수 얻기		
