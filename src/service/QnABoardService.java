@@ -85,7 +85,6 @@ public class QnABoardService {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}	
-		System.out.println("service-qna 생성");
 		return result;
 	}
 	
