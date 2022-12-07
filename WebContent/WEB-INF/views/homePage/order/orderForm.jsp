@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>Order Product</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -511,7 +511,7 @@
 		                  <div class="field">
 		                    <div class="title">받는 사람
 		                    </div>
-		                    <input type="text" class="input txt text" placeholder="이름" id="inputName"/>
+		                    <input type="text" class="input txt text" placeholder="이름" id="inputName" name=inputName"/>
 		                  </div>
 		                </div>
 		                <div class="row">
@@ -519,7 +519,7 @@
 		                <div class="field sm">
 		                    <div class="title">전화 번호
 		                    </div>
-		                    <input type="text" class="input txt" placeholder="000-0000-0000" id="inputTel"/>
+		                    <input type="text" class="input txt" placeholder="000-0000-0000" id="inputTel" name="inputTel"/>
 		                  </div>
 		                
 		                  <div class="field small">
@@ -547,7 +547,7 @@
 		                  <div class="field">
 		                    <div class="title">배송 주소
 		                    </div>
-		                    <input type="text" class="input txt" placeholder="00도 00시 00구 00로 00" id="inputAddress"/>
+		                    <input type="text" class="input txt" placeholder="00도 00시 00구 00로 00" id="inputAddress" name="inputAddress"/>
 		                  </div>
 		                </div>
 		                
