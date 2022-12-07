@@ -326,13 +326,10 @@ public class QnABoardDAO {
 	public String updateAnswerQnABoard(QnABoardDTO qnaDTO, Connection conn) throws Exception {
 
 		int rsResult = 0;
-		System.out.println("DAO BoardID: " + qnaDTO.getQna_board_id());
-		System.out.println("DAO Answer: " + qnaDTO.getQna_board_answer());
-
 		String result = null;
 		try {
 			// sql문 작성 및 받은 JSONObject에서 데이터 뽑아서 DB로 전송
-			String sql = "" + " UPDATE qna_board " + " SET qna_board_answer = ? " + " WHERE qna_board_id = ? ";
+			String sql = " UPDATE qna_board " + " SET qna_board_answer = ? " + " WHERE qna_board_id = ? ";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, qnaDTO.getQna_board_answer());
@@ -348,15 +345,7 @@ public class QnABoardDAO {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 
-		} finally {
-			try {
-				// Connection 반납
-				conn.close();
-				System.out.println("반납 성공");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		return result;
 	}
 

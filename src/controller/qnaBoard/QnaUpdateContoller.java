@@ -30,7 +30,7 @@ public class QnaUpdateContoller extends HttpServlet {
 		qboard.setProduct_id(1);
 		//qboard.setProduct_id(Integer.parseInt(request.getParameter("")));
 				
-		qboardService.createQnABoard(qboard);
+		qboardService.updateQnABoard(qboard);
 				
 		response.sendRedirect("QnaBoardListContoller");
 	}

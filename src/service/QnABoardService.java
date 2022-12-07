@@ -24,13 +24,6 @@ public class QnABoardService {
 	
 	/*
 
-	//큐앤에이 답변
-	public String answerQnABoard(QnABoardDTO dto) {
-		QnABoardDAO dao = (QnABoardDAO)application.getAttribute("QnABoardDAO");
-		String result = dao.updateAnswerQnABoard(dto);
-		return result;
-	}
-	
 	//큐앤에이 검색
 	//상품 검색 
 	public List<QnABoardProductDTO> getSearchList(int pageNo, String search_String) {
@@ -147,5 +140,20 @@ public class QnABoardService {
 		}	
 		return result;
 	}
+	
+	//큐앤에이 답변
+	public String answerQnABoard(QnABoardDTO dto) {
+		String result=null;
+		Connection conn = null;
+		try {
+			conn=ds.getConnection();
+			result = qnaDao.updateAnswerQnABoard(dto, conn);
+			conn.close(); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+		return result;
+	}
+		
 	
 }
