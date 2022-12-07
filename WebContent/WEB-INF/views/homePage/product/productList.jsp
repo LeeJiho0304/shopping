@@ -181,9 +181,11 @@
 	                     <tr>
 		                     <c:forEach var="categoryProduct" items="${CategoryPageList}" begin="${(status.count - 1)*3 }" end= "${(status.count - 1)*3 + 2}" step="1" >
 		                        <td>
-		                            <div class="card " style="height:450px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController'">
+		                            <div class="card " style="height:450px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController?pid=${categoryProduct.product_id}'">
 		                               <div class="card-header bg-white" style="height:310px;">
+		                               
 		                                  <img src="ProductImgController?pid=${categoryProduct.product_id}" height=100%>
+		                                  
 		                               </div>
 		                               <div class="card-body" style="height:140px;">
 		                                  <p>${categoryProduct.product_name}</p>		                             
@@ -200,7 +202,7 @@
 	                     <tr>
 		                     <c:forEach var="categoryProduct" items="${CategoryPageList}" begin="${(status.count - 1)*3 }" end= "${(status.count - 1)*3 + 2}" step="1">
 		                        <td>
-		                            <div class="card"  style="height:450px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController'">
+		                            <div class="card"  style="height:450px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController?pid=${categoryProduct.product_id}'">
 		                               <div class="card-header bg-white" style="height:310px;">
 		                                  <img src="ProductImgController?pid=${categoryProduct.product_id}" height=100%>
 		                               </div>

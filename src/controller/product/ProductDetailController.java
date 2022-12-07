@@ -20,10 +20,12 @@ public class ProductDetailController extends HttpServlet {
 	ProductDTO productDTO;
 	
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int pid = Integer.parseInt(request.getParameter("pid"));
+		
 		ServletContext application = request.getServletContext();
-		ProductService productService = (ProductService)application.getAttribute("productContentService");
-		//productDTO = productService.getContent(50);
+		ProductService productService = (ProductService)application.getAttribute("productService");
+		productDTO = productService.getProduct(pid);
 		
 		request.setAttribute("productDTO", productDTO);
 		

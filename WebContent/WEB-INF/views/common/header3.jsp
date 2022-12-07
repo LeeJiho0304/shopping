@@ -15,7 +15,6 @@
 		<style>
 		font-family: 'Hahmlet', serif;
 		font-family: 'Nanum Gothic', sans-serif;
-		
 		.dropmenu{
 			border:none;
 			border:0px;
@@ -135,27 +134,23 @@
 			                <a class="nav-link" href="${pageContext.request.contextPath}/JoinController">Register</a>
 			            </li>
 		            </c:if>
-		            <c:if test="${loginId != null}">
-			            <li class="nav-item">
-							<a class="nav-link" href="/shopping/product/productList2.html">
-								<i class="fa fa-user"></i>
-							</a>
-						</li>
-					</c:if>
-					<c:if test="${loginId != null}">
-						<li class="nav-item">
-							<a class="nav-link" href="/shopping/product/productList2.html">
-								<i class="fa fa-shopping-cart"></i>
-							</a>
-						</li>
-					</c:if>
-					<c:if test="${loginId != null}">
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="fa fa-question-circle"></i>
-							</a>
-						</li>
-					</c:if>
+		            <li class="nav-item">
+						<a class="nav-link" href="MyPageController">
+							<i class="fa fa-user"></i>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/shopping/product/productList2.html">
+							<i class="fa fa-shopping-cart"></i>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="fa fa-question-circle"></i>
+						</a>
+					</li>
 					
 				</ul>
 				
@@ -167,21 +162,21 @@
 			</div>
 		</nav>
 	
-		 <div class="dropmenu"  style=" z-index: 10;">
+		 <div class="dropmenu">
 			<ul>
-			 <li><a href="#" id="current">냉장고</a>
-				  <ul>
-				     <li><a href="${pageContext.request.contextPath}/ProducCategorytListController?categoryId=1&subCategoryId=1">양문형</a></li>
-				     <li><a href="#">정수기형</a></li>
-				     <li><a href="#">일반형</a></li>
-				     <li><a href="#">김치냉장고</a></li>
-				  </ul>
-			 </li>
 			 <li><a href="#" id="current">TV</a>
 				  <ul>
-				     <li><a href="#">OLED</a></li>
+				     <li><a href="${pageContext.request.contextPath}/ProductListController2?categoryId=2&subCategoryId=1">OLED</a></li>
 				     <li><a href="#">벽걸이형</a></li>
 				     <li><a href="#">스탠드형</a></li>
+				  </ul>
+			 </li>
+			 <li><a href="#" id="current">냉장고</a>
+				  <ul>
+				     <li><a href="#">정수기형</a></li>
+				     <li><a href="#">양문형</a></li>
+				     <li><a href="#">일반형</a></li>
+				     <li><a href="#">김치냉장고</a></li>
 				  </ul>
 			 </li>
 			 <li><a href="#" id="current">에어컨</a>

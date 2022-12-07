@@ -45,11 +45,11 @@ public class ProductDAO {
 		return result;
 	}
 	
-	public ProductListDTO selectProduct(int pid, Connection conn)throws Exception {
-		ProductListDTO result = null;
+	public ProductDTO selectProduct(int pid, Connection conn)throws Exception {
+		ProductDTO result = null;
 		
 		String sql = "";
-	      sql += "SELECT main_filename, main_content_type, main_savedname ";
+	      sql += "SELECT product_id, main_filename, main_content_type, main_savedname, product_name, product_price, product_company, product_totalpoint, detail_filename, detail_content_type, detail_savedname ";
 	      sql += "FROM product ";
 	      sql += "where product_id=? ";
 	      PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -57,15 +57,22 @@ public class ProductDAO {
 	     
 	      ResultSet rs = pstmt.executeQuery();
 	      if(rs.next()) {
-	    	 result = new ProductListDTO();
+	    	 result = new ProductDTO();
+	    	 result.setProduct_id(rs.getInt("product_id"));
 			result.setMain_filename(rs.getString("main_filename"));
 			result.setMain_content_type(rs.getString("main_content_type"));
 			result.setMain_savedname(rs.getString("main_savedname"));
-	    	  
+			result.setProduct_name(rs.getString("product_name"));
+			result.setProduct_price(rs.getInt("product_price"));
+			result.setProduct_company(rs.getString("product_company"));
+			result.setProduct_totalpoint(rs.getInt("product_totalpoint"));
+			result.setDetail_filename(rs.getString("detail_filename"));
+			result.setDetail_content_type(rs.getString("detail_content_type"));
+			result.setDetail_savedname(rs.getString("detail_savedname"));
+			
 	      }
 	      rs.close();
 	      pstmt.close();
-	      System.out.println(result.getMain_savedname());
 		 return result;
 	}
 

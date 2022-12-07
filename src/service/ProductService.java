@@ -23,12 +23,13 @@ public class ProductService {
 		productDAO = (ProductDAO)application.getAttribute("productDAO");
 		ds = (DataSource) application.getAttribute("dataSource");
 	}
-	 public ProductListDTO getProduct(int pid) {
-		 ProductListDTO result = null;
+	 public ProductDTO getProduct(int pid) {
+		 ProductDTO result = null;
 	      Connection conn = null;
 	      try {
 	         conn = ds.getConnection();
 	         result = productDAO.selectProduct(pid, conn);
+	        
 	      } catch(Exception e) {
 	         e.printStackTrace();
 	      } finally {
@@ -77,7 +78,7 @@ public class ProductService {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(productDTOs.toString());
+		
 		return productDTOs;
 	}
 
@@ -97,12 +98,12 @@ public class ProductService {
 	}
 	
 	public void addProduct(ProductDTO product) {
-		System.out.println("productService.addProduct");
+		
 		Connection conn = null;
 		try {
 			conn = ds.getConnection();
 			int row = productDAO.insert(product, conn);
-			System.out.println(row);
+			
 		} catch(Exception e) {
 			
 		} finally {

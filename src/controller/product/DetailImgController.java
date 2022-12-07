@@ -18,8 +18,8 @@ import service.ProductService;
 
 
 
-@WebServlet(name="ProductImgController", urlPatterns="/ProductImgController")
-public class ProductImgController extends HttpServlet{
+@WebServlet(name="DetailImgController", urlPatterns="/DetailImgController")
+public class DetailImgController extends HttpServlet{
 	
 	//클라이언트가 요청할 때 마다 실행
 	@Override
@@ -29,9 +29,9 @@ public class ProductImgController extends HttpServlet{
 		ProductService productService = (ProductService)application.getAttribute("productService");
 		ProductDTO product = productService.getProduct(pid);
 		
-		String fileName = product.getMain_filename();
-		String savedName = product.getMain_savedname();
-		String contentType = product.getMain_content_type();
+		String fileName = product.getDetail_filename();
+		String savedName = product.getDetail_savedname();
+		String contentType = product.getDetail_content_type();
 		
 		
 		//HTTP 응답에 Content-Type 헤더를 추가
