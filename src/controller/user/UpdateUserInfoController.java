@@ -14,14 +14,13 @@ import dto.user.UserDTO;
 import service.UserService;
 
 
-@WebServlet(name="JoinController", urlPatterns="/JoinController")
+@WebServlet(name="/user/UpdateUserInfoController", urlPatterns="/user/UpdateUserInfoController")
 public class UpdateUserInfoController extends HttpServlet {	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
-		request.getRequestDispatcher("/WEB-INF/views/homePage/user/joinForm.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/homePage/user/updateUser.jsp").forward(request, response);
 	}
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("uid");
@@ -30,7 +29,7 @@ public class UpdateUserInfoController extends HttpServlet {
 		String address = request.getParameter("address");
 		String uPhone = request.getParameter("phone");
 		String uName = request.getParameter("name");
-		String birthday = request.getParameter("userPwd");
+		String birthday = request.getParameter("birthday");
 		
 		
 		HttpSession session = request.getSession();

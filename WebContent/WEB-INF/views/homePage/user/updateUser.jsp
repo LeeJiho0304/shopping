@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="user-nameInfo">
 	<span>회원정보 수정</span>
 </div>
-<form name="form1" action="join1.html" method="post"
-	onSubmit="return checkMember();">
+<form name="form1" action="UpdateUserInfo" method="post">
 	<table class="table">
 		<tr>
 			<td>이름</td>
@@ -13,18 +15,18 @@
 			<td>비밀번호</td>
 			<td colspan="4"><input type="password"
 				style="width: 200px; display: inline" class="form-control m-input"
-				maxlength=12 name="tbPwd" id="tbPwd"> <em
+				maxlength=12 name="pwd" id="pwd"> <em
 				style="color: #696969">4~12자리의 영문 대소문자와 숫자로만 입력</em></td>
 		</tr>
 		<tr>
 			<td>비밀번호확인</td>
 			<td colspan="4"><input type="password" style="width: 200px"
-				class="form-control m-input" maxlength=12 name="tbPwd2" id="tbPwd2"></td>
+				class="form-control m-input" maxlength=12 name="pwd2" id="pwd2"></td>
 		</tr>
 		<tr>
 			<td>이메일</td>
 			<td colspan="4"><input type="text" style="width: 400px"
-				class="form-control m-input" name="mail" id="mail"
+				class="form-control m-input" name="email" id="email"
 				placeholder="example@mycompany.com"></td>
 		</tr>
 		<tr>

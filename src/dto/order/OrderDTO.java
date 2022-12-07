@@ -12,4 +12,6 @@ public class OrderDTO {
 	private int order_detail_item_count;
 	private int product_id;
 	private String product_name;
+	
+	private String main_savedname;
 }

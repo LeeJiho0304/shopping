@@ -151,9 +151,10 @@ public class ProductDAO3 {
 	
 	//상품 추가
 	public int insert(ProductDTO product, Connection conn) throws Exception {
-		String sql = "insert into product (product_id, product_name, product_price, product_company, category_id, subcategory_id, product_content, " +
+		
+		String sql = "insert into product (product_id, product_name, product_price, product_company, category_id, subcategory_id, " +
 				"main_filename, main_savedname, main_content_type, detail_filename, detail_savedname, detail_content_type) " + 
-				"values(seq_product_id.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+				"values(seq_product_id.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, product.getProduct_name());
@@ -161,13 +162,12 @@ public class ProductDAO3 {
 		pstmt.setString(3, product.getProduct_company());
 		pstmt.setInt(4, product.getCategory_id());
 		pstmt.setInt(5, product.getSubcategory_id());
-		pstmt.setString(6, product.getProduct_content());
-		pstmt.setString(7, product.getMain_filename());
-		pstmt.setString(8, product.getMain_savedname());
-		pstmt.setString(9, product.getMain_content_type());
-		pstmt.setString(10, product.getDetail_filename());
-		pstmt.setString(11, product.getDetail_savedname());
-		pstmt.setString(12, product.getDetail_content_type());
+		pstmt.setString(6, product.getMain_filename());
+		pstmt.setString(7, product.getMain_savedname());
+		pstmt.setString(8, product.getMain_content_type());
+		pstmt.setString(9, product.getDetail_filename());
+		pstmt.setString(10, product.getDetail_savedname());
+		pstmt.setString(11, product.getDetail_content_type());
 		
 		int rows = pstmt.executeUpdate();
 		pstmt.close();

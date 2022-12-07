@@ -135,7 +135,7 @@
 			            </li>
 		            </c:if>
 		            <li class="nav-item">
-						<a class="nav-link" href="/shopping/product/productList2.html">
+						<a class="nav-link" href="MyPageController">
 							<i class="fa fa-user"></i>
 						</a>
 					</li>

@@ -74,10 +74,6 @@
 	                                        <label for="productCompany">제조사</label>
 	                                        <input type="text" class="form-control" id="product_company" name="product_company" placeholder="제조사">
 	                                    </div>
-	                                    <div class="form-group">
-	                                        <label for="productCompany">제품 설명</label>
-	                                        <input type="text" class="form-control" id="product_content" name="product_content" placeholder="제품 설명">
-	                                    </div>
 	                                    <div class="row">
 											<div class="col-sm-6">
 												<label>상품 카테고리</label>

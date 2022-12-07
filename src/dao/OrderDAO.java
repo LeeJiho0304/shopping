@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.ConnectionProvider;
+import dto.Pager;
 import dto.order.OrderDTO;
 import dto.order.OrderDetailDTO;
 import dto.order.OrderReadListDTO;
@@ -111,63 +112,25 @@ public class OrderDAO {
 		return order;
 	}
 	
-	public List<OrderDTO> selectOrderList(int pageNo, OrderReadListDTO receivedDTO, Connection conn) throws Exception {
-		StringBuilder sqlBuilder = new StringBuilder();
-		sqlBuilder.append("SELECT USERS_ID, ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, RNUM ");
-		sqlBuilder.append("FROM ( ");
-		sqlBuilder.append("	SELECT ORDERS.USERS_ID, ORDERS.ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, rownum as RNUM ");
-		sqlBuilder.append(" FROM ORDERS, ORDER_DETAIL, PRODUCT ");
-		sqlBuilder.append(" WHERE ORDERS.ORDERS_ID = ORDER_DETAIL.ORDERS_ID AND ");
-		sqlBuilder.append("  ORDER_DETAIL.PRODUCT_ID = PRODUCT.PRODUCT_ID AND ");
-		if (!(receivedDTO.getCondition() == null)) {
-			if (receivedDTO.getCondition().equals("LIKE")) {
-				if (!(receivedDTO.getProduct_name() == null)) {
-					sqlBuilder.append("  PRODUCT.PRODUCT_NAME LIKE ? AND ");
-				}
-				else {
-					sqlBuilder.append("  PRODUCT.PRODUCT_NAME = ? AND ");
-				}
-			}
-			else {
-				if (!(receivedDTO.getId() == null)) {
-					sqlBuilder.append("  ORDERS.USERS_ID LIKE ? AND ");
-				}
-				else {
-					sqlBuilder.append("  ORDERS.USERS_ID = ? AND ");
-				}
-			}
-		}
-		sqlBuilder.append("  (rownum - 1) < ? ");
-		sqlBuilder.append("	) ");
-		sqlBuilder.append("WHERE (RNUM - 1) > = ?");
-
-
-		PreparedStatement pstmt = conn.prepareStatement(sqlBuilder.toString());
+	public List<OrderDTO> selectOrderList(Pager pager, String userId, Connection conn) throws Exception {
+		String sql = "select RNUM, USERS_ID, ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, main_filename, orders_price " + 
+				"from ( " +
+				"	    select rownum as RNUM, USERS_ID, ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, main_filename, orders_price " +
+				"	    from ( " +
+				"	        SELECT ORDERS.USERS_ID, ORDERS.ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, PRODUCT.main_filename, orders.orders_price " +
+				"	        FROM ORDERS, ORDER_DETAIL, PRODUCT " +
+				"	        WHERE ORDERS.ORDERS_ID = ORDER_DETAIL.ORDERS_ID AND " +
+				"	                ORDER_DETAIL.PRODUCT_ID = PRODUCT.PRODUCT_ID AND " +
+				"	                users_id = ? " +
+				"	        order by ORDERS_DATE desc " +
+				"	    ) where rownum <= ? " +
+				"	) where rnum >= ? ";
 		
-		int idx = 1;
-		if (!(receivedDTO.getProduct_name() == null)) {
-			if (!(receivedDTO.getCondition() == null)) {
-				if (receivedDTO.getCondition().equals("LIKE")) {
-					pstmt.setString(idx++, "%" + receivedDTO.getProduct_name() + "%");
-				}
-				else {
-					pstmt.setString(idx++, receivedDTO.getProduct_name());
-				}
-			}
-		}
-		else {
-			if (!(receivedDTO.getCondition() == null)) {
-				if (receivedDTO.getCondition().equals("LIKE")) {
-					pstmt.setString(idx++, "%" + receivedDTO.getId() + "%");
-				}
-				else {
-					pstmt.setString(idx++, receivedDTO.getId());
-				}
-			}
-		}
+		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setInt(idx++, pageNo * 5);
-		pstmt.setInt(idx++, ((pageNo - 1) * 5));
+		pstmt.setString(1, userId);
+		pstmt.setInt(2, pager.getPageNo() * pager.getRowsPerPage());
+		pstmt.setInt(3, (pager.getPageNo() - 1) * pager.getRowsPerPage() + 1);
 		ResultSet rs = pstmt.executeQuery();
 		
 		List<OrderDTO> orders = new ArrayList<>();
@@ -179,53 +142,35 @@ public class OrderDAO {
 			orderDTO.setProduct_name(rs.getString("PRODUCT_NAME"));
 			orderDTO.setOrders_date(rs.getString("ORDERS_DATE"));
 			orderDTO.setOrders_status(rs.getString("ORDERS_STATUS"));
+			orderDTO.setMain_savedname(rs.getString("main_filename"));
+			orderDTO.setOrders_price(rs.getInt("orders_price"));
 			orders.add(orderDTO);
+			System.out.println(orders);
 		}
-		
+		System.out.println("orders");
 		rs.close();
 		pstmt.close();
-		conn.close();
 		return orders;
 	}
 	
-	public int getTotalRows(OrderReadListDTO receivedDTO, Connection conn) throws Exception {
-		String SQL
-				="SELECT COUNT(*) as total "
-				+"FROM ORDERS ";
+	public int getTotalRows(String userId, Connection conn) throws Exception {
+		String sql
+				= "SELECT COUNT(*) "
+				+ "FROM ORDERS "
+				+ "WHERE users_id = ?";
 		
-		if (!(receivedDTO.getCondition() == null)) {
-			if (receivedDTO.getCondition().equals("LIKE")) {
-				SQL = SQL.concat("WHERE USERS_ID LIKE ? ");
-			}
-			else {
-				SQL = SQL.concat("WHERE USERS_ID = ? ");
-			}
-			
-		}
-		
-		PreparedStatement pstmt = conn.prepareStatement(SQL);
-		
-		if (!(receivedDTO.getCondition() == null)) {
-			if (receivedDTO.getCondition().equals("LIKE")) {
-				pstmt.setString(1, "%" + receivedDTO.getId() + "%");
-			}
-			else {
-				pstmt.setString(1, receivedDTO.getId());
-			}
-			
-		}
-		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, userId);
 		ResultSet rs = pstmt.executeQuery();
-		int result;
+		int result = 0;
+		
 		if (rs.next()) {
-			result = rs.getInt("total");
+			result = rs.getInt(1);
 		}
-		else {
-			result = 0;
-		}
+		
 		rs.close();
 		pstmt.close();
-		conn.close();
+		System.out.println("rows" + result);
 		return result;
 	}
 	
