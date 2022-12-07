@@ -30,13 +30,6 @@ public class QnABoardService {
 		String result = dao.updateAnswerQnABoard(dto);
 		return result;
 	}
-
-	//큐앤에이 내용보기
-	public QnABoardProductDTO getContent(int idNo) {
-		QnABoardDAO dao =  (QnABoardDAO)application.getAttribute("qnABoardDAO");
-		QnABoardProductDTO qnaDTO = dao.selectOneQnA(idNo);
-		return qnaDTO;
-	}
 	
 	//큐앤에이 검색
 	//상품 검색 
@@ -66,12 +59,6 @@ public class QnABoardService {
 		return totalRows;
 	}
 	
-	//큐앤에이 수정
-	public String UpdateQnABoard(QnABoardProductDTO dto) {
-		QnABoardDAO dao =  (QnABoardDAO)application.getAttribute("qnABoardDAO");
-		String result = dao.updateQnABoard(dto);
-		return result;
-	}
 	*/
 	
 	//큐앤에이 작성	
@@ -117,6 +104,48 @@ public class QnABoardService {
 		}
 		return totalRows;
 	}
-
+	
+	//큐앤에이 내용보기
+	public QnABoardDTO getContent(int idNo) {
+		QnABoardDTO result=null;
+		Connection conn = null;
+		try {
+			conn=ds.getConnection();
+			result=qnaDao.selectOneQnA(idNo, conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {conn.close(); } catch(Exception e) {}
+		}
+		return result;		
+	}
+	
+	//큐앤에이 삭제
+	public String deleteQnABoard(int idNo) {
+		String result=null;
+		Connection conn = null;
+		try {
+			conn=ds.getConnection();
+			result = qnaDao.deleteQnABoard(idNo, conn);
+			conn.close(); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}			
+		return result;
+	}
+	
+	//큐앤에이 수정
+	public String updateQnABoard(QnABoardDTO dto) {
+		String result=null;
+		Connection conn = null;
+		try {
+			conn=ds.getConnection();
+			result = qnaDao.updateQnABoard(dto, conn);
+			conn.close(); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+		return result;
+	}
 	
 }

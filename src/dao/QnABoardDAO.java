@@ -174,16 +174,16 @@ public class QnABoardDAO {
 		return result;
 	}
 
-	public QnABoardProductDTO selectOneQnA(int idNum, Connection conn) throws Exception {
-		System.out.println("DAO : " + idNum);
-		QnABoardProductDTO qnaContentDTO = new QnABoardProductDTO();
+	public QnABoardDTO selectOneQnA(int idNum, Connection conn) throws Exception {		
+		QnABoardDTO qnaContentDTO = new QnABoardDTO();
 		try {
 			// JSON으로 사용자로부터 입력받은 게시물 번호를 가져온
 
 			// SQL문작성하여 가져온번호를 넣고 DB에 데이터를 요청한다
 			String sql = ""
-					+ "SELECT qna_board_id, p.product_id, product_name, qna_board_title, qna_board_content, users_id, qna_board_date,  nvl(qna_board_answer, '답변이 등록되지 않았습니다.') as qna_board_answer "
-					+ "FROM qna_board q, product p " + "WHERE p.product_id = q.product_id and qna_board_id =?";
+					+ "SELECT qna_board_id, p.product_id, product_name, qna_board_title, qna_board_content, users_id, qna_board_date, nvl(qna_board_answer, 'N') as qna_board_answer "
+					+ "FROM qna_board q, product p " 
+					+ "WHERE p.product_id = q.product_id and qna_board_id =?";
 
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idNum);
@@ -191,8 +191,8 @@ public class QnABoardDAO {
 			// 요청한 데이터를 rs로 받아서 QnABoardDTO에 담는다
 			if (rs.next()) {
 				qnaContentDTO.setQna_board_id(rs.getInt("qna_board_id"));
-				qnaContentDTO.setProduct_id(rs.getInt("product_id"));
-				qnaContentDTO.setProduct_name(rs.getString("product_name"));
+				//qnaContentDTO.setProduct_id(rs.getInt("product_id"));
+				//qnaContentDTO.setProduct_name(rs.getString("product_name"));
 				qnaContentDTO.setQna_board_title(rs.getString("qna_board_title"));
 				qnaContentDTO.setQna_board_content(rs.getString("qna_board_content"));
 				qnaContentDTO.setUsers_id(rs.getString("users_id"));
@@ -201,15 +201,7 @@ public class QnABoardDAO {
 			}
 		} catch (Exception e) {
 			e.getMessage();
-		} finally {
-			try {
-				// Connection 반납
-				conn.close();
-				System.out.println("반납 성공");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		return qnaContentDTO;
 	}
 
@@ -272,11 +264,8 @@ public class QnABoardDAO {
 		return qnaBoardProductDTOs;
 	}
 
-	public String updateQnABoard(QnABoardProductDTO qnaDTO, Connection conn) throws Exception {
+	public String updateQnABoard(QnABoardDTO qnaDTO, Connection conn) throws Exception {
 		int rsResult = 0;
-		System.out.println("DAO title: " + qnaDTO.getQna_board_title());
-		System.out.println("DAO content: " + qnaDTO.getQna_board_content());
-		System.out.println("DAO BoardID: " + qnaDTO.getQna_board_id());
 		String result = null;
 		try {
 			// sql문 작성 및 받은 JSONObject에서 데이터 뽑아서 DB로 전송
@@ -317,7 +306,7 @@ public class QnABoardDAO {
 		String result = null;
 		try {
 			// sql문 작성 및 받은 JSONObject에서 데이터 뽑아서 DB로 전송
-			String sql = "" + " DELETE FROM qna_board " + " WHERE qna_board_id = ?";
+			String sql = " DELETE FROM qna_board WHERE qna_board_id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, qna_board_id);
@@ -330,16 +319,7 @@ public class QnABoardDAO {
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-
-		} finally {
-			try {
-				// Connection 반납
-				conn.close();
-				System.out.println("반납 성공");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		return result;
 	}
 

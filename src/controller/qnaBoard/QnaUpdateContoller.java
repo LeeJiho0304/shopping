@@ -12,22 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import dto.qna.QnABoardDTO;
 import service.QnABoardService;
 
-@WebServlet(name="QnaWriteContoller", urlPatterns="/QnaWriteContoller")
-public class QnaWriteContoller extends HttpServlet {
-	
-	
+@WebServlet(name="QnaUpdateContoller", urlPatterns="/QnaUpdateContoller")
+public class QnaUpdateContoller extends HttpServlet {
+		
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("새로운QnaWriteContoller.doGet() 실행");
+		System.out.println("QnaUpdateContoller 실행");
 		QnABoardService qboardService = (QnABoardService) request.getServletContext().getAttribute("qnABoardService");
 				
 		QnABoardDTO qboard = new QnABoardDTO();
 		
 		qboard.setQna_board_title(request.getParameter("inquiryTitleName"));
 		qboard.setQna_board_content(request.getParameter("inquiryContent"));	
-		qboard.setProduct_id(1);
+		qboard.setQna_board_id(Integer.parseInt(request.getParameter("inquiryNo")));
 		qboard.setUsers_id(request.getParameter("inquiryUid"));	
+		qboard.setProduct_id(1);
 		//qboard.setProduct_id(Integer.parseInt(request.getParameter("")));
 				
 		qboardService.createQnABoard(qboard);

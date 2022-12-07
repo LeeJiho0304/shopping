@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -19,17 +21,16 @@
 				var result = window.confirm("게시물을 삭제하시겠습니까?");
 				if(result) {
 					var result = window.prompt("비밀번호를 입력하세요.", "비밀번호"); 
-					if(result) {
+					if(result=='12345'){ //${loginPwd}) {												
+						location.href="QnaDeleteContoller?qna_board_id=${qboard.qna_board_id}";
 						window.alert("삭제가 완료되었습니다.");
 					} else {
 						window.alert("정보가 일치하지 않습니다.");
-					}
-					
+					}					
 				} else {
 					window.alert("삭제가 취소되었습니다.");
 				}
-
-				window.open("QnABoardList4.html", "_self"); 
+				window.open("QnaBoardListContoller", "_self"); 
 			}			
 		</script>
 		<style>
@@ -439,6 +440,41 @@
 			.checked {
 			  color: orange;
 			}
+			
+			
+			#body{
+			    background:#f3f3f3;
+			    margin-top:20px;
+			    color: #616f80;
+			}
+			.card {
+			    border: none;
+			    margin-bottom: 24px;
+			    -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+			    box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+			}
+			
+			.avatar-xs {
+			    height: 2.3rem;
+			    width: 2.3rem;
+			}
+			
+			#myModal table {
+				width:100%;
+			}
+			#myModal th {
+				width:20%; 
+			}
+			#myModal tr, td {
+				border: 1px solid #ccc;
+			}
+			#inquiryTitleName{
+				width:100%;
+			}
+			#myModal textarea {
+				width:100%;
+			}
+			
 		</style>
 	</head>
 	<body>
@@ -455,16 +491,117 @@
 			            <div class="project-info-box row">
 			            	<div class="col-md-3"><h1>Q</h1></div>
 			            	<div class="col-md-9">
-			            		<p><b>게시물 번호:</b> 1</p>
+			            		<p><b>게시물 번호:</b> ${qboard.qna_board_id}</p>
 				           		<p><b>문의 유형:</b> 상품 관련 문의</p>
-				           		<p><b>제목:</b> 문의 합니다.</p>
-				           		<p><b>내용:</b> 옵션에서 벽걸이 선택할 수 있던데 각도조절 벽걸이 인가요?</p>
-				                <p><b>작성자:</b> test1</p>
-				                <p><b>작성 일자:</b> 2022.11.27</p>	
-				                <p style="padding-left: 640px">
-				                	<button type="button" class="btn btn-info btn-sm">수정</button>
-									<button onclick="deleteBoard()" class="btn btn-info btn-sm">삭제</button>  
-				                </p>	
+				           		<p><b>제목:</b> ${qboard.qna_board_title}</p>
+				           		<p><b>내용:</b> ${qboard.qna_board_content}</p>
+				                <p><b>작성자:</b> ${qboard.users_id}</p>
+				                <p><b>작성 일자: </b><fmt:formatDate value="${qboard.qna_board_date}" pattern="yyyy-MM-dd"/></p>	
+				                
+				                
+				                <div class="text-right">
+		                    		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">수정</button>
+			                        <button onclick="deleteBoard()" class="btn btn-info btn-sm">삭제</button> 
+		                   		 </div>
+				                  <!-- The Modal -->
+									<div class="modal fade" id="myModal">
+										<div class="modal-dialog modal-lg">
+											<div class="modal-content">
+							
+												<!-- Modal Header -->
+												<div class="modal-header bg-secondary" >
+													<h4 class="modal-title text-white">상품 문의 수정</h4>
+													<button type="button" class="close btn-light"  data-dismiss="modal">&times;</button>
+												</div>
+							
+												<!-- Modal body -->
+												<div class="modal-body">
+													<h4>문의 유형을 선택하시고, 내용을 수정해 주세요.</h4>
+							
+													<form id="frmQuestDetail" name="frmQuestDetail" method="get" action="QnaUpdateContoller" enctype="multipart/form-data">
+						
+														<div class="qna">
+															<table>
+																<tbody>
+																	<tr>
+																		<th >문의유형</th>
+																		<td>
+																			<input type="checkbox" id="product" checked>
+						  													<label for="product">상품관련 문의</label><br>
+						  													
+						  													<input type="checkbox" id="delivery">
+						  													<label for="delivery">배송관련 문의</label><br>
+							
+																		</td>
+																	</tr>
+							
+																	<tr>
+																		<th >제목</th>
+																		<td>
+																			<div class="titWrite">
+																				<input type="text" id="inquiryTitleName"
+																					name="inquiryTitleName" maxlength="51"
+																					placeholder="제목을 입력해 주세요. (50자 이내)">
+							
+																			</div>
+																		</td>
+																	</tr>
+							
+																	<tr>
+																		<th >문의내용</th>
+																		<td class="QnaTxt"><textarea rows="8" cols="20"
+																				name="inquiryContent" id="inquiryContent"
+																				placeholder="문의 내용을 입력해 주세요. (500자 이내)"></textarea>
+																				<input type="hidden" name="inquiryNo" id="inquiryNo" value="${qboard.qna_board_id}">
+																				<input type="hidden" name="inquiryUid" id="inquiryUid" value="${qboard.users_id}">
+																		</td>
+																	</tr>
+							
+																</tbody>
+															</table>
+														</div>
+														<div class="qnaNoti">
+															<p>개인정보 수집 및 이용에 대한 안내</p>
+															<table >
+																<tbody>
+																	<tr>
+																		<th>수집 항목</th>
+																		<td>휴대폰 번호 및 상품 Q&amp;A 제목, 문의 내용 등 개인이 직접 입력한 내용</td>
+																	</tr>
+																	<tr>
+																		<th >수집 목적</th>
+																		<td>문의 접수 및 결과 회신</td>
+																	</tr>
+																	<tr>
+																		<th >이용 기간</th>
+																		<td>원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.<br>
+																			단, 관계 법령의 규정에 의하여 보존할 필요가 있는 경우 아래와 같이 관계 법령에서 정한 일정 기간 동안
+																			개인정보를 보관할 수 있습니다.<br> - 소비자의 불만 또는 분쟁처리에 관한 기록 :
+																			3년(전자상거래등에서의 소비자보호에 관한 법률)
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+							
+														</div>
+															<!-- 로그인 아이디, 제품 아이디 넣기 -->	
+															
+														<div class="modal-footer">
+															<button type="submit" class="btn btn-secondary">수정</button>						
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>								
+														</div>								
+													</form>
+							
+												</div>
+												<!-- Modal footer -->
+					
+											</div>
+										</div>
+					                </div>
+				                	
+									 
+									<!--  <a href="javaScript:function()"></a>-->
+				               	
 			            	</div>
 			            		                
 			                
@@ -472,18 +609,22 @@
 			
 			            <div class="project-info-box mt-0 mb-0 row">
 			            	<div class="col-md-3"><h1 style="color: red">A</h1></div>
-			            	<div class="col-md-9">
-				           		<p><b>답변내용:</b> 안녕하세요. 상품문의 담당자입니다.
-
-									KQ75QB67AFXKR 모델 벽걸이 선택시
-									WMN-B16FB/KR 자재 사용되며, 상하좌우 조절 가능한 것으로 확인됩니다.
-									
-									차후 추가 문의사항 발생 시 언제든지 상품문의 이용 부탁드립니다.
-									감사합니다.</p>
-				                <p><b>작성자:</b> 관리자</p>
-				                <p><b>작성 일자:</b> 2022.11.27</p>		
-			            	</div>			            		                
-			                
+			            	 <c:if test="${qboard.qna_board_answer != 'N'}">
+				            	<div class="col-md-9">
+					           		<p><b>답변내용:</b> 안녕하세요. 상품문의 담당자입니다.<br/>	
+										${qboard.qna_board_answer} <br/>
+										감사합니다.</p>
+					                <p><b>작성자:</b> 관리자</p>
+					                <p><b>작성 일자:</b> 2022.12.09</p>		
+				            	</div>			            		                
+			                </c:if>
+			                <c:if test="${qboard.qna_board_answer == 'N'}">
+				            	<div class="col-md-9">
+					           		<p><b>답변내용:</b> 답변이 등록되지 않았습니다.<br/>										
+										</p>
+					                	
+				            	</div>			            		                
+			                </c:if>
 			            </div><!-- / project-info-box -->
 			        </div><!-- / column -->
  
