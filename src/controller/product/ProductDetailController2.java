@@ -20,7 +20,14 @@ public class ProductDetailController2 extends HttpServlet {
 	ProductDTO productDTO;
 	
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//서비스 객체 얻기
+		//전체 행수 얻기
+		//현재 페이지 얻기
+		//페이저 객체 생성하기
+		//해당 페이지의 게시물 리스트 가져오기
+		//request 범위에 저장
+		
 		ServletContext application = request.getServletContext();
 		ProductService productService = (ProductService)application.getAttribute("productContentService");
 		//productDTO = productService.getContent(50);

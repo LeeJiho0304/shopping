@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
    <div id="content" class="container-fluid border">
       <div class="row">
+      	
+      	<!-- 필터링바 -->
          <div class="nav-side-menu col-xs-0 col-md-2" style="height: 3000px">
             <hr />
-            <div class="InbGroup sticky-top" style="margin-top: 10px" >
+            <div class="InbGroup sticky-top" style="margin-top: 10px ; z-index: 1;" >
                <div class="smartFilter" id="smartFilter">
                   <div class="scroll" style="max-height: 100px;">
                      <div class="filterMenu" id="divBrand">
@@ -161,301 +164,91 @@
             </div>
          </div>
 
-
          <div class="main col-xs-12 col-md-10 border">
+         
+		<!-- 카테고리행 -->
          <div class = "row border" > 
-               <h5><a href="/shopping/product/productList.html">홈 </a> 
-               ></h5>
-               <h5><a href="/shopping/product/productList.html">   냉장고</a> 
-               </h5>  
+               <h5>홈 ></h5>
+               <h5>${categoryProduct.category_name}</h5>  
          </div>
+         
+         	<!-- 상품 리스트 -->
             <div class="row">
                <table>
                   <tbody class="table table-borderless">
-                     <tr>
-                        <td><a href="/shopping/product/productDetail.html">
-                              <div class="card">
-                                 <div class="card-header">
-                                    <img src="../images/티비4.png">
-                                 </div>
-                                 <div class="card-body">
-                                    <h4>LG 올레드 오브제컬렉션</h4>
-                                    <p>보지 않을 때도 계속되는 예술적 경험</p>
-                                    <p>2,832,000원 ~ 9,400,000원</p>
-                                 </div>
-                              </div>
-                        </a></td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비5.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 올레드 evo</h4>
-                                 <p>5세대 인공지능 알포9과 화질 알고리즘으로 더 진화한 올레드</p>
-                                 <p>1,750,0000원 ~ 41,800,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비6.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 올레드 TV</h4>
-                                 <p>10년 차의 기술과 노하우, 혁신적인 자발광 기술로 완성</p>
-                                 <p>1,390,000원 ~ 8,890,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비7.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 울트라 HD TV</h4>
-                                 <p>4K 울트라 화질이 보여주는 선명함의 차이</p>
-                                 <p>890,000원 ~ 3,590,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td><a href="/shopping/product/productDetail.html">
-                              <div class="card">
-                                 <div class="card-header">
-                                    <img src="../images/티비4.png">
-                                 </div>
-                                 <div class="card-body">
-                                    <h4>LG 올레드 오브제컬렉션</h4>
-                                    <p>보지 않을 때도 계속되는 예술적 경험</p>
-                                    <p>2,832,000원 ~ 9,400,000원</p>
-                                 </div>
-                              </div>
-                        </a></td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비5.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 올레드 evo</h4>
-                                 <p>5세대 인공지능 알포9과 화질 알고리즘으로 더 진화한 올레드</p>
-                                 <p>1,750,0000원 ~ 41,800,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비6.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 올레드 TV</h4>
-                                 <p>10년 차의 기술과 노하우, 혁신적인 자발광 기술로 완성</p>
-                                 <p>1,390,000원 ~ 8,890,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비7.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 울트라 HD TV</h4>
-                                 <p>4K 울트라 화질이 보여주는 선명함의 차이</p>
-                                 <p>890,000원 ~ 3,590,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td><a href="/shopping/product/productDetail.html">
-                              <div class="card">
-                                 <div class="card-header">
-                                    <img src="../images/티비4.png">
-                                 </div>
-                                 <div class="card-body">
-                                    <h4>LG 올레드 오브제컬렉션</h4>
-                                    <p>보지 않을 때도 계속되는 예술적 경험</p>
-                                    <p>2,832,000원 ~ 9,400,000원</p>
-                                 </div>
-                              </div>
-                        </a></td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비5.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 올레드 evo</h4>
-                                 <p>5세대 인공지능 알포9과 화질 알고리즘으로 더 진화한 올레드</p>
-                                 <p>1,750,0000원 ~ 41,800,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비6.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 올레드 TV</h4>
-                                 <p>10년 차의 기술과 노하우, 혁신적인 자발광 기술로 완성</p>
-                                 <p>1,390,000원 ~ 8,890,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비7.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 울트라 HD TV</h4>
-                                 <p>4K 울트라 화질이 보여주는 선명함의 차이</p>
-                                 <p>890,000원 ~ 3,590,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td><a href="/shopping/product/productDetail.html">
-                              <div class="card">
-                                 <div class="card-header">
-                                    <img src="../images/티비4.png">
-                                 </div>
-                                 <div class="card-body">
-                                    <h4>LG 올레드 오브제컬렉션</h4>
-                                    <p>보지 않을 때도 계속되는 예술적 경험</p>
-                                    <p>2,832,000원 ~ 9,400,000원</p>
-                                 </div>
-                              </div>
-                        </a></td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비5.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 올레드 evo</h4>
-                                 <p>5세대 인공지능 알포9과 화질 알고리즘으로 더 진화한 올레드</p>
-                                 <p>1,750,0000원 ~ 41,800,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비6.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 올레드 TV</h4>
-                                 <p>10년 차의 기술과 노하우, 혁신적인 자발광 기술로 완성</p>
-                                 <p>1,390,000원 ~ 8,890,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비7.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 울트라 HD TV</h4>
-                                 <p>4K 울트라 화질이 보여주는 선명함의 차이</p>
-                                 <p>890,000원 ~ 3,590,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                     </tr>
-                     
-                     <tr>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비8.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 울트라 HD TV</h4>
-                                 <p>4K 울트라 화질이 보여주는 선명함의 차이</p>
-                                 <p>890,000원 ~ 3,590,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비9.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 일반 LED TV</h4>
-                                 <p>보는 즐거움이 다른 생생한 화질</p>
-                                 <p>540,000원 ~ 640,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비10.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG 나노셀 TV</h4>
-                                 <p>나노 입자로 완성한 퓨어 컬러</p>
-                                 <p>2,890,000원 ~ 4,090,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                        <td>
-                           <div class="card">
-                              <div class="card-header">
-                                 <img src="../images/티비11.png">
-                              </div>
-                              <div class="card-body">
-                                 <h4>LG QNED TV(Mini LED)</h4>
-                                 <p>빛을 섬세하게 제어하는 미니 LED에 퀀텀닷+나노셀로 완성</p>
-                                 <p>7,490,000원 ~ 12,000,000원</p>
-                              </div>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td colspan="6" class="text-center">
-                           <div>
-                              <a href="ContentController?pageNo=1" class="btn btn-outline-primary btn-sm">처음</a>
+                  	<c:if test="${fn:length(CategoryPageList)==pager.rowsPerPage}">                	
+                     <c:forEach var="i" begin="1" end= "${fn:length(CategoryPageList)/3}" varStatus="status">
+	                     <tr>
+		                     <c:forEach var="categoryProduct" items="${CategoryPageList}" begin="${(status.count - 1)*3 }" end= "${(status.count - 1)*3 + 2}" step="1" >
+		                        <td>
+		                            <div class="card " style="height:450px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController'">
+		                               <div class="card-header bg-white" style="height:310px;">
+		                                  <img src="ProductImgController?pid=${categoryProduct.product_id}" height=100%>
+		                               </div>
+		                               <div class="card-body" style="height:140px;">
+		                                  <p>${categoryProduct.product_name}</p>		                             
+		                                  <p>${categoryProduct.product_price}</p>
+		                               </div>
+		                            </div>
+		                        </td>
+	                        </c:forEach>	                        	                        
+	                     </tr>
+	                  </c:forEach>
+	                 </c:if>
+	                 <c:if test="${fn:length(CategoryPageList)!=pager.rowsPerPage}">                	
+                     <c:forEach var="i" begin="1" end= "${fn:length(CategoryPageList)/3 + 1}" varStatus="status">
+	                     <tr>
+		                     <c:forEach var="categoryProduct" items="${CategoryPageList}" begin="${(status.count - 1)*3 }" end= "${(status.count - 1)*3 + 2}" step="1">
+		                        <td>
+		                            <div class="card"  style="height:450px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController'">
+		                               <div class="card-header bg-white" style="height:310px;">
+		                                  <img src="ProductImgController?pid=${categoryProduct.product_id}" height=100%>
+		                               </div>
+		                               <div class="card-body" style="height:140px;">
+		                                  <p>${categoryProduct.product_name}</p>		                             
+		                                  <p>${categoryProduct.product_price}</p>
+		                               </div>
+		                            </div>
+		                        </td>
+	                        </c:forEach>	                        	                        
+	                     </tr>
+	                  </c:forEach>
+	                 </c:if>
+                  </tbody>
+               </table>
+              </div>
+                   
+                   
+                    <div class="row">
+                        
+                              <a href="ProducCategorytListController?pageNo=1&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-primary btn-sm">처음</a>
                               
                               <c:if test="${pager.groupNo > 1}">
-                                 <a href="ContentController?pageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm">이전</a>
+                                 <a href="ProducCategorytListController?pageNo=${pager.startPageNo-1}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-info btn-sm">이전</a>
                               </c:if>
                               
                               <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
                                  <c:if test="${pager.pageNo != i}">
-                                    <a href="ContentController?pageNo=${i}" class="btn btn-outline-success btn-sm">${i}</a>
+                                    <a href="ProducCategorytListController?pageNo=${i}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-success btn-sm">${i}</a>
                                  </c:if>
                                  <c:if test="${pager.pageNo == i}">
-                                    <a href="ContentController?pageNo=${i}" class="btn btn-outline-danger btn-sm">${i}</a>
+                                    <a href="ProducCategorytListController?pageNo=${i}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-danger btn-sm">${i}</a>
                                  </c:if>
                               </c:forEach>
                               
                               <c:if test="${pager.groupNo < pager.totalGroupNo}">
-                                 <a href="ContentController?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">다음</a>
+                                 <a href="ProducCategorytListController?pageNo=${pager.endPageNo+1}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-info btn-sm">다음</a>
                               </c:if>
                               
-                              <a href="ContentController?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">맨끝</a>
+                              <a href="ProducCategorytListController?pageNo=${pager.totalPageNo}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-primary btn-sm">맨끝</a>
                               
-                           </div>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
+                          
+                        </div>
+                 
             </div>
             
          </div>
       </div>
-   </div>
+   
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

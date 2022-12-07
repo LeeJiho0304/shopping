@@ -1,19 +1,17 @@
 package dao;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import connection.ConnectionProvider;
 import dto.Pager;
 import dto.product.ProductDTO;
 import dto.product.ProductListDTO;
 
 
-public class ProductDAO2 {
+public class ProductDAO {
 	//해당 카테고리 상품 총 갯수 출력
 	public int getTotalRows(ProductListDTO productListDTO, Connection conn)throws Exception {
 		int totalRows = 0;
@@ -31,65 +29,91 @@ public class ProductDAO2 {
 			totalRows = rs.getInt(1);
 		}
 		rs.close();
-		pstmt.close();
-			
+		pstmt.close();			
 		return totalRows;
 	}
+	//상품 총 갯수 출력
+	public int getTotalRows(Connection conn) throws Exception {
+		String sql = "select count(*) from product";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		int result = rs.getInt(1);
+		rs.close();
+		pstmt.close();
+		
+		return result;
+	}
+	
+	public ProductListDTO selectProduct(int pid, Connection conn)throws Exception {
+		ProductListDTO result = null;
+		
+		String sql = "";
+	      sql += "SELECT main_filename, main_content_type, main_savedname ";
+	      sql += "FROM product ";
+	      sql += "where product_id=? ";
+	      PreparedStatement pstmt = conn.prepareStatement(sql);
+	      pstmt.setInt(1,pid);
+	     
+	      ResultSet rs = pstmt.executeQuery();
+	      if(rs.next()) {
+	    	 result = new ProductListDTO();
+			result.setMain_filename(rs.getString("main_filename"));
+			result.setMain_content_type(rs.getString("main_content_type"));
+			result.setMain_savedname(rs.getString("main_savedname"));
+	    	  
+	      }
+	      rs.close();
+	      pstmt.close();
+	      System.out.println(result.getMain_savedname());
+		 return result;
+	}
+
 	
 	//해당 카테고리, 서브카테고리 상품 목록 조회
-	public List<ProductListDTO> selectAllList(int pageNo, ProductListDTO productListDTO, Connection conn) {
+	public List<ProductListDTO> selectCategoryList(Pager pager, ProductListDTO productListDTO, Connection conn)throws Exception {
 		List<ProductListDTO> productListDTOs = new ArrayList<>();
-		try {
-			String sql = "SELECT rnum, product_id, product_name, product_price, category_id, category_name, subcategory_id, subcategory_name, product_totalpoint " +
-					 "FROM ( " + 
-					    "SELECT rownum as rnum, product_id, product_name, product_price, category_id, category_name, subcategory_id, subcategory_name, product_totalpoint " + 
-					    "FROM ( " +
-					        "SELECT product_id, product_name, product_price, c.category_id, category_name, s.subcategory_id, subcategory_name, product_totalpoint " +
-					        "FROM product p, subcategory s, category c " +
-					        "WHERE p.subcategory_id = s.subcategory_id and s.category_id = c.category_id and p.category_id = c.category_id " +
-					             "and p.category_id = ? and p.subcategory_id = ? " +
-					        "ORDER BY product_id " +
-					        ") " +
-					    "WHERE rownum <= (? * 5) " +
-					    ") " + 
-					"WHERE rnum >= ((? - 1) * 5) + 1 ";
-		
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, productListDTO.getCategory_id());
-			pstmt.setInt(2, productListDTO.getSubcategory_id());
-			pstmt.setInt(3, pageNo);
-			pstmt.setInt(4, pageNo);
-			ResultSet rs = pstmt.executeQuery();
-						
-			while(rs.next()) {
-				productListDTO = new ProductListDTO();
-				
-				productListDTO.setProduct_id(rs.getInt("product_id"));
-				productListDTO.setProduct_name(rs.getString("product_name"));
-				productListDTO.setProduct_price(rs.getInt("product_price"));
-				productListDTO.setCategory_id(rs.getInt("category_id"));
-				productListDTO.setCategory_name(rs.getString("category_name"));
-				productListDTO.setSubcategory_id(rs.getInt("subcategory_id"));
-				productListDTO.setSubcategory_name(rs.getString("subcategory_name"));
-				productListDTO.setProduct_totalpoint(rs.getDouble("product_totalpoint"));
-				
-				productListDTOs.add(productListDTO);
-				
-			}
-			rs.close();
-			pstmt.close();
+		System.out.println("DAO"+productListDTO.getCategory_id());
+		String sql = "SELECT rnum, product_id, product_name, product_price, category_id, category_name, subcategory_id, subcategory_name, product_totalpoint, main_filename, main_content_type  " +
+				 "FROM ( " + 
+				    "SELECT rownum as rnum, product_id, product_name, product_price, category_id, category_name, subcategory_id, subcategory_name, product_totalpoint, main_filename, main_content_type " + 
+				    "FROM ( " +
+				        "SELECT product_id, product_name, product_price, c.category_id, category_name, s.subcategory_id, subcategory_name, product_totalpoint, main_filename, main_content_type " +
+				        "FROM product p, subcategory s, category c " +
+				        "WHERE p.subcategory_id = s.subcategory_id and s.category_id = c.category_id and p.category_id = c.category_id " +
+				             "and p.category_id = ? and p.subcategory_id = ? " +
+				        "ORDER BY product_id " +
+				        ") " +
+				    "WHERE rownum <= ? " +
+				    ") " + 
+				"WHERE rnum >= ? ";
+	
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, productListDTO.getCategory_id());
+		pstmt.setInt(2, productListDTO.getSubcategory_id());
+		pstmt.setInt(3, pager.getPageNo() * pager.getRowsPerPage());
+		pstmt.setInt(4, (pager.getPageNo() - 1) * pager.getRowsPerPage() + 1);
+		ResultSet rs = pstmt.executeQuery();
+					
+		while(rs.next()) {
+			productListDTO = new ProductListDTO();
 			
-		} catch (Exception e) {
-			e.getMessage();
-		} finally {
-			try {
-				//Connection 반납
-				conn.close();
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
+			productListDTO.setProduct_id(rs.getInt("product_id"));
+			productListDTO.setProduct_name(rs.getString("product_name"));
+			productListDTO.setProduct_price(rs.getInt("product_price"));
+			productListDTO.setCategory_id(rs.getInt("category_id"));
+			productListDTO.setCategory_name(rs.getString("category_name"));
+			productListDTO.setSubcategory_id(rs.getInt("subcategory_id"));
+			productListDTO.setSubcategory_name(rs.getString("subcategory_name"));
+			productListDTO.setProduct_totalpoint(rs.getDouble("product_totalpoint"));
+			productListDTO.setMain_filename(rs.getString("main_filename"));
+			productListDTO.setMain_content_type(rs.getString("main_content_type"));
+			
+			productListDTOs.add(productListDTO);
+			
 		}
-		
+		rs.close();
+		pstmt.close();
 		return productListDTOs;
 		
 	}
@@ -143,7 +167,6 @@ public class ProductDAO2 {
 	
 	//상품 추가
 	public int insert(ProductDTO product, Connection conn) throws Exception {
-		System.out.println("insert");
 		String sql = "insert into product (product_id, product_name, product_price, product_company, category_id, subcategory_id, product_content, ";
 		sql += "main_filename, main_savedname, main_content_type, detail_filename, detail_savedname, detail_content_type) ";
 		sql += "values(seq_product_id.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -168,18 +191,7 @@ public class ProductDAO2 {
 		return rows;
 	}
 
-	public int getTotalRows(Connection conn) throws Exception {
-		String sql = "select count(*) from product";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		rs.next();
-		int result = rs.getInt(1);
-		rs.close();
-		pstmt.close();
-		
-		return result;
-	}
-
+	//모든 상품 리스트 출력
 	public List<ProductDTO> selectAllProductList(Pager pager, Connection conn) throws Exception {
 		List<ProductDTO> result = new ArrayList<>();
 		

@@ -72,7 +72,7 @@ public class UserDAO {
 		int result =0;
 		
 		String sql
-			="SELECT USERS_ID "
+			="SELECT USERS_LEVEL "
 			+"FROM USERS "
 			+"WHERE USERS_ID = ? AND USERS_PASSWORD = ?"
 			;
@@ -85,7 +85,7 @@ public class UserDAO {
 		ResultSet rs = pstmt.executeQuery();
 		
 		if(rs.next()) {
-			result = 1;
+			result = rs.getInt("USERS_LEVEL");
 		}
 		else {
 			result = 0;

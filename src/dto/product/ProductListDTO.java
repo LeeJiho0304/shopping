@@ -18,6 +18,9 @@ public class ProductListDTO {
 	private String category_name;
 	private String subcategory_name;
 	
+	private String main_filename;
+	private String main_savedname;
+	private String main_content_type;
 	
 	public ProductListDTO(int category_id, int subcategory_id) {
 		this.category_id = category_id;

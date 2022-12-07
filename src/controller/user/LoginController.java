@@ -36,10 +36,16 @@ public class LoginController extends HttpServlet {
 		
 		ServletContext application = request.getServletContext();
 		UserService userService = (UserService)application.getAttribute("userService");
+		int userLevel = userService.login(user);
 		
-		if(userService.login(user)==1) {
-			session.setAttribute("loginId", userId);	
+		if(userLevel==1) {
+			session.setAttribute("loginId", userId);
+			session.setAttribute("userLevel", userLevel);
 			response.sendRedirect("MainController");
+		}else if(userService.login(user)==99) {
+			session.setAttribute("loginId", userId);
+			session.setAttribute("userLevel", userLevel);
+			response.sendRedirect("/shopping/admin/AdminMainController");
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/homePage/user/loginForm.jsp").forward(request, response);
 		}
