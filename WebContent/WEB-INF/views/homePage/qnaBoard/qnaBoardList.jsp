@@ -38,7 +38,7 @@
 			#myModal th {
 				width:20%; 
 			}
-			#myModal tr, td {
+			.qna tr, .qna td, .qnaNoti tr, .qnaNoti td {
 				border: 1px solid #ccc;
 			}
 			#inquiryTitleName{
