@@ -19,16 +19,20 @@ public class QnaWriteContoller extends HttpServlet {
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("새로운QnaWriteContoller.doGet() 실행");
+		System.out.println("새로운QnaWriteContoller 실행");
 		QnABoardService qboardService = (QnABoardService) request.getServletContext().getAttribute("qnABoardService");
 				
 		QnABoardDTO qboard = new QnABoardDTO();
 		
 		qboard.setQna_board_title(request.getParameter("inquiryTitleName"));
-		qboard.setQna_board_content(request.getParameter("inquiryContent"));	
-		qboard.setProduct_id(1);
+		qboard.setQna_board_content(request.getParameter("inquiryContent"));			
 		qboard.setUsers_id(request.getParameter("inquiryUid"));	
-		//qboard.setProduct_id(Integer.parseInt(request.getParameter("")));
+		
+		if(request.getParameter("inquiryPid") != null) {
+			qboard.setProduct_id(Integer.parseInt(request.getParameter("inquiryPid")));
+		} else {
+			qboard.setProduct_id(1);
+		}
 				
 		qboardService.createQnABoard(qboard);
 				

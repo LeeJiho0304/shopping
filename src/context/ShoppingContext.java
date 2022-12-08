@@ -1,6 +1,6 @@
 package context;
 
-import javax.servlet.ServletContext; 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
@@ -9,7 +9,6 @@ import connection.ConnectionProvider;
 import dao.CartDAO;
 import dao.CategoryDAO;
 import dao.OrderDAO;
-import dao.ProductDAO;
 import dao.QnABoardDAO;
 import dao.ReviewBoardDAO;
 import dao.SubCategoryDAO;
@@ -19,7 +18,7 @@ import service.CategoryService;
 import service.OrderService;
 import service.ProductService;
 import service.QnABoardService;
-import service.ReviewBoardService;
+import service.ReviewBoardService4;
 import service.SubCategoryService;
 import service.UserService;
 
@@ -51,7 +50,7 @@ public class ShoppingContext implements ServletContextListener {
 		application.setAttribute("categoryService", new CategoryService(application));
 		application.setAttribute("orderService", new OrderService(application));
 		application.setAttribute("qnABoardService", new QnABoardService(application));
-		application.setAttribute("reviewBoardService", new ReviewBoardService(application));
+		application.setAttribute("reviewBoardService", new ReviewBoardService4(application));
 		application.setAttribute("subCategoryService", new SubCategoryService(application));
 	}
 }

@@ -11,7 +11,7 @@ import dto.product.ProductDTO;
 import dto.product.ProductListDTO;
 
 
-public class ProductDAO {
+public class ProductDAO5 {
 	//해당 카테고리 상품 총 갯수 출력
 	public int getTotalRows(ProductListDTO productListDTO, Connection conn)throws Exception {
 		int totalRows = 0;
@@ -234,6 +234,28 @@ public class ProductDAO {
 		pstmt.close();
 		
 		return result;
+	}
+	public List<Integer> getRateNum(int pid, Connection conn) {
+		List<Integer> totalRateNum = new ArrayList<>();	
+		try {
+			String sql = "select count(*) from REVIEW_BOARD where PRODUCT_ID = ? and REVIEW_BOARD_REVIEWPOINT= ? ";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pid);
+			System.out.println("pid: "+pid);
+			
+			for(int i=1; i<=5; i++) {
+				pstmt.setInt(2, i);
+				ResultSet rs = pstmt.executeQuery();
+				if (rs.next()) {
+					System.out.println(i +"점: "+rs.getInt(1));					
+					totalRateNum.add(rs.getInt(1));				
+				}
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}		
+	return totalRateNum;
 	}
 
 }
