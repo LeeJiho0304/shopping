@@ -21,7 +21,7 @@
 				var result = window.confirm("게시물을 삭제하시겠습니까?");
 				if(result) {
 					var result = window.prompt("비밀번호를 입력하세요.", "비밀번호"); 
-					if(result=='12345'){ //${loginPwd}) {												
+					if(result=='1234'){ //${loginPwd}) {												
 						location.href="QnaDeleteContoller?qna_board_id=${qboard.qna_board_id}";
 						window.alert("삭제가 완료되었습니다.");
 					} else {
@@ -31,7 +31,8 @@
 					window.alert("삭제가 취소되었습니다.");
 				}
 				window.open("QnaBoardListContoller", "_self"); 
-			}			
+			}	
+			
 		</script>
 		<style>
 			body{

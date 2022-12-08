@@ -7,18 +7,18 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
-import dao.ProductDAO;
+import dao.ProductDAO4;
 import dto.Pager;
 import dto.product.ProductDTO;
 import dto.product.ProductListDTO;
 
-public class ProductService {
+public class ProductService5 {
 	private  ServletContext application;
 	private DataSource ds;
 	ProductDAO productDAO;
 	
 	//생성자
-	public ProductService(ServletContext application) {
+	public ProductService5(ServletContext application) {
 		this.application = application;
 		productDAO = (ProductDAO)application.getAttribute("productDAO");
 		ds = (DataSource) application.getAttribute("dataSource");

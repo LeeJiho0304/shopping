@@ -1,6 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		<div class="container">
-	
+			<div class="row">		        
+		        <div class="col-xl-4 col-md-4">
+		            <div class="card bg-pattern">
+		                <div class="card-body">
+		                    <div class="float-right">
+		                        <i class="fa fa-th text-primary h4 ml-3"></i>
+		                    </div>
+		                    <h5 class="font-size-20 mt-0 pt-1">${totalBoardNum}</h5>
+		                    <p class="text-muted mb-0">총 게시물</p>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="col-xl-4 col-md-4">
+		            <div class="card bg-pattern">
+		                <div class="card-body">
+		                    <div class="float-right">
+		                        <i class="fa fa-file text-primary h4 ml-3"></i>
+		                    </div>
+		                    <h5 class="font-size-20 mt-0 pt-1">${totalAnswerBoardNum}</h5>
+		                    <p class="text-muted mb-0">답변 완료</p>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="col-xl-4 col-md-4">
+		            <div class="card bg-pattern">
+		                <div class="card-body">
+		                    <div class="float-right">
+		                        <i class="fa fa-file text-primary h4 ml-3"></i>
+		                    </div>
+		                    <h5 class="font-size-20 mt-0 pt-1">${totalBoardNum-totalAnswerBoardNum}</h5>
+		                    <p class="text-muted mb-0">답변 대기</p>
+		                </div>
+		            </div>
+		        </div>
+		        
+		    </div>
+		    <br/>
 		    <div class="row">
 		        <div class="col-lg-12">
 		            <div class="card">
@@ -23,28 +59,21 @@
 		                                <tr>	                                
 		                                    <th scope="row">${qboard.qna_board_id}</th>		                                   
 		                                    <td>
-		                                    <!--  <a href="javaScript:function()">-->
-		                                    <c:if test="${qboard.users_id == 'Check'}"><!--loginId}">-->
+		                                    <!--  <a href="javaScript:function()">-->		                                   
 		                                    	<a href="AddQnaAnswerController?qna_board_id=${qboard.qna_board_id}">
-			                                    	${qboard.qna_board_title}</a>
-		                                    </c:if>
-		                                    <c:if test="${qboard.users_id != 'Check'}"><!--loginId}">-->	                                    	
-			                                    	${qboard.qna_board_title}
-		                                    </c:if>
+			                                    	${qboard.qna_board_title}</a>		                                  
 			                                    </td>
 		                                    <td><fmt:formatDate value="${qboard.qna_board_date}" pattern = "yyyy.MM.dd"/></td>
-		                                    <td>
-		                                        
+		                                    <td>	                                        
 		                                        	<c:if test="${qboard.qna_board_answer == 'Y'}"> 
 		                                        		<span class="text-primary font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> 답변 완료</span>
 		                                        	</c:if>
 		                                        	<c:if test="${qboard.qna_board_answer == 'N'}"> 
 		                                        		<span class="text-warning font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> 답변 대기</span>
-		                                        	</c:if>
-		                                        	
+		                                        	</c:if>		                                        	
 		                                    </td>
 		                                    <td>
-		                                        <div class="team text-success">${qboard.users_id}
+		                                        <div class="team">${qboard.users_id}
 		                                        </div>
 		                                    </td>
 		                                    

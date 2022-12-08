@@ -154,6 +154,20 @@ public class QnABoardService {
 		}	
 		return result;
 	}
+
+	public int getTotalAnswerRows() {
+		Connection conn = null;
+		int totalAnswerRows = 0;
+		try {
+			conn=ds.getConnection();
+			totalAnswerRows = qnaDao.getTotalAnswerRows(conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {conn.close(); } catch(Exception e) {}
+		}
+		return totalAnswerRows;
+	}
 		
 	
 }

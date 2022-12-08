@@ -62,7 +62,7 @@
 		                    <div class="float-right">
 		                        <i class="fa fa-archive text-primary h4 ml-3"></i>
 		                    </div>
-		                    <h5 class="font-size-20 mt-0 pt-1 text-info">★</h5>
+		                    <h5 class="font-size-20 mt-0 pt-1 text-danger">★</h5>
 		                    <p class="text-muted mb-0">문의 게시판</p>
 		                </div>
 		            </div>
@@ -73,7 +73,7 @@
 		                    <div class="float-right">
 		                        <i class="fa fa-th text-primary h4 ml-3"></i>
 		                    </div>
-		                    <h5 class="font-size-20 mt-0 pt-1">2483</h5>
+		                    <h5 class="font-size-20 mt-0 pt-1">${totalBoardNum}</h5>
 		                    <p class="text-muted mb-0">총 게시물 수</p>
 		                </div>
 		            </div>
@@ -84,8 +84,8 @@
 		                    <div class="float-right">
 		                        <i class="fa fa-file text-primary h4 ml-3"></i>
 		                    </div>
-		                    <h5 class="font-size-20 mt-0 pt-1">06</h5>
-		                    <p class="text-muted mb-0">인기 게시물</p>
+		                    <h5 class="font-size-20 mt-0 pt-1">${totalAnswerBoardNum}</h5>
+		                    <p class="text-muted mb-0">답변 완료 게시물</p>
 		                </div>
 		            </div>
 		        </div>
@@ -132,11 +132,11 @@
 		                                    <th scope="row">${qboard.qna_board_id}</th>		                                   
 		                                    <td>
 		                                    <!--  <a href="javaScript:function()">-->
-		                                    <c:if test="${qboard.users_id == 'Check'}"><!--loginId}">-->
+		                                    <c:if test="${loginId == qboard.users_id}">
 		                                    	<a href="QnaBoardDetailContoller?qna_board_id=${qboard.qna_board_id}">
 			                                    	${qboard.qna_board_title}</a>
 		                                    </c:if>
-		                                    <c:if test="${qboard.users_id != 'Check'}"><!--loginId}">-->	                                    	
+		                                    <c:if test="${loginId != qboard.users_id}">                                    	
 			                                    	${qboard.qna_board_title}
 		                                    </c:if>
 			                                    </td>
@@ -152,18 +152,18 @@
 		                                        	
 		                                    </td>
 		                                    <td>
-		                                        <div class="team text-success">${qboard.users_id}
+		                                        <div class="team">${qboard.users_id}
 		                                        </div>
 		                                    </td>
 		                                    
 		                                    <td>
-		                                    	<c:if test="${qboard.users_id == 'Check'}"><!--loginId}">--> 
+		                                    	<c:if test="${loginId == qboard.users_id}">
 		                                    		<div class="action">
 		                                            	<a href="QnaBoardDetailContoller?qna_board_id=${qboard.qna_board_id}" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
 		                                            	<a href="QnaBoardDetailContoller?qna_board_id=${qboard.qna_board_id}" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
 		                                        	</div>
 		                                    	</c:if>
-		                                    	<c:if test="${qboard.users_id != 'Check'}"><!--loginId}">-->	
+		                                    	<c:if test="${loginId != qboard.users_id}">
 		                                    		<div class="action">
 		                                            	<a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
 		                                            	<a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
@@ -258,7 +258,7 @@
 															<td class="QnaTxt"><textarea rows="8" cols="20"
 																	name="inquiryContent" id="inquiryContent"
 																	placeholder="문의 내용을 입력해 주세요. (500자 이내)"></textarea>
-																	<input type="hidden" name="inquiryUid" id="inquiryUid" value="Check" > <!--  "${loginId}">-->
+																	<input type="hidden" name="inquiryUid" id="inquiryUid" value="${loginId}">
 															</td>
 														</tr>
 				
