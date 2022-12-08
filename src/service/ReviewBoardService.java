@@ -1,18 +1,24 @@
 package service;
 
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.sql.DataSource;
 
 import dao.ReviewBoardDAO;
+import dto.Pager;
 import dto.review.ReviewBoardDTO;
-import dto.review.ReviewBoardProductDTO;
 
 public class ReviewBoardService {
 	private ServletContext application;
+	private ReviewBoardDAO reviewDao;
+	private DataSource ds;
 	
 	public ReviewBoardService(ServletContext application) {
 		this.application = application;
+		reviewDao = (ReviewBoardDAO) application.getAttribute("reviewBoardDAO");
+		ds = (DataSource) application.getAttribute("dataSource");
 	}
 	
 	/*
@@ -45,36 +51,68 @@ public class ReviewBoardService {
 		int totalRows = reviewBoardDAO.getTotalSearchRows(search);
 		return totalRows;
 	}
-
+	*/
+	
 	// MyList
-	public List<ReviewBoardProductDTO> getMyList(int pageNo, String users_id) {
-		System.out.println("MyReview Service: " + users_id);
-		ReviewBoardDAO reviewBoardDAO = (ReviewBoardDAO)application.getAttribute("reviewBoardDAO");
-		List<ReviewBoardProductDTO> reviewDTO = reviewBoardDAO.selectMyList(pageNo, users_id);
+	public List<ReviewBoardDTO> getMyList(Pager pager, String users_id) {
+		List<ReviewBoardDTO> reviewDTO = null;
+		Connection conn = null;
+		
+		try {
+			conn = ds.getConnection();
+			reviewDTO = reviewDao.selectMyList(pager, users_id, conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {conn.close();} catch(Exception e) {}
+		}
+		
 		return reviewDTO;
 	}
 
 	public int getMyListTotalRows(String users_id) {
-		ReviewBoardDAO reviewBoardDAO = (ReviewBoardDAO)application.getAttribute("reviewBoardDAO");
-		int totalRows = reviewBoardDAO.getMyListRows(users_id);
+		int totalRows = 0;
+		Connection conn = null;
+		
+		try {
+			conn = ds.getConnection();
+			totalRows =  reviewDao.getMyListRows(users_id, conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {conn.close();} catch(Exception e) {}
+		}
+		
 		return totalRows;
 	}
 	
-	public ReviewBoardProductDTO getContent(int idNo) {
+	/*
+	public ReviewBoardDTO getContent(int idNo) {
 		ReviewBoardDAO reviewBoardDAO = (ReviewBoardDAO)application.getAttribute("reviewBoardDAO");
-		ReviewBoardProductDTO reviewDTO = reviewBoardDAO.selectOnereview(idNo);
+		ReviewBoardDTO reviewDTO = reviewBoardDAO.selectOnereview(idNo);
 		return reviewDTO;
-	}
+	}*/
 	
-	public List<ReviewBoardProductDTO> getList(int pageNo) {
+	/*
+	public List<ReviewBoardDTO> getList(int pageNo) {
 		ReviewBoardDAO reviewBoardDAO = (ReviewBoardDAO)application.getAttribute("reviewBoardDAO");
-		List<ReviewBoardProductDTO> reviewDTO = reviewBoardDAO.selectAllList(pageNo);
+		List<ReviewBoardDTO> reviewDTO = reviewBoardDAO.selectAllList(pageNo);
 		return reviewDTO;
-	}
+	}*/
 	
-	public String createReviewBoard(ReviewBoardDTO dto) {
-		ReviewBoardDAO dao = (ReviewBoardDAO)application.getAttribute("reviewBoardDAO");
-		String result = dao.insertReviewBoard(dto);
-		return result;
-	} */
+	public int createReviewBoard(ReviewBoardDTO reviewDto) {
+		int totalRows = 0;
+		Connection conn = null;
+		
+		try {
+			conn = ds.getConnection();
+			totalRows =  reviewDao.insertReviewBoard(reviewDto, conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {conn.close();} catch(Exception e) {}
+		}
+		
+		return totalRows;
+	}
 }

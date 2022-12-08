@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<div class="card-header">
+		<div class="card-header">
      	 	내가 쓴 리뷰
    		</div>
 		<br/>
@@ -51,19 +51,19 @@
 		                                    <th scope="col">작성 일자</th>
 		                                    <th scope="col">별점</th>
 		                                    <th scope="col">작성자</th>
-		                                    
-		                                    <th scope="col">수정</th>
+		                                    <th scope="col">수정/삭제</th>
 		                                </tr>
 		                            </thead>
 		                            <tbody>
-		                            <c:forEach var="review" items="${reviewList}">
+		                            <c:forEach var="review" items="${myReviewList}">
 		                                <tr>	                                
 		                                    <th scope="row">${review.qna_board_id}</th>		                                   
-		                                    <td><a href="QnaBoardDetailContoller">${review.qna_board_title}</a></td>
-		                                    <td><fmt:formatDate value="${review.qna_board_date}" pattern = "yyyy.MM.dd"/></td>
+		                                    <td><a href="ReviewDetailContoller">${review.review_board_title}</a></td>
+		                                    <td><fmt:formatDate value="${review.review_board_date}" pattern = "yyyy.MM.dd"/></td>
 		                                    <td>
-		                                    	
-		                                        	
+		                                    	<div class="team text-warning">
+		                                    		<c:forEach var="i" begin=1 end=${review.review_board_reviewpoint}>★</c:forEach>
+		                                        </div>
 		                                    </td>
 		                                    <td>
 		                                        <div class="team text-success">${review.users_id}
@@ -86,7 +86,7 @@
 							
 		                    <div class="pt-3">
 		                    	<div>
-		                    		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">상품문의 글쓰기</button>
+		                    		<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">상품문의 글쓰기</button> -->
 			                        <!--<ul class="pagination justify-content-end mb-0">
 			                            <li class="page-item disabled">
 			                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
@@ -99,7 +99,7 @@
 			                            </li>
 			                        </ul>-->
 		                   		 </div>
-			                    <div class="text-center">
+			                     <div class="text-center">
 			                    	 
 				                     <a href="ReviewBoardListContoller?pageNo=1" class="btn btn-outline-primary btn-sm">처음</a>
 				                     
@@ -122,98 +122,11 @@
 				                     
 				                     <a href="ReviewBoardListContoller?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">맨끝</a>
 				                  
-			                    </div>
-		                    </div>
-		                    <!-- The Modal -->
-							<div class="modal fade" id="myModal">
-								<div class="modal-dialog modal-lg">
-									<div class="modal-content">
-					
-										<!-- Modal Header -->
-										<div class="modal-header bg-secondary" >
-											<h4 class="modal-title text-white">상품 문의 작성</h4>
-											<button type="button" class="close btn-light"  data-dismiss="modal">&times;</button>
-										</div>
-					
-										<!-- Modal body -->
-										<div class="modal-body">
-											<h4>문의 유형을 선택하시고, 내용을 작성해 주세요.</h4>
-					
-											<form id="frmQuestDetail" name="frmQuestDetail" method="get" action="QnaWriteContoller" enctype="multipart/form-data">
-				
-												<div class="qna">
-													<table>
-														<tbody>
-															<tr>
-																<th >문의유형</th>
-																<td>
-																	<input type="checkbox" id="product" checked>
-				  													<label for="product">상품관련 문의</label><br>
-				  													
-				  													<input type="checkbox" id="delivery">
-				  													<label for="delivery">배송관련 문의</label><br>
-					
-																</td>
-															</tr>
-					
-															<tr>
-																<th >제목</th>
-																<td>
-																	<div class="titWrite">
-																		<input type="text" id="inquiryTitleName"
-																			name="inquiryTitleName" maxlength="51"
-																			placeholder="제목을 입력해 주세요. (50자 이내)">
-					
-																	</div>
-																</td>
-															</tr>
-					
-															<tr>
-																<th >문의내용</th>
-																<td class="QnaTxt"><textarea rows="8" cols="20"
-																		name="inquiryContent" id="inquiryContent"
-																		placeholder="문의 내용을 입력해 주세요. (500자 이내)"></textarea>
-																</td>
-															</tr>
-					
-														</tbody>
-													</table>
-												</div>
-												<div class="qnaNoti">
-													<p>개인정보 수집 및 이용에 대한 안내</p>
-													<table >
-														<tbody>
-															<tr>
-																<th>수집 항목</th>
-																<td>휴대폰 번호 및 상품 Q&amp;A 제목, 문의 내용 등 개인이 직접 입력한 내용</td>
-															</tr>
-															<tr>
-																<th >수집 목적</th>
-																<td>문의 접수 및 결과 회신</td>
-															</tr>
-															<tr>
-																<th >이용 기간</th>
-																<td>원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.<br>
-																	단, 관계 법령의 규정에 의하여 보존할 필요가 있는 경우 아래와 같이 관계 법령에서 정한 일정 기간 동안
-																	개인정보를 보관할 수 있습니다.<br> - 소비자의 불만 또는 분쟁처리에 관한 기록 :
-																	3년(전자상거래등에서의 소비자보호에 관한 법률)
-																</td>
-															</tr>
-														</tbody>
-													</table>
-					
-												</div>
-													<!-- 로그인 아이디, 제품 아이디 넣기 -->	
-													<!-- Modal footer -->
-												<div class="modal-footer">
-													<button type="submit" class="btn btn-secondary" data-dismiss="modal">등록</button>								
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>								
-												</div>								
-											</form>
-										</div>
-									</div>
-								</div>
-		                	</div>
-		            </div>
-		        </div>
-		    </div>
+			                     </div>
+		                     </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		    

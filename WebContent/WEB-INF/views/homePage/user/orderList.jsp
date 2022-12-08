@@ -14,7 +14,7 @@
 			<li class="order-item" id="orderItm_0">
 				<div class="item-image">
 				<c:if test="${order.main_savedname !=null}">
-					<a href="#"> <img src="C:/Temp/download/${order.main_savedname}" />
+					<a href="#"> <img src="ProductImgController?pid=${order.product_id}" />
 					</a>
 				</c:if>
 				</div>

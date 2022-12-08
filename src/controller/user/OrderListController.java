@@ -22,9 +22,7 @@ public class OrderListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("orderListController");
 		HttpSession session = request.getSession();
-		
 		String userId = (String) session.getAttribute("loginId");
-		System.out.println(userId);
 		
 		//PageNo 얻기
 		String strPageNo=request.getParameter("pageNo");

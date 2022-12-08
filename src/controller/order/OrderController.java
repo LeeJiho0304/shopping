@@ -41,14 +41,7 @@ public class OrderController extends HttpServlet {
 		order.setOrders_price(Integer.parseInt(request.getParameter("userId")));
 		order.setOrders_address(request.getParameter("inputAddress"));
 		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		UserDTO user = new UserDTO();		
 		
 		ServletContext application = request.getServletContext();

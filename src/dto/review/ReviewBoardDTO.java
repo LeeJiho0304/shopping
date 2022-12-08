@@ -15,6 +15,7 @@ public class ReviewBoardDTO {
 	private String review_board_content;
 	private int review_board_reviewpoint;
 	private int product_id;
+	private String product_name;
 	private String users_id;
 	private Date review_board_date;
 	private String review_board_comment;

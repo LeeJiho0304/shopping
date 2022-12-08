@@ -3,11 +3,9 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import connection.ConnectionProvider;
 import dto.Pager;
 import dto.order.OrderDTO;
 import dto.order.OrderDetailDTO;
@@ -113,18 +111,18 @@ public class OrderDAO {
 	}
 	
 	public List<OrderDTO> selectOrderList(Pager pager, String userId, Connection conn) throws Exception {
-		String sql = "select RNUM, USERS_ID, ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, main_filename, orders_price " + 
+		String sql = "select RNUM, USERS_ID, product_id, ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, main_filename, main_savedname, main_content_type, orders_price " +
 				"from ( " +
-				"	    select rownum as RNUM, USERS_ID, ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, main_filename, orders_price " +
+				"	    select rownum as RNUM, USERS_ID, product_id, ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, main_filename, main_savedname, main_content_type, orders_price " +
 				"	    from ( " +
-				"	        SELECT ORDERS.USERS_ID, ORDERS.ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, PRODUCT.main_filename, orders.orders_price " +
+				"	        SELECT ORDERS.USERS_ID, PRODUCT.product_id, ORDERS.ORDERS_ID, PRODUCT_NAME, ORDERS_DATE, ORDERS_STATUS, PRODUCT.main_filename, PRODUCT.main_savedname, PRODUCT.main_content_type, orders.orders_price " +
 				"	        FROM ORDERS, ORDER_DETAIL, PRODUCT " +
 				"	        WHERE ORDERS.ORDERS_ID = ORDER_DETAIL.ORDERS_ID AND " +
 				"	                ORDER_DETAIL.PRODUCT_ID = PRODUCT.PRODUCT_ID AND " +
-				"	                users_id = ? " +
+				"	                users_id = ? "+
 				"	        order by ORDERS_DATE desc " +
 				"	    ) where rownum <= ? " +
-				"	) where rnum >= ? ";
+				"	) where rnum >= ?";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
@@ -138,11 +136,14 @@ public class OrderDAO {
 		while(rs.next()) {
 			OrderDTO orderDTO = new OrderDTO();
 			orderDTO.setUsers_id(rs.getString("USERS_ID"));
+			orderDTO.setProduct_id(rs.getInt("product_id"));
 			orderDTO.setOrders_id(rs.getInt("ORDERS_ID"));
 			orderDTO.setProduct_name(rs.getString("PRODUCT_NAME"));
 			orderDTO.setOrders_date(rs.getString("ORDERS_DATE"));
 			orderDTO.setOrders_status(rs.getString("ORDERS_STATUS"));
-			orderDTO.setMain_savedname(rs.getString("main_filename"));
+			orderDTO.setMain_filename(rs.getString("main_filename"));
+			orderDTO.setMain_savedname(rs.getString("main_savedname"));
+			orderDTO.setMain_content_type(rs.getString("main_content_type"));
 			orderDTO.setOrders_price(rs.getInt("orders_price"));
 			orders.add(orderDTO);
 			System.out.println(orders);

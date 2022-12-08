@@ -123,35 +123,35 @@
 				<ul class="navbar-nav" >
 					 <li class="nav-item">
                			 <c:if test="${loginId == null}">
-								<a href="${pageContext.request.contextPath}/LoginController" class="nav-link">Login</a>
+								<a href="LoginController" class="nav-link">Login</a>
 						</c:if>
 					
 						<c:if test="${loginId != null}">
-							<a href="${pageContext.request.contextPath}/LogoutController" class="nav-link">Logout</a>
+							<a href="LogoutController" class="nav-link">Logout</a>
 						</c:if>
             		</li>
             		<c:if test="${loginId == null}">
 						<li class="nav-item">
-			                <a class="nav-link" href="${pageContext.request.contextPath}/JoinController">Register</a>
+			                <a class="nav-link" href="JoinController">Register</a>
 			            </li>
 		            </c:if>
 		            <c:if test="${loginId != null}">
 			            <li class="nav-item">
-							<a class="nav-link" href="/shopping/product/productList2.html">
+							<a class="nav-link" href="MyPageController">
 								<i class="fa fa-user"></i>
 							</a>
 						</li>
 					</c:if>
 					<c:if test="${loginId != null}">
 						<li class="nav-item">
-							<a class="nav-link" href="/shopping/product/productList2.html">
+							<a class="nav-link" href="#">
 								<i class="fa fa-shopping-cart"></i>
 							</a>
 						</li>
 					</c:if>
 					<c:if test="${loginId != null}">
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="QnaBoardListContoller">
 								<i class="fa fa-question-circle"></i>
 							</a>
 						</li>

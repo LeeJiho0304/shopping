@@ -13,5 +13,8 @@ public class OrderDTO {
 	private int product_id;
 	private String product_name;
 	
+	private String main_filename;
 	private String main_savedname;
+	private String main_content_type;
+	
 }
