@@ -15,7 +15,7 @@ import dto.Pager;
 import dto.order.OrderDTO;
 import service.OrderService;
 
-@WebServlet(name="/user/OrderListController", urlPatterns="/user/OrderListController")
+@WebServlet(name="user.OrderListController", urlPatterns="/user/OrderListController")
 public class OrderListController extends HttpServlet {
 	
 	@Override
@@ -46,8 +46,8 @@ public class OrderListController extends HttpServlet {
 				
 		//JSP에서 사용할 수 있도록 request 범위에 저장
 		request.setAttribute("pager", pager);
+		//request.setAttribute("userId", userId);
 		request.setAttribute("orderList", orderList);
-		System.out.println(orderList);
 	
 		//JSP로 이동
 		request.getRequestDispatcher("/WEB-INF/views/homePage/user/orderList.jsp").forward(request, response);

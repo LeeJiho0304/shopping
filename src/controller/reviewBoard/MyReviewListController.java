@@ -20,13 +20,13 @@ import service.ReviewBoardService;
 public class MyReviewListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("MyReviewListController.service() 실행");
+		System.out.println("MyReviewListController.dGet() 실행");
 		
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("loginId");
-		
+
 		//PageNo 얻기
-		String strPageNo=request.getParameter("pageNo");
+		String strPageNo = request.getParameter("pageNo");
 		if(strPageNo == null) {
 			strPageNo = "1";
 		}
@@ -38,19 +38,18 @@ public class MyReviewListController extends HttpServlet {
 				
 		//페이징 대상이 되는 전체 행수 얻기		
 		int totalBoardNum = reviewService.getMyListTotalRows(userId);
-				
+
 		//Pager 생성
-		Pager pager = new Pager(10,5, totalBoardNum, pageNo);
+		Pager pager = new Pager(5,5, totalBoardNum, pageNo);
 				
 		//pageNo에 해당하는 게시물 가져오기
 		List<ReviewBoardDTO> myReviewList = reviewService.getMyList(pager, userId);
-				
 		//JSP에서 사용할 수 있도록 request 범위에 저장
 		request.setAttribute("pager", pager);
-		request.setAttribute("pageList", myReviewList);
+		request.setAttribute("myReviewList", myReviewList);
 		
 		//JSP로 이동
-		request.getRequestDispatcher("/WEB-INF/views/homePage/reviewBoard/myReviewList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/homePage/user/myReviewList.jsp").forward(request, response);
 	}
 	
 }

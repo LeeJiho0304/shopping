@@ -19,4 +19,8 @@ public class ReviewBoardDTO {
 	private String users_id;
 	private Date review_board_date;
 	private String review_board_comment;
+	
+	private String filename;
+	private String savedname;
+	private String content_type;
 }

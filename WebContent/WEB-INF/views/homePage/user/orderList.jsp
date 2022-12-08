@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="${pageContext.request.contextPath}/resources/js/homePage/myPage.js"></script>
 
 <div class="tabs-wrap btn-type left">
 	<ul class="tabs">
@@ -33,7 +34,7 @@
 				</div>
 				<div class="product-payment">
 					<p class="total" id="paymentPrice0">${order.orders_price}</p>
-					<button type="button" class="btn btn-primary" onClick="location.href='/shopping/Board4/ReviewBoardList4.html'">리뷰 남기기</button>
+					<button type="button" class="btn btn-primary" onClick="reviewWrite(${order.product_id})">리뷰 남기기</button>
 				</div>
 			</li>
 		</c:forEach>
@@ -41,25 +42,25 @@
 </div>
 
 <div class="text-center">
-  <a href="/user/OrderListController?pageNo=1" class="btn btn-outline-primary btn-sm">처음</a>
+  <a onClick="orderListPage(1, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-outline-primary btn-sm">처음</a>
   
   <c:if test="${pager.groupNo > 1}">
-     <a href="/user/OrderListController?pageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm">이전</a>
+     <a onClick="orderListPage(${pager.startPageNo-1}, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-outline-info btn-sm">이전</a>
   </c:if>
   
   <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
      <c:if test="${pager.pageNo != i}">
-        <a href="/user/OrderListController?pageNo=${i}" class="btn btn-outline-success btn-sm">${i}</a>
+        <a onClick="orderListPage(${i}, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-outline-success btn-sm">${i}</a>
      </c:if>
      <c:if test="${pager.pageNo == i}">
-        <a href="/user/OrderListController?pageNo=${i}" class="btn btn-danger btn-sm">${i}</a>
+        <a onClick="orderListPage(${i}, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-danger btn-sm">${i}</a>
      </c:if>
   </c:forEach>
   
   <c:if test="${pager.groupNo < pager.totalGroupNo}">
-     <a href="${pageContext.request.contextPath}/user/OrderListController?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">다음</a>
+     <a onClick="orderListPage(${pager.endPageNo+1}, ${pageContext.request.contextPath})" class="btn btn-outline-info btn-sm">다음</a>
   </c:if>
   
-  <a href="${pageContext.request.contextPath}/user/OrderListController?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">맨끝</a>
+  <a onClick="orderListPage(${pager.totalPageNo}, ${pageContext.request.contextPath})" class="btn btn-outline-primary btn-sm">맨끝</a>
 
 </div>

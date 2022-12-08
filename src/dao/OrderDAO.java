@@ -146,9 +146,7 @@ public class OrderDAO {
 			orderDTO.setMain_content_type(rs.getString("main_content_type"));
 			orderDTO.setOrders_price(rs.getInt("orders_price"));
 			orders.add(orderDTO);
-			System.out.println(orders);
 		}
-		System.out.println("orders");
 		rs.close();
 		pstmt.close();
 		return orders;
@@ -171,7 +169,7 @@ public class OrderDAO {
 		
 		rs.close();
 		pstmt.close();
-		System.out.println("rows" + result);
+		
 		return result;
 	}
 	

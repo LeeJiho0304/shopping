@@ -46,6 +46,12 @@ public class OrderService {
 			totalRows = orderDAO.getTotalRows(userId, conn);
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return totalRows;
@@ -82,9 +88,5 @@ public class OrderService {
 		return orderDAO.selectOrder(id);
 	}
 	*/
-
-	
-	
-	
 	
 }

@@ -10,8 +10,10 @@
   		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
  		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
  		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/homePage/myPage.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@200;400;500&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+		
 		<style>
 		font-family: 'Hahmlet', serif;
 		font-family: 'Nanum Gothic', sans-serif;
@@ -103,8 +105,12 @@
 			clear:left;
 		}
 		</style>
+		<script>
+			function startMypage() {
+				$("#orderList").trigger("click");
+			}
+		</script>
 	</head>
-	
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<a class="navbar-brand" href="${pageContext.request.contextPath}/MainController"> 
@@ -137,7 +143,7 @@
 		            </c:if>
 		            <c:if test="${loginId != null}">
 			            <li class="nav-item">
-							<a class="nav-link" href="MyPageController">
+							<a class="nav-link" href="MyPageController" onclick="startMypage()">
 								<i class="fa fa-user"></i>
 							</a>
 						</li>
