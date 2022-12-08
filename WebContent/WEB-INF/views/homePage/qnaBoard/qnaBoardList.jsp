@@ -152,7 +152,7 @@
 		                                        	
 		                                    </td>
 		                                    <td>
-		                                        <div class="team text-success">${qboard.users_id}
+		                                        <div class="team">${qboard.users_id}
 		                                        </div>
 		                                    </td>
 		                                    
