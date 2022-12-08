@@ -51,7 +51,7 @@
 		                                    <td>		                                    	
 		                                    	<div class="action">
 		                                            <a href="AddQnaAnswerController?qna_board_id=${qboard.qna_board_id}" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
-		                                            <a href="AddQnaAnswerController?qna_board_id=${qboard.qna_board_id}" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
+		                                            <a href="DeleteQnaAnswerController?qna_board_id=${qboard.qna_board_id}" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
 		                                        </div>		                                    			                                    	
 		                                    </td>
 		                                </tr>
