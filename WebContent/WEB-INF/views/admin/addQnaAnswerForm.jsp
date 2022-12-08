@@ -33,17 +33,26 @@
 	                            </div>	                            
 	                            	<%@ include file="/WEB-INF/views/admin/adminQnaBoardDetail.jsp" %>  
 
-	                            <form method="post" name="myForm" action="AddQnaAnswerController" enctype="multipart/form-data">
+	                            <form method="post" name="myForm" action="AddQnaAnswerController" enctype="text">
 	                                <div class="card-body">
+	                                 <c:if test="${qboard.qna_board_answer != 'N'}">
 	                                    <div class="form-group">
+	                                        <label for="qnaAnswer">답변 수정</label>
+	                                        <input type="text" class="form-control" id="qnaAnswer" name="qnaAnswer" placeholder="답변 내용">
+	                                   		<input type="hidden" name="inquiryNo" id="inquiryNo" value="${qboard.qna_board_id}">
+	                                    </div>
+	                                  </c:if>  
+	                                  <c:if test="${qboard.qna_board_answer == 'N'}">  
+	                                  	<div class="form-group">
 	                                        <label for="qnaAnswer">답변 내용</label>
 	                                        <input type="text" class="form-control" id="qnaAnswer" name="qnaAnswer" placeholder="답변 내용">
+	                                   		<input type="hidden" name="inquiryNo" id="inquiryNo" value="${qboard.qna_board_id}">
 	                                    </div>
-	                                  	                                    
+	                                  </c:if>                              	                                    
 	                                </div>
 	
-	                                <div class="card-footer">
-	                                    <button type="submit" class="btn btn-primary">Submit</button>
+	                                <div class="card-footer">                                    
+	                                    <input type="submit" class="btn btn-primary" value="Submit">
 	                                </div>
 	                            </form>
 	                        </div>

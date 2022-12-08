@@ -440,20 +440,31 @@
 				           		<p><b>제목:</b> ${qboard.qna_board_title}</p>
 				           		<p><b>내용:</b> ${qboard.qna_board_content}</p>
 				                <p><b>작성자:</b> ${qboard.users_id}</p>
-				                <p><b>작성 일자: </b><fmt:formatDate value="${qboard.qna_board_date}" pattern="yyyy-MM-dd"/></p>	
- 				               	
+				                <p><b>작성 일자: </b><fmt:formatDate value="${qboard.qna_board_date}" pattern="yyyy-MM-dd"/></p>					               	
 			            	</div>
 			            				            		               			                
 			            </div>
+			            			            
 			            <!-- / project-info-box -->			
 			            <div class="project-info-box mt-0 mb-0 row">
 			            	<div class="col-md-3"><h1 style="color: red">A</h1></div>
-
+			            	 <c:if test="${qboard.qna_board_answer != 'N'}">
+				            	<div class="col-md-9">
+					           		<p><b>답변내용:</b> 안녕하세요. 상품문의 담당자입니다.<br/>	
+										${qboard.qna_board_answer} <br/>
+										감사합니다.</p>
+					                <p><b>작성자:</b> 관리자</p>
+					                <p><b>작성 일자:</b> 2022.12.09</p>		
+				            	</div>			            		                
+			                </c:if>
+			                <c:if test="${qboard.qna_board_answer == 'N'}">
 				            	<div class="col-md-9">
 					           		<p><b>답변 등록</b></p>	
 					           		<p><b>작성자:</b> 관리자</p>				                	
-				            	</div>			            		                
+				            	</div>				            		                
+			                </c:if>
 			            </div><!-- / project-info-box -->
+		            
 			        </div><!-- / column -->
  
 				</div>
