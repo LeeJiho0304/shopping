@@ -442,4 +442,20 @@ public class QnABoardDAO {
 		return qnaBoardProductDTOs;
 	}
 
+	public int getTotalAnswerRows(Connection conn) {
+		int totalAnswerRows = 0;	
+		try {
+			String sql = "select count(*) from qna_board where QNA_BOARD_ANSWER is not null ";
+			PreparedStatement pstmt;
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				totalAnswerRows = rs.getInt(1);
+			}			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}		
+	return totalAnswerRows;
+	}
+
 }
