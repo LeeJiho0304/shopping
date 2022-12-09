@@ -244,8 +244,8 @@ public class ReviewBoardDAO {
          return totalRows;
    }
 
-   public int getAvgRate(int pid, Connection conn) {
-      int avgRate = 0;
+   public double getAvgRate(int pid, Connection conn) {
+      double avgRate = 0;
       try {
          String sql = "" + "select PRODUCT_TOTALPOINT " + "FROM PRODUCT WHERE product_id = ? ";
          PreparedStatement pstmt;
@@ -253,7 +253,7 @@ public class ReviewBoardDAO {
          pstmt.setInt(1, pid);
          ResultSet rs = pstmt.executeQuery();
          if (rs.next()) {
-            avgRate = rs.getInt(1);
+            avgRate = rs.getDouble(1);
          }
       } catch (SQLException e) {
          e.printStackTrace();
