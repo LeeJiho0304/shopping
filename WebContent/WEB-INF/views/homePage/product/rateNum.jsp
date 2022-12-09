@@ -17,13 +17,6 @@
 			  box-sizing: border-box;
 			}
 			
-			body {
-			  font-family: Arial;
-			  margin: 0 auto; /* Center website */
-			  max-width: 800px; /* Max width */
-			  padding: 20px;
-			}
-			
 			.heading {
 			  font-size: 25px;
 			  margin-right: 25px;
