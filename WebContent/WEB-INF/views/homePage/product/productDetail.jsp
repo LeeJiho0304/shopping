@@ -21,7 +21,21 @@
                             
                         </div>
                         <div class="col-lg-12">
-                            <p class="m-0 p-0 price-pro">별점: ${productDTO.product_totalpoint} </p>
+                            <p class="m-0 p-0 price-pro">별점: 
+	                            <c:forEach var="i" begin="1" end="${avgRate}" step="1">
+									<span class="fa fa-star checked"></span>		
+								</c:forEach>
+								<c:if test="${(avgRate-intAvgRate)>=0.5}"> 
+									<span class="fa fa-star-half-o" style="color:orange"></span>		
+								</c:if>	
+								<c:if test="${(avgRate-intAvgRate)<0.5}"> 
+									<span class="fa fa-star"></span>		
+								</c:if>		
+								<c:forEach var="i" begin="1" end="${avgRate}" step="1">
+									<span class="fa fa-star"></span>		
+								</c:forEach>
+								${avgRate}
+                             </p>
                             <hr class="p-0 m-0">
                         </div>
                         <div class="col-lg-12 pt-2">
