@@ -28,10 +28,10 @@
 								<c:if test="${(avgRate-intAvgRate)>=0.5}"> 
 									<span class="fa fa-star-half-o" style="color:orange"></span>		
 								</c:if>	
-								<c:if test="${(avgRate-intAvgRate)<0.5}"> 
+								<c:if test="${(avgRate-intAvgRate)<0.5 and (avgRate-intAvgRate)>0}"> 
 									<span class="fa fa-star"></span>		
 								</c:if>		
-								<c:forEach var="i" begin="1" end="${avgRate}" step="1">
+								<c:forEach var="i" begin="1" end="${5-avgRate}" step="1">
 									<span class="fa fa-star"></span>		
 								</c:forEach>
 								${avgRate}
