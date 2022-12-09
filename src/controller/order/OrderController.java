@@ -1,8 +1,6 @@
 package controller.order;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.order.OrderDTO;
+import dto.product.ProductDTO;
 import dto.qna.QnABoardDTO;
 import dto.user.UserDTO;
 import service.OrderService;
+import service.ProductService;
 import service.QnABoardService;
 import service.UserService;
 
@@ -23,8 +23,22 @@ import service.UserService;
 @WebServlet(name="OrderController", urlPatterns="/OrderController")
 public class OrderController extends HttpServlet {	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		System.out.println("OrderController.doGet() 실행");
+		
+		int quantity=  Integer.parseInt(request.getParameter("quantity"));
+		System.out.println("quantity: "+ quantity);
+		int pid = Integer.parseInt(request.getParameter("pid"));	
+		System.out.println("pid: "+ pid);
+		
+		ProductService productService =(ProductService) request.getServletContext().getAttribute("productService");
+		ProductDTO product = productService.getProduct(pid);
+		System.out.println("엥");
+		request.setAttribute("productDTO", product);
+		request.setAttribute("quantity", quantity);
+		System.out.println("뭔데");
 		request.getRequestDispatcher("/WEB-INF/views/homePage/order/orderForm.jsp").forward(request, response);
+		System.out.println("오잉");
 	}
 	
 	@Override

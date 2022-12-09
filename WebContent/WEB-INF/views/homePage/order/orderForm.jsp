@@ -10,6 +10,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		
+		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		
 		<script>
@@ -19,11 +21,18 @@
 			var newinfo= $("#newInfo");
 			newinfo.removeClass("active");
 			var inputName = $("#inputName");
-			inputName.attr("value", "이지호");		
+			inputName.val("");
+			inputName.val("이지호");				
 			var inputTel = $("#inputTel");
-			inputTel.attr("value", "010-1234-1234");
-			var inputAddress = $("#inputAddress");
-			inputAddress.attr("value", "서울시 종로구 창경궁로 254");
+			inputTel.val("");
+			inputTel.val("010-1234-1234");
+			var inputPostCode = $("#postcode");
+			inputPostCode.val("");
+			inputPostCode.val("03077");
+			var inputAddress = $("#detailAddress");
+			inputAddress.val("");
+			inputAddress.val("명륜2가 41-4 동원빌딩 402호");
+
 		}
 		
 		function activeNewClass() {
@@ -31,12 +40,29 @@
 			basicinfo.removeClass("active");
 			var newinfo= $("#newInfo");
 			newinfo.addClass("active");			
-			var inputName = $("#inputName");
-			inputName.attr("value", "");
+			var inputName = $("#inputName");			
+			inputName.val("");
 			var inputTel = $("#inputTel");
-			inputTel.attr("value", "");
-			var inputAddress = $("#inputAddress");
-			inputAddress.attr("value", "");
+			inputTel.val("");
+			var inputPostCode = $("#postcode");
+			inputPostCode.val("");
+			var inputAddress = $("#detailAddress");
+			inputAddress.val("");
+
+		}
+		
+		/** 우편번호 찾기 */
+		function execDaumPostcode() {
+			console.log("우편번호 클릭")
+		    daum.postcode.load(function(){
+		        new daum.Postcode({
+		            oncomplete: function(data) {
+		              // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+		              $("#postcode").val(data.zonecode);
+		              $("#address").val(data.roadAddress);
+		            }
+		        }).open();
+		    });
 		}
 
 		</script>
@@ -194,7 +220,7 @@
 			
 			.txt {
 			  border-color: #e1e8ee;
-			  width: 100%;
+			  width: 200%;
 			}
 			
 			.input {
@@ -223,7 +249,7 @@
 			.ddl {
 			  border-color: #f0f4f7;
 			  background-color: #f0f4f7;
-			  width: 200px;
+			  width: 350px;
 			  margin-right: 10px;
 			}
 			
@@ -277,7 +303,7 @@
 			  margin-right: 10px;
 			}
 			
-			.btn {
+			#purchase {
 			  font-family: "Josefin Sans", sans-serif;
 			  border-radius: 8px;
 			  border: 0;
@@ -462,26 +488,25 @@
 		      <div class="details__item">
 		
 		        <div class="item__image">
-		          <img class="iphone" id="productimg" src="../images/티비5.png" alt="">
+		          <img src="ProductImgController?pid=${productDTO.product_id}" id="productimg" class="iphone" height=100%>
 		        </div>
 		        <div class="item__details">
 		          <div class="item__title">
-		            LG Oled Objet Collection
+		            ${productDTO.product_name}
 		          </div>
 		          <div class="item__price">
-		            \2,832,000
+		            \${productDTO.product_price}
 		          </div>
 		          <div class="item__quantity">
-		           	 수량: 1
+		           	 수량: ${quantity}
 		          </div>
 		          <br/>
 		          <div class="item__description">
 		            <ul style="">
-		              <li>어떤 공간에도 자유롭게</li>
-		              <li>어디서 봐도 아름다운</li>
-		              <li>높여진 공간의 완성도를 높여주는</li>
-		              <li>프리미엄 화질과 사운드</li>
-		              <li>보지 않을 때도 계속되는 예술적 경험</li>
+		              <li>제품 아이디:  ${productDTO.product_id}</li>
+		              <li>제조사:  ${productDTO.product_company}</li>
+		              <li></li>
+		              <li>하단의 주문 정보를 확인하고 [결제하기] 버튼을 눌러주세요.</li>
 		            </ul>
 		
 		          </div>
@@ -498,30 +523,36 @@
 		         	 배송지 선택
 		        </div>
 		        <div class="payment__types">
+		        	&emsp;&emsp;
 		          <div class="payment__type payment__type--cc active" onclick="activeNewClass()" id="newInfo"> 신규 입력</div>
+		          &emsp;&emsp;&emsp;&emsp;&emsp;
 		          <div class="payment__type payment__type--paypal" onclick="activeBasicClass()" id="basicInfo"> 기본 정보</div>	
 		        </div>
 		
 		        <div class="payment__info">
-		          <div class="payment__cc">
+		        <form>
+		        <div class="row">
+		          <div class="payment__cc col-md-6">
+		          
 		            <div class="payment__title"> 정보 입력 </div>
-		            <form>
+		            
 		              <div class="form__cc">
-		                <div class="row">
+		                <div>
 		                  <div class="field">
 		                    <div class="title">받는 사람
 		                    </div>
-		                    <input type="text" class="input txt text" placeholder="이름" id="inputName" name=inputName"/>
+		                    <input type="text" class="input txt text" placeholder="이름" id="inputName" name=inputName" required/>
 		                  </div>
 		                </div>
-		                <div class="row">
+		                <div>
 		                
 		                <div class="field sm">
 		                    <div class="title">전화 번호
 		                    </div>
-		                    <input type="text" class="input txt" placeholder="000-0000-0000" id="inputTel" name="inputTel"/>
+		                    <input type="text" class="input txt" placeholder="000-0000-0000" id="inputTel" name="inputTel" required/>
 		                  </div>
-		                
+		                </div>
+		                <div>
 		                  <div class="field small">
 		                    <div class="title">요청 사항
 		                    </div>
@@ -532,6 +563,8 @@
 		                      <option>거북이 배송</option>
 		                      
 		                    </select>
+		                    <br/>
+		                    <br/>
 		                    <select class="input ddl">
 		                      <option>문 앞에 놔주세요.</option>
 		                      <option>안전 배송 부탁해요.</option>
@@ -543,22 +576,60 @@
 		                  </div>
 		                  
 		                </div>
-		                <div class="row">
+		                <div >
 		                  <div class="field">
+		                  
+		                  
+		                  
 		                    <div class="title">배송 주소
 		                    </div>
-		                    <input type="text" class="input txt" placeholder="00도 00시 00구 00로 00" id="inputAddress" name="inputAddress"/>
+		                    <!-- <input type="text" class="input txt" placeholder="00도 00시 00구 00로 00" id="inputAddress" name="inputAddress"/> -->
+		                  
+		                  	
+		                  	
+		                  	<div class="container address-box">
+								<div class="row d-flex flex-row">
+									<div class="mr-3">
+										<input type="text" class="form-control m-input" name="postcode"
+											id="postcode" placeholder="우편번호" readonly />
+									</div>
+									<div>
+										<button type="button" class="btn btn-info m-btn--air"
+											onclick="execDaumPostcode()">우편번호 찾기</button>
+									</div>
+								</div>
+			
+								<!--  <div class="row">
+									<div class="col-xs-12 offset-md-12">
+										<input type="text" class="form-control mt-1" name="address"
+											id="address" placeholder="도로명 주소" style="width: 400px" readonly />
+									</div>
+								</div>-->
+								<div class="row">
+									<div class="col-xs-12 offset-md-12" style="float: left">
+										<input type="text" class="form-control mt-1" id="detailAddress" name="detailAddress"
+											placeholder="상세 주소" style="width: 350px" required />
+									</div>
+								</div>
+							</div>
+		                  
+		                  
+		                  
+		                  
+		                  
+		                  
 		                  </div>
 		                </div>
 		                
 		                 <br/>
-		                 <input type="checkbox" name="confirm"/> 상기 구매 정보를 확인하였으며 결제 진행에 동의합니다.
-		
+		                 <input type="checkbox" name="confirm" required/> 상기 구매 정보를 확인하였으며 결제 진행에 동의합니다.
+							
 		              </div>
-		            </form>
+		             	
 		          </div>
-		          <div class="payment__shipping">
+		          <div class="payment__shipping col-md-6">
 		            <div class="payment__title">  주문자 정보 </div>
+		            <br/>
 		            <div class="details__user">
 		              <div class="user__name">이지호
 		                <br> 2022.11.23</div>
@@ -573,17 +644,23 @@
 		            </div>
 		
 		          </div>
+		          </div>
+		           <div class="container">
+				      <div class="actions">
+				
+				        <button type="submit" class="btn" id="purchase">결제 하기</button>
+				        <a href="#" class="backBtn">홈으로 돌아가기</a>
+				
+				      </div>
+		     		</div>
+		          
+		          
+		          </form>
+	          
 		        </div>
 		      </div>
 		    </div>
-		    <div class="container">
-		      <div class="actions">
-		
-		        <a href="#" class="btn action__submit">결제 하기</a>
-		        <a href="#" class="backBtn">홈으로 돌아가기</a>
-		
-		      </div>
-		      </div>
+		    
 		  </section>
 		
 	</body>
