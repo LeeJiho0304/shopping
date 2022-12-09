@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
      
-      
-      
-      
         <div class="container  h-100" style="width:1000px">
           <div class="row d-flex justify-content-center my-5 align-items-center h-100">
            
@@ -67,10 +64,10 @@
             <div class = "border">상품 정보
             </div>
             <div class = "border" id="rate">
-            	<%@ include file="/WEB-INF/views/homePage/product/rateNum.jsp" %>  
+            	<%-- <%@ include file="/WEB-INF/views/homePage/product/rateNum.jsp" %>   --%>
             </div>
             <div class = "border" id="faq">         
-            	<%@ include file="/WEB-INF/views/homePage/product/qnaFrequent.jsp" %>  
+            <%-- 	<%@ include file="/WEB-INF/views/homePage/product/qnaFrequent.jsp" %>   --%>
             </div>
             <div>
             	<div class="border text-right">
@@ -90,15 +87,4 @@
          
           </div>
       
-             
-      
-              
-    
-          
-     
-   
-      
-
-
-   
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

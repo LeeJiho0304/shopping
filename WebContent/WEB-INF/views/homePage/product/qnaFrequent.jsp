@@ -222,11 +222,11 @@
 		</style>
 	</head>
 	<body>	
-		<section class="bg-light">
+		<section class="bg-white ">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
-                        <div class="card card-style1 border-0">
+                        <div class="card card-style1 border-0 bg-white">
                             <div class="card-body p-4 p-md-5 p-xl-6">
                                 <div class="text-center mb-2-3 mb-lg-6">
                                     <span class="section-title text-primary">FAQ's</span>

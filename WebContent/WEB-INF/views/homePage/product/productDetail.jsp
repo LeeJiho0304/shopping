@@ -64,8 +64,6 @@
             <div class = "row">          
                <img src="DetailImgController?pid=${productDTO.product_id}" width=100% >
             </div>
-            <div class = "border">상품 정보
-            </div>
             <div class = "border" id="rate">
             	<%@ include file="/WEB-INF/views/homePage/product/rateNum.jsp" %>  
             </div>
