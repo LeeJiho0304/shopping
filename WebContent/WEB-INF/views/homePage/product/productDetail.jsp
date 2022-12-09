@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-     
+<script>
+	function goCart(pid){
+		var quantity = $("input[name=quantity]").val();
+		console.log(quantity); 
+		
+		$.ajax({
+            type: "GET",
+            url: "CartController",
+            data: {"pid":pid, "quantity":quantity }, 
+            success: function(data) {
+            	  $("#successModal").show();
+            }
+         });
+	}
+	
+</script>  
       
       
       
@@ -48,17 +63,80 @@
                         </div>
                         <div class="col-lg-12">
                             <h6>수량 :</h6>
-                            <input type="number" class="form-control text-center w-25" value="1">
+                             <input type="number" class="form-control text-center w-25" name="quantity" value= "1">
                         </div>
                         <div class="col-lg-12 mt-3">
+                             <c:if test="${loginId != null}">
+	                            <div class="row">
+	                                <div class="col-lg-6 pb-2">
+	                                    <button onClick="goCart(${productDTO.product_id})" class="btn btn-danger w-100">장바구니</button>
+	                                </div>
+	                                <div class="col-lg-6">
+	                                    <a href="${pageContext.request.contextPath}/OrderController" class="btn btn-success w-100">바로 구매</a>
+	                                </div>
+	                            </div>
+                            </c:if>
+                            <c:if test="${loginId == null}">
                             <div class="row">
-                                <div class="col-lg-6 pb-2">
-                                    <a href="#" class="btn btn-danger w-100">장바구니</a>
-                                </div>
-                                <div class="col-lg-6">
-                                    <a href="#" class="btn btn-success w-100">바로 구매</a>
-                                </div>
-                            </div>
+	                                <div class="col-lg-6 pb-2">
+	                                    <a href="${pageContext.request.contextPath}/LoginController" class="nav-link btn btn-danger w-100">장바구니</a>
+	                                </div>
+	                                <div class="col-lg-6">
+	                                    <a href="${pageContext.request.contextPath}/LoginController" class="nav-link btn btn-success w-100">바로 구매</a>
+	                                </div>
+	                            </div>
+                            </c:if>
+                                           <!-- The Modal -->
+			              <div class="modal" id="successModal" >
+			                <div class="modal-dialog">
+			                  <div class="modal-content">
+			                  
+			                    <!-- Modal Header -->
+			                    <div class="modal-header">
+			                         장바구니 담기 완료
+			                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" >&times;</button>
+			                    </div>
+			                    
+			                    <!-- Modal body -->
+			                    <div class="modal-body">
+			                        장바구니 담기 완료되었습니다.
+			                    </div>
+			                    
+			                    <!-- Modal footer -->
+			                    <div class="modal-footer">
+			                      <a href="/shopping/product/cartDetail2.html">
+			                         <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" >넹</button>
+			                      </a>
+			                    </div>
+			                    
+			                  </div>
+			                </div>
+			              </div>
+			              <div class="modal" id="failModal" >
+			                <div class="modal-dialog">
+			                  <div class="modal-content">
+			                  
+			                    <!-- Modal Header -->
+			                    <div class="modal-header">
+			                         오류!
+			                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" >&times;</button>
+			                    </div>
+			                    
+			                    <!-- Modal body -->
+			                    <div class="modal-body">
+			                        장바구니 담기 실패
+			                    </div>
+			                    
+			                    <!-- Modal footer -->
+			                    <div class="modal-footer">
+			     
+		                         <button type="button" class="btn btn-danger" data-dismiss="modal" >흑흑왜요?</button>
+			                      
+			                    </div>
+			                    
+			                  </div>
+			                </div>
+			              </div>
                         </div>
                     </div>
                 </div>
