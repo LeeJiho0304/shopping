@@ -135,8 +135,7 @@ public class UserDAO {
 		String sql
 			="SELECT * "
 			+"FROM USERS "
-			+"WHERE USERS_ID = ?"
-			;
+			+"WHERE USERS_ID = ?";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
@@ -156,10 +155,9 @@ public class UserDAO {
 			userDTO.setUser_birthday(rs.getString("USERS_BIRTHDAY"));
 			userDTO.setUser_point(rs.getInt("USERS_POINT"));
 		}
-		
 		rs.close();
 		pstmt.close();
-		conn.close();
+		
 		return userDTO;
 	}
 	
@@ -204,31 +202,26 @@ public class UserDAO {
 		return result;
 	}
 	
-	public void updateUser(UserDTO receivedDTO, Connection conn) throws Exception {
-		StringBuilder sqlBuilder = new StringBuilder();
-		sqlBuilder.append("UPDATE USERS SET ");
-		if (!receivedDTO.getUser_email().equals("X")) {
-			sqlBuilder.append("USERS_EMAIL = '" + receivedDTO.getUser_email() + "', ");
-		}
-		if (!receivedDTO.getUser_address().equals("X")) {
-			sqlBuilder.append("USERS_ADDRESS = '" + receivedDTO.getUser_address() + "', ");
-		}
-		if (!receivedDTO.getUser_phone().equals("X")) {
-			sqlBuilder.append("USERS_PHONE = '" + receivedDTO.getUser_phone() + "', ");
-		}
-		if (!receivedDTO.getUser_name().equals("X")) {
-			sqlBuilder.append("USERS_NAME = '" + receivedDTO.getUser_name() + "', ");
-		}
-		if (!receivedDTO.getUser_birthday().equals("X")) {
-			sqlBuilder.append("USERS_BIRTHDAY = '" + receivedDTO.getUser_birthday() + "', ");
-		}
-		sqlBuilder.delete(sqlBuilder.length() - 2, sqlBuilder.length());
-		sqlBuilder.append(" WHERE USERS_ID = '" + receivedDTO.getUser_id() + "'");
+	//회원 정보 수정
+	public int updateUser(UserDTO user, Connection conn) throws Exception {
+		int result = 0;
+		String sql = "UPDATE USERS SET USERS_NAME=?, USERS_PASSWORD=?, USERS_EMAIL=?, USERS_PHONE=?, "
+					+ "USERS_BIRTHDAY=?, USERS_ADDRESS=? "
+					+ " WHERE USERS_ID = ?";
 
-		PreparedStatement pstmt = conn.prepareStatement(sqlBuilder.toString());
-		pstmt.executeUpdate();
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, user.getUser_name());
+		pstmt.setString(2, user.getUser_password());
+		pstmt.setString(3, user.getUser_email());
+		pstmt.setString(4, user.getUser_phone());
+		pstmt.setString(5, user.getUser_birthday());
+		pstmt.setString(6, user.getUser_address());
+		pstmt.setString(7, user.getUser_id());
+		result = pstmt.executeUpdate();
+		
 		pstmt.close();
-		conn.close();
+		
+		return result;
 	}
 	
 	public void deleteUser(String id, Connection conn) throws Exception {

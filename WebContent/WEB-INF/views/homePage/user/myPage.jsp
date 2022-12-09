@@ -54,10 +54,19 @@
 			    });
 			}
 			
-			function startMypage() {
-				$("#content").html(orderList.jsp);
-			}
 		</script>
+		<style>
+			.myPageUserInfo tr { 
+				display: block; 
+				float: left;
+			}
+			.myPageUserInfo th, .myPageUserInfo td { 
+				display: block; 
+			} 
+			.myPageUserInfo:after {
+				clear:both;
+			} 
+		</style>
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -92,7 +101,7 @@
 								<span class="my-dep1"><b>회원정보 관리</b></span>
 								<ul class="my-sub">
 									<li>
-										<a type="button" onclick="requestContent('${pageContext.request.contextPath}/user/UpdateUserInfoController')" id="updateUserInfo">회원정보 수정</a>
+										<a type="button" onclick="requestContent('UpdateUserInfoController')" id="updateUserInfo">회원정보 수정</a>
 									</li>
 									<li>
 										<a type="button" onclick="requestContent('MyReviewListController')" id="reviewList">내가 쓴 리뷰</a>
@@ -105,8 +114,50 @@
 						</ul>
 					</div>
 					
+					<!-- ajax 처리 부분 -->
 					<div class="lnb-contents" id="content">
-						<!-- ajax 처리 -->
+						<div class="container mt-4">
+							<div class="row">
+								<div class="border-bottom" style="width:100%"><span style="font-size: 30px"><b>${user.user_name} 님 </b></span><span style="font-size: 17px"> 반갑습니다.</span></div>
+							</div>
+							
+		    				<div class="row">
+		    					<div class="col-lg-12">
+						            <div class="card mt-3">
+						            	<div class="card-header"><span>회원정보</span></div>
+						                <div class="card-body">
+						                    <div style="width:100%">
+												<table class="table myPageUserInfo" style="width:100%" >
+													<tbody>
+														<tr style="width:40%">
+															<td rowspan='7' style="align: center;"><img src="${pageContext.request.contextPath}/resources/images/homePage/profile.png" width="250"></td>
+														</tr>
+														<tr style="width:15%">
+															<th>ID</th>
+															<th>이름</th>
+															<th>email</th>
+															<th>주소</th>
+															<th>전화번호</th>
+															<th>생년월일</th>
+															<th>등급</th>
+														</tr>
+														<tr style="width:40%">
+															<td>${user.user_id}</td>
+															<td>${user.user_name}</td>
+															<td>${user.user_email}</td>
+															<td>${user.user_address}</td>
+															<td>${user.user_phone}</td>
+															<td>${user.user_birthday}</td>
+															<td>${user.user_level}</td>
+														</tr>
+													</tbody>
+												</table>	
+											</div>
+						                 </div>
+						    		</div>  
+		    					</div>
+		    				</div>
+		    			</div>
 					</div>
 				</div>
 			</div>

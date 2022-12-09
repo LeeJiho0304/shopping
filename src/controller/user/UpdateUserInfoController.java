@@ -14,7 +14,7 @@ import dto.user.UserDTO;
 import service.UserService;
 
 
-@WebServlet(name="/user/UpdateUserInfoController", urlPatterns="/user/UpdateUserInfoController")
+@WebServlet(name="UpdateUserInfoController", urlPatterns="/UpdateUserInfoController")
 public class UpdateUserInfoController extends HttpServlet {	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,30 +23,36 @@ public class UpdateUserInfoController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("uid");
-		String userPwd = request.getParameter("pw");
-		String email = request.getParameter("email");
-		String address = request.getParameter("address");
-		String uPhone = request.getParameter("phone");
+		String userId = (String)request.getSession().getAttribute("loginId");
+		
 		String uName = request.getParameter("name");
-		String birthday = request.getParameter("birthday");
-		
-		
-		HttpSession session = request.getSession();
+		String userPwd = request.getParameter("pwd");
+		String email = request.getParameter("email");
+		String uPhone = request.getParameter("phone");
+		String birthday = request.getParameter("year");
+		birthday+= request.getParameter("month");
+		birthday+= request.getParameter("day");
+		String address = request.getParameter("postcode");
+		address += " ";
+		address += request.getParameter("address");
+		address += " ";
+		address += request.getParameter("detailAddress");
 		
 		UserDTO user = new UserDTO();
 		user.setUser_id(userId);
+		user.setUser_name(uName);
 		user.setUser_password(userPwd);
+		user.setUser_email(email);
+		user.setUser_phone(uPhone);
+		user.setUser_birthday(birthday);
+		user.setUser_address(address);
 		
 		ServletContext application = request.getServletContext();
-		UserService userLoginService = (UserService)application.getAttribute("userLoginService");
+		UserService userService = (UserService)application.getAttribute("userService");
+	
+		userService.updateUserInfo(user);
 		
-		if(userLoginService.login(user)==1) {
-			session.setAttribute("loginId", userId);	
-			response.sendRedirect("MainController");
-		}else {
-			request.getRequestDispatcher("/WEB-INF/views/homePage/user/loginForm.jsp").forward(request, response);
-		}
+		response.sendRedirect("MyPageController?");	
 	}	
 	
 }

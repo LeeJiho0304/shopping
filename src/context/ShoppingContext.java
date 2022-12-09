@@ -35,7 +35,7 @@ public class ShoppingContext implements ServletContextListener {
 		application.setAttribute("dataSource", dataSource);
 		
 		//ServletContext 객체에 데이터(객체) 저장
-		application.setAttribute("productDAO", new ProductDAO());
+		//application.setAttribute("productDAO", new ProductDAO());
 		application.setAttribute("userDAO", new UserDAO());
 		application.setAttribute("cartDAO", new CartDAO());
 		application.setAttribute("categoryDAO", new CategoryDAO());
@@ -44,7 +44,7 @@ public class ShoppingContext implements ServletContextListener {
 		application.setAttribute("reviewBoardDAO", new ReviewBoardDAO());
 		application.setAttribute("subCategoryDAO", new SubCategoryDAO());
 		
-		application.setAttribute("productService", new ProductService(application));
+		//application.setAttribute("productService", new ProductService(application));
 		application.setAttribute("userService", new UserService(application));
 		application.setAttribute("cartService", new CartService(application));
 		application.setAttribute("categoryService", new CategoryService(application));

@@ -68,6 +68,39 @@ public class UserService {
 		return result;
 	}
 	
+	//유저 수정
+	public int updateUserInfo(UserDTO userDTO) {
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			conn = ds.getConnection();
+			result = userDao.updateUser(userDTO, conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {conn.close();} catch (SQLException e) {}
+		}
+		 
+		return result;
+	}
+		
+	//유저마이페이지
+	public UserDTO getUserInfo(String id) {
+		UserDTO result = null;
+		Connection conn = null;
+		
+		try {
+			conn = ds.getConnection();
+	    	result = userDao.selectUserInfo(id, conn);
+	    } catch(Exception e) {
+	    	e.printStackTrace();
+	    } finally {
+	    	try { conn.close(); } catch (SQLException e) {}
+	    }
+		
+		return result;
+	}
 	//수정 전 
 	/*
 	//유저 탈퇴(삭제)
@@ -76,11 +109,7 @@ public class UserService {
 		userDAO.deleteUser(id);
 	}
 	
-	//유저마이페이지
-	public UserDTO getUserInfo(String id) throws JSONException, SQLException {
-		UserDAO userDAO = (UserDAO)application.getAttribute("userDAO");
-		return userDAO.selectUserInfo(id);
-	}
+	
 	
 	//유저  목록(읽기)
 	public int getTotalRows(String id, String condition) throws SQLException {
@@ -93,14 +122,9 @@ public class UserService {
 		return userDAO.getUserList(pageNo, id, condition);
 	}
 	
-	//유저 수정
-	public void updateUserInfo(UserDTO receivedDTO) throws SQLException {
-		UserDAO userDAO = (UserDAO)application.getAttribute("userDAO");
-		userDAO.updateUser(receivedDTO);
-	}
+	
 	*/
-	
-	
+
 	
 
 }

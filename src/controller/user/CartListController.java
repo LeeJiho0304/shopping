@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name="MyPageController", urlPatterns="/MyPageController")
+@WebServlet(name="CartListController", urlPatterns="/CartListController")
 public class CartListController extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {

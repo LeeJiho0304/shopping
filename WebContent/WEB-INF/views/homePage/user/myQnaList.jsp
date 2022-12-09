@@ -16,7 +16,7 @@
 		                        <i class="fa fa-archive text-primary h4 ml-3"></i>
 		                    </div>
 		                    <h5 class="font-size-20 mt-0 pt-1 text-info">★</h5>
-		                    <p class="text-muted mb-0"> 내가 쓴 게시글</p>
+		                    <p class="text-muted mb-0">문의 게시판</p>
 		                </div>
 		            </div>
 		        </div>

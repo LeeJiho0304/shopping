@@ -105,16 +105,11 @@
 			clear:left;
 		}
 		</style>
-		<script>
-			function startMypage() {
-				$("#orderList").trigger("click");
-			}
-		</script>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<a class="navbar-brand" href="${pageContext.request.contextPath}/MainController"> 
-				<img src="/shopping/resources/images/homePage/JH.png" width="35px" height="35px"/> OTI전자
+				<img src="/shopping/resources/images/homePage/oti_mart.png" width="40px" height="40px"/> OTI전자
 			</a>
 			
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -143,7 +138,7 @@
 		            </c:if>
 		            <c:if test="${loginId != null}">
 			            <li class="nav-item">
-							<a class="nav-link" href="MyPageController" onclick="startMypage()">
+							<a class="nav-link" href="MyPageController" >
 								<i class="fa fa-user"></i>
 							</a>
 						</li>
