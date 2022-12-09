@@ -99,8 +99,8 @@ public class ReviewBoardService {
        return totalRows;
    }
 
-   public int getAvgRate(int pid) {
-       int avgRate = 0;
+   public double getAvgRate(int pid) {
+       double avgRate = 0;
        Connection conn = null;
        
        try {

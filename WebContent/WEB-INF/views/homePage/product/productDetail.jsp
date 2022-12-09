@@ -55,8 +55,8 @@
             <div class="row sticky-top bg-white">
             <nav class="nav nav-pills nav-fill" style="border-bottom: 3px solid gray; width:100%;">
                   <a class="nav-item nav-link" href="#" style="color:gray">상품 정보</a> 
-                  <a class="nav-item nav-link" href="#" style="color:gray">상품평</a>                    
-                  <a class="nav-item nav-link" href="#" style="color:gray">질문</a>                     
+                  <a class="nav-item nav-link" href="#rate" style="color:gray">상품평</a>                    
+                  <a class="nav-item nav-link" href="#faq" style="color:gray">질문</a>                     
                   <a class="nav-item nav-link" href="#" style="color:gray">배송</a>
                      
             </nav>
@@ -64,13 +64,27 @@
             <div class = "row">          
                <img src="DetailImgController?pid=${productDTO.product_id}" width=100% >
             </div>
-            <div class = "row border">상품 정보
+            <div class = "border">상품 정보
             </div>
-            <div class = "row border">상품명
+            <div class = "border" id="rate">
+            	<%@ include file="/WEB-INF/views/homePage/product/rateNum.jsp" %>  
             </div>
-            <div class = "row border">질문
+            <div class = "border" id="faq"> 
+            	<%@ include file="/WEB-INF/views/homePage/product/qnaFrequent.jsp" %>  
             </div>
-            <div class = "row border">배송
+            <div>
+            	<div class="border text-right">
+            		다른 질문이 있으신가요?&emsp;&emsp;
+            		<c:if test="${loginId != null}">
+            			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">상품 문의 작성</button>
+            		</c:if>
+            		<c:if test="${loginId == null}">
+            			<button type="button" class="btn btn-primary" onclick="alert()">상품 문의 작성</button>
+            		</c:if>            	           		
+            	</div>
+            	           	         
+            </div>
+            <div class = "border">배송
    
             </div>
          

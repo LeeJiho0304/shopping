@@ -9,6 +9,7 @@ import connection.ConnectionProvider;
 import dao.CartDAO;
 import dao.CategoryDAO;
 import dao.OrderDAO;
+import dao.ProductDAO;
 import dao.QnABoardDAO;
 import dao.ReviewBoardDAO;
 import dao.SubCategoryDAO;

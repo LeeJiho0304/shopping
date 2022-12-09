@@ -17,13 +17,6 @@
 			  box-sizing: border-box;
 			}
 			
-			body {
-			  font-family: Arial;
-			  margin: 0 auto; /* Center website */
-			  max-width: 800px; /* Max width */
-			  padding: 20px;
-			}
-			
 			.heading {
 			  font-size: 25px;
 			  margin-right: 25px;
@@ -88,10 +81,10 @@
 		<br/>
 		<span class="heading ml-4">상품 별점</span>
 		
-		<c:forEach var="i" begin="1" end="${avgRate}" step="1">
+		<c:forEach var="i" begin="1" end="${intAvgRate}" step="1">
 			<span class="fa fa-star checked"></span>		
 		</c:forEach>
-		<c:forEach var="i" begin="1" end="${5-avgRate}" step="1">
+		<c:forEach var="i" begin="1" end="${5-intAvgRate}" step="1">
 			<span class="fa fa-star"></span>		
 		</c:forEach>
 		<br/>
