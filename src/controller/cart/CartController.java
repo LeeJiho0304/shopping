@@ -1,6 +1,7 @@
 package controller.cart;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.JSONObject;
 
 import dto.cart.CartDTO;
 import service.CartService;
@@ -33,10 +36,17 @@ public class CartController extends HttpServlet {
 		//카트 insert
 		int result = cartService.insertCart(cartDto);
 		
-		System.out.println("result"+result);
+		/*JSONObject root = new JSONObject();
+		root.put("result", result);
+		String json = root.toString();*/
 		
+		response.getWriter().println(result);
 		
-		request.getRequestDispatcher("/WEB-INF/views/homePage/cart/CartList.jsp").forward(request, response);
+	
 	}
 	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	}
 }

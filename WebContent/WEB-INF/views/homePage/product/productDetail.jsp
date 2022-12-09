@@ -12,9 +12,11 @@
 			data: {"pid":pid, "quantity":quantity }, 
 			success: function(data) {				 
 				if(data == 0){
+					jQuery.noConflict();
 					$('#failModal').show();
-				}else{					
-					$('#successModal').show();
+				}else{			
+					jQuery.noConflict();
+					$('#successModal').modal("show");
 				}
 			},
 			error: function() {
@@ -127,7 +129,6 @@
 						<div class="modal fade" id="successModal" aria-hidden="true">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
-									Modal Header
 									<div class="modal-header">
 										장바구니 담기 완료
 										<button class="close" type="button" data-dismiss="modal"
@@ -135,15 +136,16 @@
 											<span aria-hidden="true">X</span>
 										</button>
 									</div>
-
-									Modal body
 									<div class="modal-body">장바구니 담기 완료되었습니다.</div>
-									Modal footer
 									<div class="modal-footer">
 										<a href="/shopping/product/cartDetail2.html">
 											<button type="button" class="btn btn-danger"
 												data-dismiss="modal" aria-label="Close">장바구니 가기</button>
 										</a>
+										
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal" aria-label="Close">닫기</button>
+										
 									</div>
 
 								</div>
@@ -154,18 +156,14 @@
 						<div class="modal" id="failModal">
 							<div class="modal-dialog">
 								<div class="modal-content">
-
-									Modal Header
 									<div class="modal-header">
 										오류!
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">&times;</button>
 									</div>
 
-									Modal body
 									<div class="modal-body">장바구니 담기 실패</div>
 
-									Modal footer
 									<div class="modal-footer">
 
 										<button type="button" class="btn btn-danger"
