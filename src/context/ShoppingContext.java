@@ -1,6 +1,6 @@
 package context;
 
-import javax.servlet.ServletContext;
+import javax.servlet.ServletContext; 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
@@ -10,6 +10,7 @@ import dao.CartDAO;
 import dao.CategoryDAO;
 import dao.OrderDAO;
 import dao.ProductDAO;
+import dao.ProductDAO3;
 import dao.QnABoardDAO;
 import dao.ReviewBoardDAO;
 import dao.SubCategoryDAO;
@@ -18,6 +19,7 @@ import service.CartService;
 import service.CategoryService;
 import service.OrderService;
 import service.ProductService;
+import service.ProductService3;
 import service.QnABoardService;
 import service.ReviewBoardService;
 import service.SubCategoryService;
@@ -36,6 +38,7 @@ public class ShoppingContext implements ServletContextListener {
 		application.setAttribute("dataSource", dataSource);
 		
 		//ServletContext 객체에 데이터(객체) 저장
+		application.setAttribute("productDAO3", new ProductDAO3());
 		application.setAttribute("productDAO", new ProductDAO());
 		application.setAttribute("userDAO", new UserDAO());
 		application.setAttribute("cartDAO", new CartDAO());
@@ -45,6 +48,7 @@ public class ShoppingContext implements ServletContextListener {
 		application.setAttribute("reviewBoardDAO", new ReviewBoardDAO());
 		application.setAttribute("subCategoryDAO", new SubCategoryDAO());
 		
+		application.setAttribute("productService3", new ProductService3(application));
 		application.setAttribute("productService", new ProductService(application));
 		application.setAttribute("userService", new UserService(application));
 		application.setAttribute("cartService", new CartService(application));

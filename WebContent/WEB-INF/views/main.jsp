@@ -25,8 +25,8 @@
 				<span class="carousel-control-next-icon"></span>
 			</a>
 		</div>
-		
-		<table class="table table-border text-center">
+
+		<table class="table table-border text-center bestProduct">
 			<thead>
 					<tr>
 						<th>BEST TV</th>
@@ -34,20 +34,26 @@
 						<th>BEST 냉장고</th>
 						<th>BEST 에어컨</th>
 						<th>BEST 세탁기</th>
-						
 					</tr>
 				</thead>
 				<tbody >
 					<tr>
 						<td>
-							<div class="card" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController2'">
-								<div class="card-header"><img src="../images/티비4.png"></div>
-									<div class="card-body">
-									<h4>LG 올레드 오브제컬렉션</h4>
-									<p>보지 않을 때도 계속되는 예술적 경험</p>
-									<p>2,832,000원 ~ 9,400,000원</p>
-								</div>
-							</div>
+							<c:forEach var="i" begin="1" end="3" step="1" >
+		                        <td>
+		                            <div class="card " style="height:450px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController?pid=${categoryProduct.product_id}'">
+		                               <div class="card-header bg-white" style="height:310px;">
+		                               
+		                                  <img src="ProductImgController?pid=${bestFrige.product_id}" height=100%>
+		                                  
+		                               </div>
+		                               <div class="card-body" style="height:140px;">
+		                                  <p>${bestFrige.product_name}</p>		                             
+		                                  <p>${bestFrige.product_price}</p>
+		                               </div>
+		                            </div>
+		                        </td>
+	                    	</c:forEach>	                        	                   
 						</td>
 						<td>
 							<div class="card">
