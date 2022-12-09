@@ -22,8 +22,7 @@ public class ProductCategorytListController extends HttpServlet {
 		// 전체 행수 얻기
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 		int subCategoryId = Integer.parseInt(request.getParameter("subCategoryId"));
-		System.out.println(categoryId);
-		System.out.println(subCategoryId);
+
 		ProductListDTO productListDTO = new ProductListDTO();
 		productListDTO.setCategory_id(categoryId);
 		productListDTO.setSubcategory_id(subCategoryId);

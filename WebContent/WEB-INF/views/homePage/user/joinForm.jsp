@@ -9,7 +9,7 @@
 		var uid = document.querySelector("#uid");
 		//var uid = document.joinForm.uid;
 		var uidValue = uid.value;
-		var uidPattern = /^(?=.*\d)(?=.*[a-z]).{6,10}$/;
+		var uidPattern = /^[a-zA-z0-9]{4,12}$
 		var uidTest = uidPattern.test(uidValue);
 		if (uidTest) {
 			uid.classList.remove("bg-danger");
