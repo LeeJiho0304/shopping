@@ -1,11 +1,9 @@
 package service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 
-import dao.CategoryDAO;
 import dto.category.CategoryDTO;
 
 public class CategoryService {

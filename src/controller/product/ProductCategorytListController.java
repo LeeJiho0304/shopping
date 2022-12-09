@@ -11,8 +11,8 @@ import dto.Pager;
 import dto.product.ProductListDTO;
 import service.ProductService;
 
-@WebServlet(name = "ProducCategorytListController", urlPatterns = "/ProducCategorytListController")
-public class ProducCategorytListController extends HttpServlet {
+@WebServlet(name = "ProductCategorytListController", urlPatterns = "/ProductCategorytListController")
+public class ProductCategorytListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		// 서비스 객체 얻기
@@ -22,6 +22,8 @@ public class ProducCategorytListController extends HttpServlet {
 		// 전체 행수 얻기
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 		int subCategoryId = Integer.parseInt(request.getParameter("subCategoryId"));
+		System.out.println(categoryId);
+		System.out.println(subCategoryId);
 		ProductListDTO productListDTO = new ProductListDTO();
 		productListDTO.setCategory_id(categoryId);
 		productListDTO.setSubcategory_id(subCategoryId);
