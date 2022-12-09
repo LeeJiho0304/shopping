@@ -10,14 +10,34 @@
 			type: "GET",
 			url: "CartController",
 			data: {"pid":pid, "quantity":quantity }, 
-			success: function(data) {
-				  
+			success: function(data) {				 
+				if(data == 0){
+					$('#failModal').show();
+				}else{					
+					$('#successModal').show();
+				}
 			},
 			error: function() {
 				console.log("통신실패!");
 			}
 		});
 	}
+	function goOrder(pid){
+	      var quantity = $("input[name=quantity]").val();
+	      console.log(quantity); 
+	      
+	      $.ajax({
+	         type: "GET",
+	         url: "OrderController",
+	         data: {"pid":pid, "quantity":quantity }, 
+	         success: function(data) {
+	              
+	         },
+	         error: function() {
+	            console.log("통신실패!");
+	         }
+	      });
+	   }
 	
 </script>
 
@@ -86,7 +106,7 @@
 										class="btn btn-danger w-100">장바구니</button>
 								</div>
 								<div class="col-lg-6">
-									<a href="OrderController?product_id=${productDTO.product_id}" class="btn btn-success w-100">바로 구매</a>
+									<button onClick="goOrder(${productDTO.product_id})" class="btn btn-success w-100">바로 구매</button>
 								</div>
 							</div>
 						</c:if>
