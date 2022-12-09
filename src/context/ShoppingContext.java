@@ -45,7 +45,7 @@ public class ShoppingContext implements ServletContextListener {
 		application.setAttribute("reviewBoardDAO", new ReviewBoardDAO());
 		application.setAttribute("subCategoryDAO", new SubCategoryDAO());
 		
-		//application.setAttribute("productService", new ProductService(application));
+		application.setAttribute("productService", new ProductService(application));
 		application.setAttribute("userService", new UserService(application));
 		application.setAttribute("cartService", new CartService(application));
 		application.setAttribute("categoryService", new CategoryService(application));
