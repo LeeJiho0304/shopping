@@ -81,10 +81,10 @@
 		<br/>
 		<span class="heading ml-4">상품 별점</span>
 		
-		<c:forEach var="i" begin="1" end="${avgRate}" step="1">
+		<c:forEach var="i" begin="1" end="${intAvgRate}" step="1">
 			<span class="fa fa-star checked"></span>		
 		</c:forEach>
-		<c:forEach var="i" begin="1" end="${5-avgRate}" step="1">
+		<c:forEach var="i" begin="1" end="${5-intAvgRate}" step="1">
 			<span class="fa fa-star"></span>		
 		</c:forEach>
 		<br/>

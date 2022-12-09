@@ -38,9 +38,11 @@ public class ProductDetailControllerQr extends HttpServlet {
 		
 		//전체 행수 얻기		
 		int totalProductReviewNum = rboardService.getProductTotalRows(pid);
-		int avgRate = rboardService.getAvgRate(pid);
+		double avgRate = rboardService.getAvgRate(pid);
+		int intAvgRate= (int) avgRate;
 		request.setAttribute("totalBoardNum", totalProductReviewNum);
 		request.setAttribute("avgRate", avgRate);
+		request.setAttribute("intAvgRate", intAvgRate);
 		
 		request.getRequestDispatcher("/WEB-INF/views/homePage/product/productDetail-qr.jsp").forward(request, response);
 	}
