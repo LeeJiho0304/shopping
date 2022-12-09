@@ -13,8 +13,8 @@
 		
 		var category = new Array();
 		category[0] = new Activity("1", ['1', '2', '3', '4']);
-		category[1] = new Activity("2", ['1', '2', '3']);
-		category[2] = new Activity("3", ['1', '2', '3']);
+		category[1] = new Activity("2", ['1', '2']);
+		category[2] = new Activity("3", ['1', '2']);
 		category[3] = new Activity("4", ['1', '2', '3']);
 		category[4] = new Activity("5", ['1', '2', '3']);
 		
