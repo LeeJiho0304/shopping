@@ -1,7 +1,7 @@
 
 package service;
 
-import java.sql.Connection;  
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.ServletContext;

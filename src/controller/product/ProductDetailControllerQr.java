@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.product.ProductDTO;
 import service.ProductService;
-import service.ReviewBoardService4;
+import service.ReviewBoardService;
 
 @WebServlet(name="ProductDetailControllerQr", urlPatterns="/ProductDetailControllerQr")
 public class ProductDetailControllerQr extends HttpServlet {
@@ -34,7 +34,7 @@ public class ProductDetailControllerQr extends HttpServlet {
 		//JSP에서 사용할 수 있도록 request 범위에 저장
 		request.setAttribute("rateNum", rateNum);
 		
-		ReviewBoardService4 rboardService = (ReviewBoardService4) application.getAttribute("reviewBoardService");
+		ReviewBoardService rboardService = (ReviewBoardService) application.getAttribute("reviewBoardService");
 		
 		//전체 행수 얻기		
 		int totalProductReviewNum = rboardService.getProductTotalRows(pid);

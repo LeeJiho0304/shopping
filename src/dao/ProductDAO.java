@@ -11,7 +11,7 @@ import dto.product.ProductDTO;
 import dto.product.ProductListDTO;
 
 
-public class ProductDAO5 {
+public class ProductDAO {
 	//해당 카테고리 상품 총 갯수 출력
 	public int getTotalRows(ProductListDTO productListDTO, Connection conn)throws Exception {
 		int totalRows = 0;
