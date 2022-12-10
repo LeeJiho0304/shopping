@@ -495,7 +495,7 @@
 		            ${productDTO.product_name}
 		          </div>
 		          <div class="item__price">
-		            \${productDTO.product_price}
+		            \ ${productDTO.product_price} 
 		          </div>
 		          <div class="item__quantity">
 		           	 수량: ${quantity}
@@ -505,10 +505,9 @@
 		            <ul style="">
 		              <li>제품 아이디:  ${productDTO.product_id}</li>
 		              <li>제조사:  ${productDTO.product_company}</li>
-		              <li></li>
-		              <li>하단의 주문 정보를 확인하고 [결제하기] 버튼을 눌러주세요.</li>
 		            </ul>
-		
+		            <br/>
+		              <p>※하단의 주문 정보를 확인하고 [결제하기] 버튼을 눌러주세요.</p>		            		
 		          </div>
 		
 		        </div>
