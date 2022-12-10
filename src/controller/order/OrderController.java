@@ -26,19 +26,17 @@ public class OrderController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		System.out.println("OrderController.doGet() 실행");
 		
-		int quantity=  Integer.parseInt(request.getParameter("quantity"));
-		System.out.println("quantity: "+ quantity);
-		int pid = Integer.parseInt(request.getParameter("pid"));	
-		System.out.println("pid: "+ pid);
+			int quantity= Integer.parseInt(request.getParameter("quantity"));
+			System.out.println("quantity: "+ quantity);
+			int pid = Integer.parseInt(request.getParameter("pid"));	
+			System.out.println("pid: "+ pid);
+			
+			ProductService productService =(ProductService) request.getServletContext().getAttribute("productService");
+			ProductDTO product = productService.getProduct(pid);
+			request.setAttribute("productDTO", product);
+			request.setAttribute("quantity", quantity);
 		
-		ProductService productService =(ProductService) request.getServletContext().getAttribute("productService");
-		ProductDTO product = productService.getProduct(pid);
-		System.out.println("엥");
-		request.setAttribute("productDTO", product);
-		request.setAttribute("quantity", quantity);
-		System.out.println("뭔데");
 		request.getRequestDispatcher("/WEB-INF/views/homePage/order/orderForm.jsp").forward(request, response);
-		System.out.println("오잉");
 	}
 	
 	@Override
