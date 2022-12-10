@@ -7,9 +7,9 @@
       <title>Insert title here</title>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
       <script src="${pageContext.request.contextPath}/resources/js/homePage/myPage.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@200;400;500&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
@@ -105,25 +105,32 @@
 	         clear:left;
 	      }
 	      
-		  .bestProduct tr { 
+		  .bestProduct tbody tr { 
 		  	display: block; 
 			float: left;
 		  }
 	    
-		 .bestProduct th, .bestProduct td { 
+		 .bestProduct tbody th, .bestProduct tbody td { 
 		    display: block; 
 		  } 
 		  
-		 .bestProduct {
+		 .bestProduct tbody {
 		    clear:both;
 		  }
 		  
+		.bestMenu{
+		    display: flex;
+		    flex-wrap: wrap;
+		    gap: 1em;
+		    padding: 10px;
+		}
+		.bestItem{
+		    flex-basis: 150px;
+		    flex-shrink: 1;
+		    flex-grow: 1;
+		}		  
+		  
       </style>
-      <script>
-         function startMypage() {
-            $("#orderList").trigger("click");
-         }
-      </script>
    </head>
    <body>
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -157,7 +164,7 @@
                   </c:if>
                   <c:if test="${loginId != null}">
                      <li class="nav-item">
-                     <a class="nav-link" href="MyPageController" onclick="startMypage()">
+                     <a class="nav-link" href="MyPageController">
                         <i class="fa fa-user"></i>
                      </a>
                   </li>
@@ -192,37 +199,35 @@
           <li><a href="#" id="current">냉장고</a>
               <ul>
                  <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=1&subCategoryId=1">양문형</a></li>
-                 <li><a href="#">정수기형</a></li>
-                 <li><a href="#">일반형</a></li>
-                 <li><a href="#">김치냉장고</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=1&subCategoryId=2">정수기형</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=1&subCategoryId=3">일반형</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=1&subCategoryId=4">김치냉장고</a></li>
               </ul>
           </li>
           <li><a href="#" id="current">TV</a>
               <ul>
-                 <li><a href="#">OLED</a></li>
-                 <li><a href="#">벽걸이형</a></li>
-                 <li><a href="#">스탠드형</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=2&subCategoryId=1">벽걸이형</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=2&subCategoryId=2">스탠드형</a></li>
               </ul>
           </li>
           <li><a href="#" id="current">에어컨</a>
               <ul>
-                 <li><a href="#">스탠드형</a></li>
-                 <li><a href="#">이동식</a></li>
-                 <li><a href="#">벽걸이형</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=4&subCategoryId=1">스탠드형</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=4&subCategoryId=2">이동식</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=4&subCategoryId=3">벽걸이형</a></li>
               </ul>
           </li>
           <li><a href="#" id="current">세탁기</a>
               <ul>
-                 <li><a href="#">통돌이</a></li>
-                 <li><a href="#">드럼</a></li>
-                 <li><a href="#">워시타워</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=3&subCategoryId=1">통돌이</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=3&subCategoryId=2">드럼</a></li>
               </ul>
           </li>
           <li><a href="#" id="current">PC</a>
               <ul>
-                 <li><a href="#">노트북</a></li>
-                 <li><a href="#">모니터</a></li>
-                 <li><a href="#">컴퓨터</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=5&subCategoryId=1">노트북</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=5&subCategoryId=2">모니터</a></li>
+                 <li><a href="${pageContext.request.contextPath}/ProductCategorytListController?categoryId=5&subCategoryId=3">데스크톱</a></li>
               </ul>
           </li>
          </ul>

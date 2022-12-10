@@ -16,7 +16,7 @@
 				<div class="carousel-item">
 					<img src="/shopping/resources/images/homePage/티비3.png" width="100%" height="600px">
 				</div>
-			</div>
+			</div> 
 			
 			<a class="carousel-control-prev" href="#demo" data-slide="prev">
 				<span class="carousel-control-prev-icon"></span>
@@ -26,77 +26,104 @@
 			</a>
 		</div>
 
-		<table class="table table-border text-center bestProduct">
-			<thead>
-					<tr>
-						<th>BEST TV</th>
-						<th>BEST PC</th>
-						<th>BEST 냉장고</th>
-						<th>BEST 에어컨</th>
-						<th>BEST 세탁기</th>
-					</tr>
-				</thead>
-				<tbody >
-					<tr>
-						<td>
-							<c:forEach var="i" begin="1" end="3" step="1" >
-		                        <td>
-		                            <div class="card " style="height:450px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController?pid=${categoryProduct.product_id}'">
-		                               <div class="card-header bg-white" style="height:310px;">
-		                               
-		                                  <img src="ProductImgController?pid=${bestFrige.product_id}" height=100%>
-		                                  
-		                               </div>
-		                               <div class="card-body" style="height:140px;">
-		                                  <p>${bestFrige.product_name}</p>		                             
-		                                  <p>${bestFrige.product_price}</p>
-		                               </div>
-		                            </div>
-		                        </td>
-	                    	</c:forEach>	                        	                   
-						</td>
-						<td>
-							<div class="card">
-								<div class="card-header"><img src="../images/티비5.png"></div>
-								<div class="card-body">
-									<h4>LG 올레드 evo</h4>
-									<p>5세대 인공지능 알포9과 화질 알고리즘으로 더 진화한 올레드</p>
-									<p>1,750,0000원 ~ 41,800,000원</p>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="card">
-								<div class="card-header"><img src="../images/티비5.png"></div>
-								<div class="card-body">
-									<h4>LG 올레드 evo</h4>
-									<p>5세대 인공지능 알포9과 화질 알고리즘으로 더 진화한 올레드</p>
-									<p>1,750,0000원 ~ 41,800,000원</p>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="card">
-								<div class="card-header"><img src="../images/티비6.png"></div>
-								<div class="card-body">
-									<h4>LG 올레드 TV</h4>
-									<p>10년 차의 기술과 노하우, 혁신적인 자발광 기술로 완성</p>
-									<p>1,390,000원 ~ 8,890,000원</p>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="card">
-								<div class="card-header"><img src="../images/티비7.png"></div>
-								<div class="card-body">
-									<h4>LG 울트라 HD TV</h4>
-									<p>4K 울트라 화질이 보여주는 선명함의 차이</p>
-									<p>890,000원 ~ 3,590,000원</p>
-								</div>
-							</div>
-						</td>
-					</tr>
-					
-				</tbody>
+	
+			<div class="bestMenu">
+				<div class="bestItem" style="text-align:center"><b>BEST 냉장고</b></div>
+				<div class="bestItem" style="text-align:center"><b>BEST TV</b></div>
+				<div class="bestItem" style="text-align:center"><b>BEST 에어컨</b></div>
+				<div class="bestItem" style="text-align:center"><b>BEST 세탁기</b></div>
+				<div class="bestItem" style="text-align:center"><b>BEST PC</b></div>
+			</div>
+		
+		<table class="table text-center bestProduct">
+			    
+				<tbody>
+	               <tr>
+	                  <td>
+	                     <c:forEach var="bestFrige" items="${bestFrige}">
+                              <td>
+                                  <div class="card " style="height:450px;width:350px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController?pid=${bestFrige.product_id}'">
+                                     <div class="card-header bg-white" style="height:310px; text-align:center;" >
+                                        <img src="ProductImgController?pid=${bestFrige.product_id}" height=100%>
+                                     </div>
+                                     <div class="card-body" style="height:140px;">
+                                        <p>${bestFrige.product_name}</p>                                   
+                                        <p>${bestFrige.product_price}</p>
+                                     </div>
+                                  </div>
+                              </td>
+                          </c:forEach>                                                 
+	                  </td>
+	               </tr>
+	               <tr>
+	                  <td>
+	                     <c:forEach var="bestTv" items="${bestTv}">
+                              <td>
+                                  <div class="card " style="height:450px;width:350px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController?pid=${bestTv.product_id}'">
+                                     <div class="card-header bg-white" style="height:310px; text-align:center;">
+                                        <img src="ProductImgController?pid=${bestTv.product_id}" height=100%>
+                                     </div>
+                                     <div class="card-body" style="height:140px;">
+                                        <p>${bestTv.product_name}</p>                                   
+                                        <p>${bestTv.product_price}</p>
+                                     </div>
+                                  </div>
+                              </td>
+                          </c:forEach>                                                 
+	                  </td>
+	               </tr>
+	               <tr>
+	                  <td>
+	                     <c:forEach var="bestWashing" items="${bestWashing}">
+                              <td>
+                                  <div class="card " style="height:450px;width:350px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController?pid=${bestWashing.product_id}'">
+                                     <div class="card-header bg-white" style="height:310px; text-align:center;">
+                                        <img src="ProductImgController?pid=${bestWashing.product_id}" height=100%>
+                                     </div>
+                                     <div class="card-body" style="height:140px;">
+                                        <p>${bestWashing.product_name}</p>                                   
+                                        <p>${bestWashing.product_price}</p>
+                                     </div>
+                                  </div>
+                              </td>
+                          </c:forEach>                                                 
+	                  </td>
+	               </tr>
+	               <tr>
+	                  <td>
+	                     <c:forEach var="bestAir" items="${bestAir}">
+                              <td>
+                                  <div class="card " style="height:450px;width:350px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController?pid=${bestAir.product_id}'">
+                                     <div class="card-header bg-white" style="height:310px; text-align:center;">
+                                        <img src="ProductImgController?pid=${bestAir.product_id}" height=100%>
+                                        
+                                     </div>
+                                     <div class="card-body" style="height:140px;">
+                                        <p>${bestAir.product_name}</p>                                   
+                                        <p>${bestAir.product_price}</p>
+                                     </div>
+                                  </div>
+                              </td>
+                          </c:forEach>                                                 
+	                  </td>
+	               </tr>
+	               <tr>
+	                  <td>
+	                     <c:forEach var="bestPc" items="${bestPc}">
+                              <td>
+                                  <div class="card " style="height:450px;width:350px;" onclick="location.href='${pageContext.request.contextPath}/ProductDetailController?pid=${bestPc.product_id}'">
+                                     <div class="card-header bg-white" style="height:310px; text-align: center;" >
+                                        <img src="ProductImgController?pid=${bestPc.product_id}" height=100%>
+                                     </div>
+                                     <div class="card-body" style="height:140px;">
+                                        <p>${bestPc.product_name}</p>                                   
+                                        <p>${bestPc.product_price}</p>
+                                     </div>
+                                  </div>
+                              </td>
+                          </c:forEach>                                                 
+	                  </td>
+	               </tr>
+	            </tbody>
 		</table>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

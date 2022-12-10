@@ -52,7 +52,7 @@ public class UpdateUserInfoController extends HttpServlet {
 	
 		userService.updateUserInfo(user);
 		
-		response.sendRedirect("MyPageController?");	
+		response.sendRedirect("MyPageController");	
 	}	
 	
 }
