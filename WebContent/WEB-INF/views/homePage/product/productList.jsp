@@ -223,26 +223,26 @@
                    
                     <div class="row">
                         
-                              <a href="ProducCategorytListController?pageNo=1&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-primary btn-sm">처음</a>
+                              <a href="ProductCategorytListController?pageNo=1&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-primary btn-sm">처음</a>
                               
                               <c:if test="${pager.groupNo > 1}">
-                                 <a href="ProducCategorytListController?pageNo=${pager.startPageNo-1}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-info btn-sm">이전</a>
+                                 <a href="ProductCategorytListController?pageNo=${pager.startPageNo-1}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-info btn-sm">이전</a>
                               </c:if>
                               
                               <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
                                  <c:if test="${pager.pageNo != i}">
-                                    <a href="ProducCategorytListController?pageNo=${i}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-success btn-sm">${i}</a>
+                                    <a href="ProductCategorytListController?pageNo=${i}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-success btn-sm">${i}</a>
                                  </c:if>
                                  <c:if test="${pager.pageNo == i}">
-                                    <a href="ProducCategorytListController?pageNo=${i}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-danger btn-sm">${i}</a>
+                                    <a href="ProductCategorytListController?pageNo=${i}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-danger btn-sm">${i}</a>
                                  </c:if>
                               </c:forEach>
                               
                               <c:if test="${pager.groupNo < pager.totalGroupNo}">
-                                 <a href="ProducCategorytListController?pageNo=${pager.endPageNo+1}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-info btn-sm">다음</a>
+                                 <a href="ProductCategorytListController?pageNo=${pager.endPageNo+1}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-info btn-sm">다음</a>
                               </c:if>
                               
-                              <a href="ProducCategorytListController?pageNo=${pager.totalPageNo}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-primary btn-sm">맨끝</a>
+                              <a href="ProductCategorytListController?pageNo=${pager.totalPageNo}&categoryId=${categoryId}&subCategoryId=${subCategoryId}" class="btn btn-outline-primary btn-sm">맨끝</a>
                               
                           
                         </div>

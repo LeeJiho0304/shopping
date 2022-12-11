@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.cart.CartDTO;
-import dto.product.ProductListDTO;
-import connection.ConnectionProvider;
+import dto.user.UserDTO;
 
 public class CartDAO {
 	// 장바구니에 담기
@@ -94,32 +93,30 @@ public class CartDAO {
 	}
 
 	// 장바구니 목록
-	public List<CartDTO> selectAllList(int pageNo, CartDTO cartDTO, Connection conn) throws Exception {
+	public List<CartDTO> selectAllList(String uid, Connection conn) throws Exception {
 		List<CartDTO> cartDTOs = new ArrayList<>();
-		try {
+		
 			String sql = "" +
-					"SELECT rnum, product_id, product_name, product_price, users_id, cart_detail_item_count, user_cart_price " +
+					"SELECT rnum, cart_detail_id, product_id, product_name, product_price, users_id, cart_detail_item_count, user_cart_price " +
 					"FROM ( " +
-					    "SELECT rownum as rnum, product_id, product_name, product_price, users_id, cart_detail_item_count, user_cart_price " +
+					    "SELECT rownum as rnum, cart_detail_id, product_id, product_name, product_price, users_id, cart_detail_item_count, user_cart_price " +
 					    "FROM ( " +
-					            "SELECT c.product_id, product_name, product_price, c.users_id, cart_detail_item_count, user_cart_price " +
+					            "SELECT c.product_id, cart_detail_id, product_name, product_price, c.users_id, cart_detail_item_count, user_cart_price " +
 					            "FROM product p, cart_detail c, user_cart u " +
 					            "WHERE p.product_id = c.product_id and u.users_id = c.users_id and c.users_id = ? " +
 					            "ORDER BY cart_detail_id desc " +
-					         ") " + 
-					    "WHERE rownum <= (? * 5) " +
-					") " + 
-					"WHERE rnum >= ((? - 1) * 5) + 1 ";
+					         ") " +
+				         ") " ;
+					    
 		
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, cartDTO.getUser_id());
-			pstmt.setInt(2, pageNo);
-			pstmt.setInt(3, pageNo);
+			pstmt.setString(1, uid);
 			ResultSet rs = pstmt.executeQuery();
 						
 			while(rs.next()) {
-				cartDTO = new CartDTO();
+				CartDTO	cartDTO = new CartDTO();
 				
+				cartDTO.setCart_detail_id(rs.getInt("cart_detail_id"));
 				cartDTO.setProduct_id(rs.getInt("product_id"));
 				cartDTO.setProduct_name(rs.getString("product_name"));
 				cartDTO.setProduct_price(rs.getInt("product_price"));
@@ -132,21 +129,30 @@ public class CartDAO {
 			}
 			rs.close();
 			pstmt.close();
-			
-		} catch (Exception e) {
-			e.getMessage();
-		} finally {
-			try {
-				//Connection 반납
-				conn.close();
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
-		}
 		
 		return cartDTOs;
 	}
 
-	// 장바구니 삭제
+	// 장바구니 수정
+	//수정된 갯수가 리턴
+	public int updateCart(CartDTO cartDto, Connection conn) throws Exception {
+		int result = 0;
+		
+		String sql = "UPDATE cart_detail SET cart_detail_item_count = ? "
+					+ "WHERE cart_detail_id = ?";
+
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, cartDto.getCart_detail_item_count());
+		pstmt.setInt(2, cartDto.getCart_detail_id());
+		result = pstmt.executeUpdate();
+		
+		if(result ==  1) {
+			result =  cartDto.getCart_detail_item_count();
+	        }           
+		
+		pstmt.close();
+		
+		return result;
+	}
 
 }

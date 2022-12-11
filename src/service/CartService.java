@@ -2,14 +2,14 @@ package service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import dao.CartDAO;
-
 import dto.cart.CartDTO;
+
 
 public class CartService {
 	private ServletContext application;
@@ -22,7 +22,7 @@ public class CartService {
 		ds = (DataSource) application.getAttribute("dataSource");
 	}
 	
-	//수정 전
+	
 	//카트 상품 추가하기
 	public int insertCart(CartDTO cartDto) {
 		int result = 0;
@@ -48,22 +48,45 @@ public class CartService {
 	      }
 		return result;
 	}
-	/*
 	
-	public int getTotalRows(CartDTO cartDTO) {
-		CartDAO cartDAO = (CartDAO) application.getAttribute("cartDAO");
-		int totalRows = cartDAO.getTotalRows(cartDTO);
-		return totalRows;
+	public List<CartDTO> getList(String uid) {
+		List<CartDTO> result = null;
+        Connection conn = null;
+        try {
+           conn = ds.getConnection();
+           result = cartDAO.selectAllList(uid, conn);
+          
+        } catch(Exception e) {
+           e.printStackTrace();
+        } finally {
+           try {
+              conn.close();
+           } catch (Exception e) {
+              e.printStackTrace();
+           }
+        }
+        return result;
 	}
 	
-	public List<CartDTO> getList(int pageNo, CartDTO cartDTO) {
-		CartDAO cartDAO = (CartDAO) application.getAttribute("cartDAO");
-		
-		List<CartDTO> cartDTOs;
-
-		cartDTOs = cartDAO.selectAllList(pageNo, cartDTO);
-		
-		return cartDTOs;
-	}*/
+	
+	//수량 변경 후 변경된 갯수 리턴
+	public int updateCart(CartDTO cartDto) {
+		int result = 0;
+        Connection conn = null;
+        try {
+           conn = ds.getConnection();
+           result = cartDAO.updateCart(cartDto, conn);
+          
+        } catch(Exception e) {
+           e.printStackTrace();
+        } finally {
+           try {
+              conn.close();
+           } catch (Exception e) {
+              e.printStackTrace();
+           }
+        }
+        return result;
+	}
 
 }

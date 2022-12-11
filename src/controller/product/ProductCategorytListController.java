@@ -33,6 +33,7 @@ public class ProductCategorytListController extends HttpServlet {
 			strPageNo = "1";
 		}
 		int pageNo = Integer.parseInt(strPageNo);
+		System.out.println("현재 페이지"+pageNo);
 		// 페이저 객체 생성하기
 		Pager pager = new Pager(12, 3, totalProductNum, pageNo);
 		// 해당 페이지의 게시물 리스트 가져오기

@@ -7,7 +7,7 @@
 		console.log(quantity); 
 		
 		$.ajax({
-			type: "GET",
+			type: "POST",
 			url: "CartController",
 			data: {"pid":pid, "quantity":quantity }, 
 			success: function(data) {				 
@@ -24,6 +24,7 @@
 			}
 		});
 	}
+	
 	function goOrder(pid){
 	      var quantity = $("input[name=quantity]").val();
 	      console.log(quantity); 
@@ -32,8 +33,7 @@
 	         type: "GET",
 	         url: "OrderController",
 	         data: {"pid":pid, "quantity":quantity }, 
-	         success: function(data) {
-	              
+	         success: function(data) {   
 	         },
 	         error: function() {
 	            console.log("통신실패!");
@@ -104,8 +104,7 @@
 						<c:if test="${loginId != null}">
 							<div class="row">
 								<div class="col-lg-6 pb-2">
-									<button onClick="goCart(${productDTO.product_id})"
-										class="btn btn-danger w-100">장바구니</button>
+									<button onClick="goCart(${productDTO.product_id})" class="btn btn-danger w-100">장바구니</button>										
 								</div>
 								<div class="col-lg-6">
 									<button onClick="goOrder(${productDTO.product_id})" class="btn btn-success w-100">바로 구매</button>
@@ -138,9 +137,8 @@
 									</div>
 									<div class="modal-body">장바구니 담기 완료되었습니다.</div>
 									<div class="modal-footer">
-										<a href="/shopping/product/cartDetail2.html">
-											<button type="button" class="btn btn-danger"
-												data-dismiss="modal" aria-label="Close">장바구니 가기</button>
+										<a href="${pageContext.request.contextPath}/CartController">
+											<button type="button" class="btn btn-danger">장바구니 가기</button>											
 										</a>
 										
 										<button type="button" class="btn btn-success"
