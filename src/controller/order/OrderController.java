@@ -11,13 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.order.OrderDTO;
+import dto.order.OrderDetailDTO;
 import dto.product.ProductDTO;
-import dto.qna.QnABoardDTO;
-import dto.user.UserDTO;
 import service.OrderService;
 import service.ProductService;
-import service.QnABoardService;
-import service.UserService;
 
 
 @WebServlet(name="OrderController", urlPatterns="/OrderController")
@@ -26,15 +23,13 @@ public class OrderController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		System.out.println("OrderController.doGet() 실행");
 		
-			int quantity= Integer.parseInt(request.getParameter("quantity"));
-			System.out.println("quantity: "+ quantity);
-			int pid = Integer.parseInt(request.getParameter("pid"));	
-			System.out.println("pid: "+ pid);
+		int quantity= Integer.parseInt(request.getParameter("quantity"));		
+		int pid = Integer.parseInt(request.getParameter("pid"));	
 			
-			ProductService productService =(ProductService) request.getServletContext().getAttribute("productService");
-			ProductDTO product = productService.getProduct(pid);
-			request.setAttribute("productDTO", product);
-			request.setAttribute("quantity", quantity);
+		ProductService productService =(ProductService) request.getServletContext().getAttribute("productService");
+		ProductDTO product = productService.getProduct(pid);
+		request.setAttribute("productDTO", product);
+		request.setAttribute("quantity", quantity);
 		
 		request.getRequestDispatcher("/WEB-INF/views/homePage/order/orderForm.jsp").forward(request, response);
 	}
@@ -47,25 +42,27 @@ public class OrderController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		OrderDTO order = new OrderDTO();
+		OrderDetailDTO orderDetail = new OrderDetailDTO();
 		
-		order.setUsers_id((String) session.getAttribute("uid"));
-		order.setUsers_id(request.getParameter("userId"));
-		order.setOrders_price(Integer.parseInt(request.getParameter("userId")));
-		order.setOrders_address(request.getParameter("inputAddress"));
+		order.setUsers_id((String) session.getAttribute("loginId"));
+		//order.setUsers_id(request.getParameter("userId"));
+		order.setOrders_price(Integer.parseInt(request.getParameter("product_price"))*Integer.parseInt(request.getParameter("quantity")));
+		order.setOrders_address(request.getParameter("postcode") +" "+ request.getParameter("detailAddress"));
 		
-	
-		UserDTO user = new UserDTO();		
+		orderDetail.setOrder_detail_item_count(Integer.parseInt(request.getParameter("quantity")));
+		orderDetail.setProduct_id(Integer.parseInt(request.getParameter("product_id")));
 		
-		ServletContext application = request.getServletContext();
-		UserService userService = (UserService)application.getAttribute("userService");
-		int result = userService.join(user);
+		orderService.order(order,orderDetail);
+
+		ProductService productService = (ProductService)request.getServletContext().getAttribute("productService");
+		ProductDTO productDTO = productService.getProduct(Integer.parseInt(request.getParameter("product_id")));
 		
-		if(result==2) {
-			//session.setAttribute("loginId", userId);	
-			response.sendRedirect("MainController");
-		}else {
-			request.getRequestDispatcher("/WEB-INF/views/homePage/user/joinForm.jsp").forward(request, response);
-		}
+		request.setAttribute("productDTO", productDTO);
+		request.setAttribute("order", order);
+		request.setAttribute("orderDetail", orderDetail);
+		
+		request.getRequestDispatcher("/WEB-INF/views/homePage/order/successOrder.jsp").forward(request, response);
+
 	}	
 	
 }

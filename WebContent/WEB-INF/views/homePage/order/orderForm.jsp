@@ -497,14 +497,14 @@
 		          <div class="item__price">
 		            \ ${productDTO.product_price} 
 		          </div>
-		          <div class="item__quantity">
-		           	 수량: ${quantity}
+		          <div class="item__quantity">		           	
 		          </div>
 		          <br/>
 		          <div class="item__description">
 		            <ul style="">
 		              <li>제품 아이디:  ${productDTO.product_id}</li>
 		              <li>제조사:  ${productDTO.product_company}</li>
+		              <li>수량:  ${quantity}</li>
 		            </ul>
 		            <br/>
 		              <p>※하단의 주문 정보를 확인하고 [결제하기] 버튼을 눌러주세요.</p>		            		
@@ -514,6 +514,7 @@
 		      </div>
 		
 		    </div>
+		    
 		    <div class="discount"></div>
 		
 		    <div class="container">
@@ -522,14 +523,14 @@
 		         	 배송지 선택
 		        </div>
 		        <div class="payment__types">
-		        	&emsp;&emsp;
+		        	&emsp;&nbsp;
 		          <div class="payment__type payment__type--cc active" onclick="activeNewClass()" id="newInfo"> 신규 입력</div>
 		          &emsp;&emsp;&emsp;&emsp;&emsp;
 		          <div class="payment__type payment__type--paypal" onclick="activeBasicClass()" id="basicInfo"> 기본 정보</div>	
 		        </div>
 		
 		        <div class="payment__info">
-		        <form>
+		        <form method="post" action="OrderController">
 		        <div class="row">
 		          <div class="payment__cc col-md-6">
 		          
@@ -578,14 +579,9 @@
 		                <div >
 		                  <div class="field">
 		                  
-		                  
-		                  
 		                    <div class="title">배송 주소
-		                    </div>
-		                    <!-- <input type="text" class="input txt" placeholder="00도 00시 00구 00로 00" id="inputAddress" name="inputAddress"/> -->
-		                  
-		                  	
-		                  	
+		                    </div> 
+		                  		                  	
 		                  	<div class="container address-box">
 								<div class="row d-flex flex-row">
 									<div class="mr-3">
@@ -598,12 +594,6 @@
 									</div>
 								</div>
 			
-								<!--  <div class="row">
-									<div class="col-xs-12 offset-md-12">
-										<input type="text" class="form-control mt-1" name="address"
-											id="address" placeholder="도로명 주소" style="width: 400px" readonly />
-									</div>
-								</div>-->
 								<div class="row">
 									<div class="col-xs-12 offset-md-12" style="float: left">
 										<input type="text" class="form-control mt-1" id="detailAddress" name="detailAddress"
@@ -611,11 +601,6 @@
 									</div>
 								</div>
 							</div>
-		                  
-		                  
-		                  
-		                  
-		                  
 		                  
 		                  </div>
 		                </div>
@@ -639,7 +624,10 @@
 		            <br/>
 		            <div >
 		                <div class="payment__title">  총 주문 금액  </div>
-		                <div class="item__price"> \2,832,000 </div>
+		                <div class="item__price"> \ ${productDTO.product_price * quantity}  </div>
+		                <input type="hidden" name="product_price" id="product_price" value="${productDTO.product_price}">
+		                <input type="hidden" name="quantity" id="quantity" value="${quantity}">
+		                <input type="hidden" name="product_id" id="product_id" value="${productDTO.product_id}">
 		            </div>
 		
 		          </div>
@@ -648,7 +636,7 @@
 				      <div class="actions">
 				
 				        <button type="submit" class="btn" id="purchase">결제 하기</button>
-				        <a href="#" class="backBtn">홈으로 돌아가기</a>
+				        <a href="MainController" class="backBtn">홈으로 돌아가기</a>
 				
 				      </div>
 		     		</div>

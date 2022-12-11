@@ -13,10 +13,6 @@ import dto.order.OrderReadListDTO;
 
 public class OrderDAO {
 	public void insertOrder(OrderDTO order, OrderDetailDTO orderDetail, Connection conn) throws Exception {
-		int price = order.getOrders_price();
-		String userId = order.getUsers_id();
-		String address = order.getOrders_address();
-		
 		String SQL
 			="INSERT INTO ORDERS "
 			+"VALUES ("
@@ -24,13 +20,11 @@ public class OrderDAO {
 			+")";
 		
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
-		pstmt.setInt(1, price);
-		pstmt.setString(2, userId);
-		pstmt.setString(3, address);
+		pstmt.setInt(1, order.getOrders_price());
+		pstmt.setString(2, order.getUsers_id());
+		pstmt.setString(3, order.getOrders_address());
 		pstmt.executeUpdate();
 		
-		int count = orderDetail.getOrder_detail_item_count();
-		int productId = orderDetail.getProduct_id();
 		SQL
 			="INSERT INTO ORDER_DETAIL "
 			+"VALUES ("
@@ -38,12 +32,10 @@ public class OrderDAO {
 			+")";
 		
 		pstmt = conn.prepareStatement(SQL);
-		pstmt.setInt(1, count);
-		pstmt.setInt(2, productId);
-		pstmt.executeUpdate();
-		
+		pstmt.setInt(1, orderDetail.getOrder_detail_item_count());
+		pstmt.setInt(2, orderDetail.getProduct_id());
+		pstmt.executeUpdate();		
 		pstmt.close();
-		conn.close();
 	}
 	
 	public OrderDTO selectOrder(String id, Connection conn) throws Exception {
