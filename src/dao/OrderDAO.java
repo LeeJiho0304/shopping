@@ -16,7 +16,7 @@ public class OrderDAO {
 		String SQL
 			="INSERT INTO ORDERS "
 			+"VALUES ("
-			+"SEQ_ORDERS_ID.nextval, SYSDATE, ?, ?, ?, DEFAULT"
+			+"SEQ_ORDER_ID.nextval, SYSDATE, ?, ?, ?, DEFAULT"
 			+")";
 		
 		PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -28,7 +28,7 @@ public class OrderDAO {
 		SQL
 			="INSERT INTO ORDER_DETAIL "
 			+"VALUES ("
-			+"SEQ_ORDER_DETAIL_ID.nextval, ?, SEQ_ORDERS_ID.currval, ?"
+			+"SEQ_ORDER_DETAIL_ID.nextval, ?, SEQ_ORDER_ID.currval, ?"
 			+")";
 		
 		pstmt = conn.prepareStatement(SQL);

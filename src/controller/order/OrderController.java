@@ -13,8 +13,10 @@ import javax.servlet.http.HttpSession;
 import dto.order.OrderDTO;
 import dto.order.OrderDetailDTO;
 import dto.product.ProductDTO;
+import dto.user.UserDTO;
 import service.OrderService;
 import service.ProductService;
+import service.UserService;
 
 
 @WebServlet(name="OrderController", urlPatterns="/OrderController")
@@ -22,6 +24,14 @@ public class OrderController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		System.out.println("OrderController.doGet() 실행");
+		//세션 객체 가져오기
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("loginId");
+
+		UserService userService = (UserService)request.getServletContext().getAttribute("userService");
+		UserDTO userDTO = userService.getUserInfo(userId);
+
+		request.setAttribute("user", userDTO);
 		
 		int quantity= Integer.parseInt(request.getParameter("quantity"));		
 		int pid = Integer.parseInt(request.getParameter("pid"));	

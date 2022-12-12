@@ -22,16 +22,16 @@
 			newinfo.removeClass("active");
 			var inputName = $("#inputName");
 			inputName.val("");
-			inputName.val("이지호");				
+			inputName.val("${user.user_name}");				
 			var inputTel = $("#inputTel");
 			inputTel.val("");
-			inputTel.val("010-1234-1234");
+			inputTel.val("${user.user_phone}");
 			var inputPostCode = $("#postcode");
 			inputPostCode.val("");
 			inputPostCode.val("03077");
 			var inputAddress = $("#detailAddress");
 			inputAddress.val("");
-			inputAddress.val("명륜2가 41-4 동원빌딩 402호");
+			inputAddress.val("${user.user_address}");
 
 		}
 		
@@ -541,7 +541,7 @@
 		                  <div class="field">
 		                    <div class="title">받는 사람
 		                    </div>
-		                    <input type="text" class="input txt text" placeholder="이름" id="inputName" name=inputName" required/>
+		                    <input type="text" class="input txt text" placeholder="이름" id="inputName" name="inputName" required/>
 		                  </div>
 		                </div>
 		                <div>
@@ -615,10 +615,10 @@
 		            <div class="payment__title">  주문자 정보 </div>
 		            <br/>
 		            <div class="details__user">
-		              <div class="user__name">이지호
-		                <br> 2022.11.23</div>
-		              <div class="user__address">이메일: LeeJiHo0304@oti.com
-		                <br>전화번호: 010-1234-1234</div>
+		              <div class="user__name">${user.user_name}
+		                <br> ${user.user_birthday}</div>
+		              <div class="user__address">이메일: ${user.user_email}
+		                <br>전화번호: ${user.user_phone}</div>
 		            </div>
 		            
 		            <br/>
