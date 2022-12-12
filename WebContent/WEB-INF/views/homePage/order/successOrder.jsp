@@ -84,7 +84,7 @@
 													<th>합계 금액</th>
 												</tr>
 												<tr style="width:40%">
-													<td><span class="sub-img"> <img src="ProductImgController?pid=${productDTO.product_id}" height=100%></span></td>
+													<td><span class="sub-img"> <img src="ProductImgController?pid=${productDTO.product_id}" height=50px></span></td>
 													<td>${productDTO.product_name}</td>
 													<td>${productDTO.product_price}</td>
 													<td>${orderDetail.order_detail_item_count}</td>

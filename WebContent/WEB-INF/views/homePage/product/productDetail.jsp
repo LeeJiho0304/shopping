@@ -89,7 +89,7 @@
 							<c:if test="${loginId != null}">
 								<div class="row">
 									<div class="col-lg-6 pb-2">
-										<button onClick="goCart(${productDTO.product_id})" class="btn btn-danger w-100">장바구니</button>										
+										<a onClick="goCart(${productDTO.product_id})" class="btn btn-danger w-100">장바구니</a>										
 									</div>
 									<div class="col-lg-6">
 										<input type="hidden" name="pid" id="pid" value="${productDTO.product_id}">
