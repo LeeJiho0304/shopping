@@ -481,39 +481,87 @@
 		  </header>
 		  <section class="content">
 		
-		    <div class="container">
-		
-		    </div>
-		    <div class="details shadow">
-		      <div class="details__item">
-		
-		        <div class="item__image">
-		          <img src="ProductImgController?pid=${productDTO.product_id}" id="productimg" class="iphone" height=100%>
-		        </div>
-		        <div class="item__details">
-		          <div class="item__title">
-		            ${productDTO.product_name}
-		          </div>
-		          <div class="item__price">
-		            \ ${productDTO.product_price} 
-		          </div>
-		          <div class="item__quantity">		           	
-		          </div>
-		          <br/>
-		          <div class="item__description">
-		            <ul style="">
-		              <li>제품 아이디:  ${productDTO.product_id}</li>
-		              <li>제조사:  ${productDTO.product_company}</li>
-		              <li>수량:  ${quantity}</li>
-		            </ul>
-		            <br/>
-		              <p>※하단의 주문 정보를 확인하고 [결제하기] 버튼을 눌러주세요.</p>		            		
-		          </div>
-		
-		        </div>
-		      </div>
-		
-		    </div>
+		    <c:if test="${order==null}">
+			    <div class="details shadow">
+			      <div class="details__item">
+			
+			        <div class="item__image">
+			          <img src="ProductImgController?pid=${productDTO.product_id}" id="productimg" class="iphone" height=100%>
+			        </div>
+			        <div class="item__details">
+			          <div class="item__title">
+			            ${productDTO.product_name}
+			          </div>
+			          <div class="item__price">
+			            \ ${productDTO.product_price} 
+			          </div>
+			          <div class="item__quantity">		           	
+			          </div>
+			          <br/>
+			          <div class="item__description">
+			            <ul style="">
+			              <li>제품 아이디:  ${productDTO.product_id}</li>
+			              <li>제조사:  ${productDTO.product_company}</li>
+			              <li>수량:  ${quantity}</li>
+			            </ul>
+			            <br/>
+			              <p>※하단의 주문 정보를 확인하고 [결제하기] 버튼을 눌러주세요.</p>		            		
+			          </div>
+			
+			        </div>
+			      </div>
+			
+			    </div>
+		    </c:if>
+		     <c:if test="${order != null}">
+		      	<c:forEach var ="productDTO" items="${products}" varStatus="status">
+		      		<div class="details shadow">
+				      <div class="details__item">
+				
+				        <div class="item__image">
+				          <img src="ProductImgController?pid=${productDTO.product_id}" id="productimg" class="iphone" height=100%>
+				        </div>
+				        <div class="item__details">
+				          <div class="item__title">
+				            ${productDTO.product_name}
+				          </div>
+				          <div class="item__price">
+				            \ ${productDTO.product_price} 
+				          </div>
+				          <div class="item__quantity">		           	
+				          </div>
+				          <br/>
+				          <div class="item__description">
+				            <ul style="">
+				              <li>제품 아이디:  ${productDTO.product_id}</li>
+				              <li>제조사:  ${productDTO.product_company}</li>
+				              <li>수량:  ${productDTO.product_reserve}</li>
+				            </ul>
+				            <br/>
+				              <p>※하단의 주문 정보를 확인하고 [결제하기] 버튼을 눌러주세요.</p>		            		
+				          </div>
+				
+				        </div>
+				      </div>
+				
+				    </div>
+				    <c:if test="${!status.last}">   <!-- 마지막으로 반복할 때 -->
+						<br/>
+					    <br/>
+					    <br/>
+					    <br/>
+					    <br/>
+					    <br/>
+					    <br/>
+					    <br/>
+					    <br/>
+					    <br/>	
+					</c:if>	
+					<c:set var= "pid" value="${pid+=productDTO.product_id}"/>
+					<c:set var= "quantity" value="${quantity+=productDTO.product_reserve}"/>			    			   				    
+				    <c:set var= "sum" value="${sum+productDTO.product_price * productDTO.product_reserve}"/>
+		      	</c:forEach>		     
+		     </c:if>
 		    
 		    <div class="discount"></div>
 		
@@ -530,7 +578,13 @@
 		        </div>
 		
 		        <div class="payment__info">
-		        <form method="post" action="OrderController">
+		        <c:if test="${order==null}">
+		        	<form method="post" action="OrderController">
+		        </c:if>
+		        <c:if test="${order!=null}">
+		        	<form method="post" action="CartOrderController">
+		        </c:if>
+		        
 		        <div class="row">
 		          <div class="payment__cc col-md-6">
 		          
@@ -624,10 +678,18 @@
 		            <br/>
 		            <div >
 		                <div class="payment__title">  총 주문 금액  </div>
-		                <div class="item__price"> \ ${productDTO.product_price * quantity}  </div>
-		                <input type="hidden" name="product_price" id="product_price" value="${productDTO.product_price}">
-		                <input type="hidden" name="quantity" id="quantity" value="${quantity}">
-		                <input type="hidden" name="product_id" id="product_id" value="${productDTO.product_id}">
+		                <c:if test="${order==null}">
+		                	<div class="item__price"> \ ${productDTO.product_price * quantity}  </div>
+		                	<input type="hidden" name="product_price" id="product_price" value="${productDTO.product_price}">
+		               		<input type="hidden" name="quantity" id="quantity" value="${quantity}">
+		               		<input type="hidden" name="product_id" id="product_id" value="${productDTO.product_id}">
+		                </c:if>
+		                 <c:if test="${order!=null}">
+		                	<div class="item__price"> \ <c:out value="${sum}"/>  </div>
+		                	<input type="hidden" name="pid" id="pid" value=<c:out value="${pid}"/>>
+		                	<input type="hidden" name="quantity" id="quantity" value=<c:out value="${quantity}"/>>
+		                </c:if>
+		               
 		            </div>
 		
 		          </div>

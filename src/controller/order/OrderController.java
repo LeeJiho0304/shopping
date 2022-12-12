@@ -40,6 +40,7 @@ public class OrderController extends HttpServlet {
 		ProductDTO product = productService.getProduct(pid);
 		request.setAttribute("productDTO", product);
 		request.setAttribute("quantity", quantity);
+		request.setAttribute("order", null);
 		
 		request.getRequestDispatcher("/WEB-INF/views/homePage/order/orderForm.jsp").forward(request, response);
 	}

@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Success Order</title>
+		<title>Success Cart Order</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -84,11 +84,22 @@
 													<th>합계 금액</th>
 												</tr>
 												<tr style="width:40%">
-													<td><span class="sub-img"> <img src="ProductImgController?pid=${productDTO.product_id}" height=50px></span></td>
+												<c:forEach var ="productDTO" items="${product}">
+										            <tr>
+										              <td><span class="sub-img"> <img src="ProductImgController?pid=${productDTO.product_id}" height=50px></span></td>
 													<td>${productDTO.product_name}</td>
 													<td>\ ${productDTO.product_price}</td>
-													<td>${orderDetail.order_detail_item_count}</td>
-													<td>\ ${productDTO.product_price*orderDetail.order_detail_item_count}</td>
+													<td>&emsp;${productDTO.product_reserve}</td>
+													<td>\ ${productDTO.product_price*productDTO.product_reserve}</td>
+													</tr>
+													<c:set var= "sum" value="${sum+productDTO.product_price * productDTO.product_reserve}"/>
+									            </c:forEach>
+												<tr>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td>총 금액</td>
+													<td>\<c:out value="${sum}"/></td>
 												</tr>
 											</tbody>
 										</table>	
