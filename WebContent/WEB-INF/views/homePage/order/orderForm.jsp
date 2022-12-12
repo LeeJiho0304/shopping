@@ -541,7 +541,7 @@
 		                  <div class="field">
 		                    <div class="title">받는 사람
 		                    </div>
-		                    <input type="text" class="input txt text" placeholder="이름" id="inputName" name=inputName" required/>
+		                    <input type="text" class="input txt text" placeholder="이름" id="inputName" name="inputName" required/>
 		                  </div>
 		                </div>
 		                <div>
