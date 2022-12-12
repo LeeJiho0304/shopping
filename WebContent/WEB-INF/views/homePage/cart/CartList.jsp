@@ -10,7 +10,7 @@
 		  for (i = 0; i < tabcontent.length; i++) {
 		    tabcontent[i].style.display = "none";
 		  }
-		  tablinks = documenst.getElementsByClassName("tablinks");
+		  tablinks = document.getElementsByClassName("tablinks");
 		  for (i = 0; i < tablinks.length; i++) {
 		    tablinks[i].className = tablinks[i].className.replace(" active", "");
 		  }
@@ -27,7 +27,7 @@
 		}
 	
 	function updateCount(cart_detail_id){
-		var quantity = $("input[name=quantity]").val();
+		var quantity = $(event.target).prev().val();
 		console.log("수량"+quantity); 
 		
 		$.ajax({
@@ -71,8 +71,7 @@
 								
 									<c:forEach var="cart" items="${cartList}" begin="0" end="${fn:length(cartList)}" step="1"> 
 										<tr>
-											<td><input type='checkbox' name='product' />
-												<br /></td>
+											<td><input type='checkbox' name='product' value="${cart.product_id}" /><br /></td>
 											<td scope="row"><img src="ProductImgController?pid=${cart.product_id}" height=100px>
 			
 											</td>
@@ -119,7 +118,7 @@
 					</table>
 					<div class="row d-flex justify-content-end mb-3 mr-4">
 						
-						<a href="/shopping/product/productList2.html">
+						<a href="CartController">
 							<button class="btn btn-info" type="button">체크 목록 삭제</button>
 						</a>
 					

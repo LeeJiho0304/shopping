@@ -171,7 +171,7 @@
                </c:if>
                <c:if test="${loginId != null}">
                   <li class="nav-item">
-                     <a class="nav-link" href="#">
+                     <a class="nav-link" href="CartController">
                         <i class="fa fa-shopping-cart"></i>
                      </a>
                   </li>
