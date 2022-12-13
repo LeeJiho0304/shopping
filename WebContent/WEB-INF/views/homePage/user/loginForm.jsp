@@ -21,11 +21,7 @@
 						<div class="form-row">
 							<div class="form-group"></div>
 						</div>
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input" id="aggrement"
-								required> <label class="custom-control-label"
-								for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-						</div>
+						
 						<hr class="mb-4">
 						<div class="form-row">
 							<button type="submit" class="btn btn-danger btn-block">로그인</button>

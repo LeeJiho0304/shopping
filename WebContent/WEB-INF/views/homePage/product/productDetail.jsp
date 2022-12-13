@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script>
 	function goCart(pid){
 		var quantity = $("input[name=quantity]").val();
@@ -71,7 +72,7 @@
 							<hr class="p-0 m-0">
 						</div>
 						<div class="col-lg-12 pt-2">
-							<strong>가격: ${productDTO.product_price} </strong>
+							<strong>가격: <fmt:formatNumber value="${productDTO.product_price}" pattern="#,###"/>원</strong>
 	
 							<hr class="m-0 pt-2 mt-2">
 						</div>

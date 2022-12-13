@@ -1,78 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<script>
-	function ElectronicProducts(evt, ProductsName) {
-		  var i, tabcontent, tablinks;
-		  tabcontent = document.getElementsByClassName("tabcontent");
-		  for (i = 0; i < tabcontent.length; i++) {
-		    tabcontent[i].style.display = "none";
-		  }
-		  tablinks = document.getElementsByClassName("tablinks");
-		  for (i = 0; i < tablinks.length; i++) {
-		    tablinks[i].className = tablinks[i].className.replace(" active", "");
-		  }
-		  document.getElementById(ProductsName).style.display = "block";
-		  evt.currentTarget.className += " active";
-		}
-	
-	function selectAll(selectAll)  {
-		  const checkboxes 
-		       = document.getElementsByName('product');
-		  
-		  checkboxes.forEach((checkbox) => {
-		    checkbox.checked = selectAll.checked;
-		  });
-		}
-	
-	function updateCount(cart_detail_id){
-		var quantity = $(event.target).prev().val();
-		console.log("수량"+quantity); 
-		
-		$.ajax({
-			type: "GET",
-			url: "CartUpdateController",
-			data: {"cart_detail_id":cart_detail_id, "quantity":quantity }, 
-			success: function(data) {
-				console.log(data);
-				
-			},
-			error: function() {
-				console.log("통신실패!");
-			}
-		});
-	}
-	
-	function deleteCart() {
-		var deleteCartList = new Array();
-		$("input:checkbox[name='product']").each(function(){
-			if($(this).is(":checked") == true) {
-				deleteCartList.push($(this).val());
-				
-			}
-		});
-		$.ajax({
-			type: "POST",
-			url: "CartDeleteController",
-			traditional: true,
-			data: {"checkedId":deleteCartList }, 
-			success: function(data) {
-				consolo.log(data);
-				$("#cartContent").empty();
-				$("#cartContent").html(data);					
-			},
-			error: function() {
-				console.log("통신실패!");
-			}
-		});
-	}
-</script>
-
-<section class="h-100 h-custom">
-	<div id="cartContent" class="container h-100 py-5">
+<div id="cartContent" class="container h-100 py-5">
 		<div
 			class="row d-flex justify-content-center align-items-center h-100">
 			<div class="col">
@@ -106,8 +36,7 @@
 												<p>${cart.product_name}</p>
 			
 											</td>
-											
-											<td class= "align-middle" ><fmt:formatNumber value="${cart.product_price}" pattern="#,###"/>원</td>
+											<td class= "align-middle" >${cart.product_price}</td>
 											<td class="align-middle">
 												<div class="d-flex flex-row justify-content-center">			
 													<input  type="number" class="form-control form-control-sm" name="quantity" value="${cart.cart_detail_item_count}"
@@ -117,7 +46,7 @@
 												</div>
 											</td>
 											<td class="align-middle">
-												<p class="mb-0" style="font-weight: 500;"><fmt:formatNumber value="${cart.product_price}" pattern="#,###"/>원</p>
+												<p class="mb-0" style="font-weight: 500;">${cart.cart_detail_item_count * cart.product_price}</p>
 											</td>
 										</tr>
 										<c:set var= "sum" value="${sum + cart.cart_detail_item_count}"/>	
@@ -138,8 +67,7 @@
 									<p style="font-weight: 500; font-size: 20px;"><c:out value="${sum}"/></p>
 								</td>
 								<td><p style="font-weight: 1000; font-size: 15px;">결제예정금액</p>
-								
-									<p style="font-weight: 500; color: red; font-size: 20px;"><fmt:formatNumber value="${sum1}" pattern="#,###"/>원</p></td>
+									<p style="font-weight: 500; color: red; font-size: 20px;"><c:out value="${sum1}"/></p></td>
 							</tr>
 
 						</tbody>
@@ -161,11 +89,3 @@
 			</div>
 		</div>
 	</div>
-</section>
-
-
-
-
-
-
-<%@ include file="/WEB-INF/views/common/footer.jsp"%>

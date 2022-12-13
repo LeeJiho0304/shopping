@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
    <div id="content" class="container-fluid border">
       <div class="row">
@@ -189,7 +190,7 @@
 		                               </div>
 		                               <div class="card-body" style="height:140px;">
 		                                  <p>${categoryProduct.product_name}</p>		                             
-		                                  <p>${categoryProduct.product_price}</p>
+		                                  <p><fmt:formatNumber value="${categoryProduct.product_price}" pattern="#,###"/>원</p>
 		                               </div>
 		                            </div>
 		                        </td>
@@ -208,7 +209,7 @@
 		                               </div>
 		                               <div class="card-body" style="height:140px;">
 		                                  <p>${categoryProduct.product_name}</p>		                             
-		                                  <p>${categoryProduct.product_price}</p>
+		                                  <p><fmt:formatNumber value="${categoryProduct.product_price}" pattern="#,###"/>원</p>
 		                               </div>
 		                            </div>
 		                        </td>

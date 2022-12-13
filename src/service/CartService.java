@@ -89,4 +89,29 @@ public class CartService {
         return result;
 	}
 
+
+	public int deleteCart(String[] arrId) {
+		int result = 0;
+        Connection conn = null;
+        try {
+           conn = ds.getConnection();
+           conn.setAutoCommit(false);
+           result = cartDAO.deleteCart(arrId, conn);
+           conn.commit();
+        } catch(Exception e) {
+           e.printStackTrace();
+           try {
+			conn.rollback();
+		} catch (SQLException e1) {e1.printStackTrace();}
+        } finally {
+           try {
+        	   conn.setAutoCommit(true);
+              conn.close();
+           } catch (Exception e) {
+              e.printStackTrace();
+           }
+        }
+        return result;
+	}
+
 }

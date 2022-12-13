@@ -1,6 +1,6 @@
 package dao;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -152,6 +152,22 @@ public class CartDAO {
 		
 		pstmt.close();
 		
+		return result;
+	}
+
+	public int deleteCart(String[] arrId, Connection conn) throws Exception {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		for(int i = 0; i<arrId.length; i++) {
+			String SQL = "DELETE FROM cart_detail WHERE cart_detail_id = ?";
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, Integer.parseInt(arrId[i]));
+			result += pstmt.executeUpdate();
+		}		
+		pstmt.close();
+		if(result !=arrId.length) {
+			throw new Exception("장바구니에서 모두가 삭제되지 않았음.");
+		}
 		return result;
 	}
 
