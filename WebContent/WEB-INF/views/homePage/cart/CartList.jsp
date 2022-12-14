@@ -78,6 +78,7 @@
 			<div class="col">
 
 				<div class="table-responsive">
+				<form method="get" action="CartOrderController">
 					<table class="table" style="text-align:center">
 						<thead>
 							<tr style="border-top: 2px solid black">
@@ -151,9 +152,9 @@
 						</a>
 					
 						<!-- Button to Open the Modal -->
-						<button type="button" class="btn btn-danger">체크 목록 구매</button>
-
+						<button type="submit" class="btn btn-danger">체크 목록 구매</button>
 					</div>
+					</form>
 				</div>
 
 
