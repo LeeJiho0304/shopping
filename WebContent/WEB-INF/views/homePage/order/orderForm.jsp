@@ -556,9 +556,7 @@
 					    <br/>
 					    <br/>
 					    <br/>	
-					</c:if>	
-					<c:set var= "pid" value="${pid+=productDTO.product_id}"/>
-					<c:set var= "quantity" value="${quantity+=productDTO.product_reserve}"/>			    			   				    
+					</c:if>			    			   				    
 				    <c:set var= "sum" value="${sum+productDTO.product_price * productDTO.product_reserve}"/>
 		      	</c:forEach>		     
 		     </c:if>
@@ -686,8 +684,6 @@
 		                </c:if>
 		                 <c:if test="${order!=null}">
 		                	<div class="item__price"> \ <c:out value="${sum}"/>  </div>
-		                	<input type="hidden" name="pid" id="pid" value=<c:out value="${pid}"/>>
-		                	<input type="hidden" name="quantity" id="quantity" value=<c:out value="${quantity}"/>>
 		                </c:if>
 		               
 		            </div>

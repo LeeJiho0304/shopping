@@ -15,6 +15,7 @@ import dto.order.OrderDTO;
 import dto.order.OrderDetailDTO;
 import dto.product.ProductDTO;
 import dto.user.UserDTO;
+import service.CartService;
 import service.OrderService;
 import service.ProductService;
 import service.UserService;
@@ -25,6 +26,15 @@ public class CartOrderController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		System.out.println("CartOrderController.doGet() 실행");
+		CartService cartService = (CartService)request.getServletContext().getAttribute("cartService");
+		String[] cartDetailId = request.getParameterValues("product");
+		List<Integer> pids = new ArrayList<>();
+		List<Integer> quantity = new ArrayList<>();
+		for(String c:cartDetailId ) {
+			pids.add(cartService.getCart(c).getProduct_id());
+			quantity.add(cartService.getCart(c).getCart_detail_item_count());
+		}
+
 		//세션 객체 가져오기
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("loginId");
@@ -36,16 +46,15 @@ public class CartOrderController extends HttpServlet {
 		
 		ProductService productService = (ProductService)request.getServletContext().getAttribute("productService");				
 		List<ProductDTO> products = new ArrayList<>();
-		List<Integer> pids = new ArrayList<>(); //(List<Integer>) request.getAttribute("cart_id");
-		pids.add(1);
-		pids.add(2);
-		pids.add(3);
-		for(int i: pids) {
-			ProductDTO productDTO = productService.getProduct(i);
-			productDTO.setProduct_reserve(2);
+		
+		for(int i=0; i<pids.size();i++) {
+			ProductDTO productDTO = productService.getProduct(pids.get(i));
+			productDTO.setProduct_reserve(quantity.get(i));
 			products.add(productDTO);
 		}
 		int or = 1;		
+		session.setAttribute("products", products);
+		session.setAttribute("cartDetailId", cartDetailId);
 		//int quantity= Integer.parseInt(request.getParameter("quantity"));		
 		//int pid = Integer.parseInt(request.getParameter("pid"));	
 			
@@ -63,6 +72,8 @@ public class CartOrderController extends HttpServlet {
 		System.out.println("CartOrderController.doPost() 실행");
 		OrderService orderService = (OrderService) request.getServletContext().getAttribute("orderService");
 		ProductService productService = (ProductService)request.getServletContext().getAttribute("productService");
+		CartService cartService = (CartService)request.getServletContext().getAttribute("cartService");
+		
 		//세션 객체 가져오기
 		HttpSession session = request.getSession();
 		
@@ -71,23 +82,21 @@ public class CartOrderController extends HttpServlet {
 		
 		order.setUsers_id((String) session.getAttribute("loginId"));
 		order.setOrders_address(request.getParameter("postcode") +" "+ request.getParameter("detailAddress"));
-		String[] pids = request.getParameter("pid").split("");
-		String[] quantity = request.getParameter("quantity").split("");
+		List<ProductDTO> products = (List<ProductDTO>) session.getAttribute("products");
+		String[] cartDetailId = (String[]) session.getAttribute("cartDetailId");
 		List<OrderDTO> orderList = new ArrayList<>();
-		List<ProductDTO> product = new ArrayList<>();
-		for(int i=0; i<pids.length; i++) {
-			ProductDTO productDTO = productService.getProduct(Integer.parseInt(pids[i]));
-			order.setOrders_price(productDTO.getProduct_price());
-			orderDetail.setProduct_id(Integer.parseInt(pids[i]));
-			orderDetail.setOrder_detail_item_count(Integer.parseInt(quantity[i]));
-			productDTO.setProduct_reserve(Integer.parseInt(quantity[i]));			
+		for(ProductDTO p : products) {
+			order.setOrders_price(p.getProduct_price());
+			orderDetail.setProduct_id(p.getProduct_id());
+			orderDetail.setOrder_detail_item_count(p.getProduct_reserve());				
 			orderService.order(order,orderDetail);
 			orderList.add(order);
-			product.add(productDTO);
 		}
 	
 		request.setAttribute("order", order);
-		request.setAttribute("product", product);
+		request.setAttribute("product", products);
+		session.removeAttribute("products");
+		cartService.deleteCart(cartDetailId);
 		
 		request.getRequestDispatcher("/WEB-INF/views/homePage/order/successCartOrder.jsp").forward(request, response);
 

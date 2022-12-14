@@ -114,4 +114,23 @@ public class CartService {
         return result;
 	}
 
+
+	public CartDTO getCart(String cid) {
+		CartDTO result = new CartDTO();
+        Connection conn = null;
+        try {
+           conn = ds.getConnection();
+           result = cartDAO.getCart(cid, conn);
+        } catch(Exception e) {
+           e.printStackTrace();           
+        } finally {
+           try {
+              conn.close();
+           } catch (Exception e) {
+              e.printStackTrace();
+           }
+        }
+        return result;
+	}
+
 }

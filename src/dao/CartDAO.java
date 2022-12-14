@@ -171,4 +171,19 @@ public class CartDAO {
 		return result;
 	}
 
+	public CartDTO getCart(String cid, Connection conn) throws Exception{
+		CartDTO cart= new CartDTO();
+		String sql = "select PRODUCT_ID, CART_DETAIL_ITEM_COUNT from CART_DETAIL where CART_DETAIL_ID= ? ";
+
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, cid);
+		ResultSet rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			cart.setProduct_id(rs.getInt(1));
+			cart.setCart_detail_item_count(rs.getInt(2));
+		}		
+		return cart;
+	}
+
 }
