@@ -95,8 +95,9 @@ public class CartOrderController extends HttpServlet {
 	
 		request.setAttribute("order", order);
 		request.setAttribute("product", products);
-		session.removeAttribute("products");
 		cartService.deleteCart(cartDetailId);
+		session.removeAttribute("products");
+		session.removeAttribute("cartDetailId");
 		
 		request.getRequestDispatcher("/WEB-INF/views/homePage/order/successCartOrder.jsp").forward(request, response);
 
