@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -93,7 +93,7 @@
 								<span class="my-dep1"><b>쇼핑 관리</b></span>
 								<ul class="my-sub">
 									<li class="active">
-										<a type="button" onclick="requestContent('${pageContext.request.contextPath}/user/OrderListController')" id="orderList">주문 조회</a>
+										<a type="button" onclick="requestContent('OrderListController')" id="orderList">주문 조회</a>
 									</li>
 								</ul>
 							</li>
@@ -107,7 +107,7 @@
 										<a type="button" onclick="requestContent('MyReviewListController')" id="reviewList">내가 쓴 리뷰</a>
 									</li>
 									<li>
-										<a type="button" onclick="requestContent('${pageContext.request.contextPath}/qnaBoard/MyQnaListController')" id="qnaList">내가 쓴 문의</a>
+										<a type="button" onclick="requestContent('MyQnaListController')" id="qnaList">내가 쓴 문의</a>
 									</li>
 								</ul>
 							</li>

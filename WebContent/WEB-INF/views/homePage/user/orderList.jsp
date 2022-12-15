@@ -4,8 +4,7 @@
 
 <div class="tabs-wrap btn-type left">
 	<ul class="tabs">
-		<li class="on"><a href="#tab1#CART">구매 내역<span class="count" id="basicCartTab"></span></a></li>
-		<li><a href="#tab2#CARE">취소내역 <span class="count" id="rentalCareTabCount"></span></a></li>
+		<li class="on">구매 내역<span class="count" id="basicCartTab"></span></li>
 	</ul>
 </div>
 
@@ -15,7 +14,7 @@
 			<li class="order-item" id="orderItm_0">
 				<div class="item-image">
 				<c:if test="${order.main_savedname !=null}">
-					<a href="#"> <img src="ProductImgController?pid=${order.product_id}" />
+					<a href="ProductDetailController?pid=${order.product_id}"> <img src="ProductImgController?pid=${order.product_id}" />
 					</a>
 				</c:if>
 				</div>
@@ -24,7 +23,7 @@
 						<span>카테고리</span>
 					</div>
 					<div class="item-name">
-						<a href="#">${order.product_name}</a>
+						<a href="ProductDetailController?pid=${order.product_id}" style="text-decoration-line: none;">${order.product_name}</a>
 					</div>
 					<div class="quantity-wrap">
 						<div class="quantity">
@@ -42,25 +41,25 @@
 </div>
 
 <div class="text-center">
-  <a onClick="orderListPage(1, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-outline-primary btn-sm">처음</a>
+  <a onClick="listPage(1, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-outline-primary btn-sm">처음</a>
   
   <c:if test="${pager.groupNo > 1}">
-     <a onClick="orderListPage(${pager.startPageNo-1}, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-outline-info btn-sm">이전</a>
+     <a onClick="listPage(${pager.startPageNo-1}, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-outline-info btn-sm">이전</a>
   </c:if>
   
   <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
      <c:if test="${pager.pageNo != i}">
-        <a onClick="orderListPage(${i}, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-outline-success btn-sm">${i}</a>
+        <a onClick="listPage(${i}, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-outline-success btn-sm">${i}</a>
      </c:if>
      <c:if test="${pager.pageNo == i}">
-        <a onClick="orderListPage(${i}, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-danger btn-sm">${i}</a>
+        <a onClick="listPage(${i}, '${pageContext.request.contextPath}/user/OrderListController')" class="btn btn-danger btn-sm">${i}</a>
      </c:if>
   </c:forEach>
   
   <c:if test="${pager.groupNo < pager.totalGroupNo}">
-     <a onClick="orderListPage(${pager.endPageNo+1}, ${pageContext.request.contextPath})" class="btn btn-outline-info btn-sm">다음</a>
+     <a onClick="listPage(${pager.endPageNo+1}, ${pageContext.request.contextPath})" class="btn btn-outline-info btn-sm">다음</a>
   </c:if>
   
-  <a onClick="orderListPage(${pager.totalPageNo}, ${pageContext.request.contextPath})" class="btn btn-outline-primary btn-sm">맨끝</a>
+  <a onClick="listPage(${pager.totalPageNo}, ${pageContext.request.contextPath})" class="btn btn-outline-primary btn-sm">맨끝</a>
 
 </div>

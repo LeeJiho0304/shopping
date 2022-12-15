@@ -113,13 +113,61 @@ public class ReviewBoardService {
        }      
        return avgRate;
    }
-   
-   /*
+
+   //상세 내용 가져오기
    public ReviewBoardDTO getContent(int idNo) {
-      ReviewBoardDAO reviewBoardDAO = (ReviewBoardDAO)application.getAttribute("reviewBoardDAO");
-      ReviewBoardDTO reviewDTO = reviewBoardDAO.selectOnereview(idNo);
+      ReviewBoardDTO reviewDTO = null;
+      Connection conn = null;
+      
+      try {
+         conn = ds.getConnection();
+         reviewDTO = reviewDao.selectOnereview(idNo, conn);
+      } catch(Exception e) {
+         e.printStackTrace();
+      } finally {
+         try {conn.close();} catch(Exception e) {}
+      }
+      
       return reviewDTO;
-   }*/
+   }
+
+	public int updateReviewBoard(ReviewBoardDTO review) {
+		int result = 0;
+		
+		ReviewBoardDTO reviewDTO = null;
+	    Connection conn = null;
+	      
+	    try {
+	    	conn = ds.getConnection();
+	    	result = reviewDao.updateReviewBoard(review, conn);
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {conn.close();} catch(Exception e) {}
+	    }
+	      
+	    return result;
+		
+	}
+
+	public int deleteReviewBoard(int parseInt) {
+		int result = 0;
+		
+		ReviewBoardDTO reviewDTO = null;
+	    Connection conn = null;
+	      
+	    try {
+	    	conn = ds.getConnection();
+	    	//result = reviewDao.updateReviewBoard(review, conn);
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {conn.close();} catch(Exception e) {}
+	    }
+	      
+	    return result;
+		
+	}
    
    /*
    public List<ReviewBoardDTO> getList(int pageNo) {

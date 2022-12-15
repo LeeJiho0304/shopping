@@ -1,5 +1,4 @@
-function orderListPage(pageNo, url) {
-	console.log("들어옴");
+function listPage(pageNo, url) {
 	$.ajax ({
 		type: "get",
 		url: url,
@@ -16,6 +15,17 @@ function reviewWrite(product_id) {
 		type: "get",
 		url: "/shopping/ReviewWriteController",
 		data: {product_id: product_id},
+		success: function(data) {
+			$("#content").html(data);
+		}
+	});
+}
+
+function reviewDetail(review_board_id) {
+	$.ajax ({
+		type: "get",
+		url: "ReviewBoardDetailContoller",
+		data: {review_board_id: review_board_id},
 		success: function(data) {
 			$("#content").html(data);
 		}

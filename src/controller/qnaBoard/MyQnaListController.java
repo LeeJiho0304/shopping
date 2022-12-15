@@ -1,4 +1,4 @@
-package controller.user;
+package controller.qnaBoard;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,20 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.Pager;
-import dto.order.OrderDTO;
-import service.OrderService;
+import dto.qna.QnABoardDTO;
+import dto.qna.QnABoardProductDTO;
+import dto.review.ReviewBoardDTO;
+import service.QnABoardService;
+import service.ReviewBoardService;
 
-@WebServlet(name="OrderListController", urlPatterns="/OrderListController")
-public class OrderListController extends HttpServlet {
-	
+@WebServlet(name="MyQnaListController", urlPatterns="/MyQnaListController")
+public class MyQnaListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("orderListController");
+		System.out.println("MyReviewListController.dGet() 실행");
+		
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("loginId");
-		System.out.println(userId);
+
 		//PageNo 얻기
-		String strPageNo=request.getParameter("pageNo");
+		String strPageNo = request.getParameter("pageNo");
 		if(strPageNo == null) {
 			strPageNo = "1";
 		}
@@ -33,23 +36,23 @@ public class OrderListController extends HttpServlet {
 				
 		//boardService 객체 얻기
 		ServletContext application = request.getServletContext();
-		OrderService orderService = (OrderService) application.getAttribute("orderService");
+		QnABoardService qnaService = (QnABoardService) application.getAttribute("qnABoardService");
 				
 		//페이징 대상이 되는 전체 행수 얻기		
-		int totalOrderNum = orderService.getTotalRows(userId);
-		System.out.println(totalOrderNum);
+		int totalBoardNum = qnaService.getMyListTotalRows(userId);
+
 		//Pager 생성
-		Pager pager = new Pager(3, 3, totalOrderNum, pageNo);
+		Pager pager = new Pager(5,5, totalBoardNum, pageNo);
 				
 		//pageNo에 해당하는 게시물 가져오기
-		List<OrderDTO> orderList = orderService.getOrderList(pager, userId);
-				
+		List<QnABoardProductDTO> myQnaList = qnaService.getMyList(pager, userId);
 		//JSP에서 사용할 수 있도록 request 범위에 저장
 		request.setAttribute("pager", pager);
-		//request.setAttribute("userId", userId);
-		request.setAttribute("orderList", orderList);
-	
+		request.setAttribute("myQnaList", myQnaList);
+		
 		//JSP로 이동
-		request.getRequestDispatcher("/WEB-INF/views/homePage/user/orderList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/homePage/user/myQnaList.jsp").forward(request, response);
 	}
+	
 }
+

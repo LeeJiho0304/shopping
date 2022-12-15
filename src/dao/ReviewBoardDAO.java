@@ -207,8 +207,9 @@ public class ReviewBoardDAO {
       ReviewBoardDTO reviewContentDTO = new ReviewBoardDTO();
       
       String sql = ""
-            + "SELECT review_board_id, p.product_id, product_name, review_board_title, review_board_content, users_id, review_board_date ,review_board_reviewpoint "
-            + "FROM review_board q, product p " + "WHERE p.product_id = q.product_id and review_board_id =?";
+            + "SELECT review_board_id, p.product_id as product_id, product_name, review_board_title, review_board_content, users_id, review_board_date, review_board_reviewpoint "
+            + "FROM review_board q, product p " 
+            + "WHERE p.product_id = q.product_id and review_board_id =?";
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, idNum);
@@ -216,12 +217,13 @@ public class ReviewBoardDAO {
       
       if (rs.next()) {
          reviewContentDTO.setReview_board_id(rs.getInt("review_board_id"));
-         reviewContentDTO.setReview_board_reviewpoint(rs.getInt("review_board_reviewpoint"));
+         reviewContentDTO.setProduct_id(rs.getInt("product_id"));
          reviewContentDTO.setProduct_name(rs.getString("product_name"));
          reviewContentDTO.setReview_board_title(rs.getString("review_board_title"));
          reviewContentDTO.setReview_board_content(rs.getString("review_board_content"));
          reviewContentDTO.setUsers_id(rs.getString("users_id"));
          reviewContentDTO.setReview_board_date(rs.getDate("review_board_date"));
+         reviewContentDTO.setReview_board_reviewpoint(rs.getInt("review_board_reviewpoint"));
       }
       
       return reviewContentDTO;
@@ -376,41 +378,23 @@ public class ReviewBoardDAO {
       return totalRows;
    }
 
-   public String updateReviewBoard(ReviewBoardDTO reviewDTO, Connection conn) throws Exception {
-      int rsResult = 0;
-      String result = null;
-      try {
-         // sql문 작성 및 받은 JSONObject에서 데이터 뽑아서 DB로 전송
-         String sql = "" + " UPDATE review_board "
-               + " SET review_board_title = ? , review_board_content = ?, review_board_date = sysdate , review_board_reviewpoint = ?"
-               + " WHERE review_board_id = ? ";
-         PreparedStatement pstmt = conn.prepareStatement(sql);
+   public int updateReviewBoard(ReviewBoardDTO reviewDTO, Connection conn) throws Exception {
+	   int result = 0;
+	   String sql = "" + " UPDATE review_board "
+           + " SET review_board_title = ? , review_board_content = ?, review_board_date = sysdate , review_board_reviewpoint = ?"
+           + " WHERE review_board_id = ? ";
+    
+	   PreparedStatement pstmt = conn.prepareStatement(sql);
 
-         pstmt.setString(1, reviewDTO.getReview_board_title());
-         pstmt.setString(2, reviewDTO.getReview_board_content());
-         pstmt.setInt(3, reviewDTO.getReview_board_reviewpoint());
-         pstmt.setInt(4, reviewDTO.getReview_board_id());
+	   pstmt.setString(1, reviewDTO.getReview_board_title());
+	   pstmt.setString(2, reviewDTO.getReview_board_content());
+	   pstmt.setInt(3, reviewDTO.getReview_board_reviewpoint());
+	   pstmt.setInt(4, reviewDTO.getReview_board_id());
 
-         rsResult = pstmt.executeUpdate();
-         pstmt.close();
-         if (rsResult == 1) {
-            result = "success";
-         } else {
-            result = "fail";
-         }
-      } catch (SQLException e) {
-         System.out.println(e.getMessage());
+	   result = pstmt.executeUpdate();
+	   pstmt.close();
 
-      } finally {
-         try {
-            // Connection 반납
-            conn.close();
-            System.out.println("반납 성공");
-         } catch (SQLException e) {
-            e.printStackTrace();
-         }
-      }
-      return result;
+	   return result;
    }
 
    public String deleteReviewBoard(int review_board_id, Connection conn) throws Exception {

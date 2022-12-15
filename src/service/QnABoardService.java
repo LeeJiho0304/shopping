@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import dao.QnABoardDAO;
 import dto.Pager;
 import dto.qna.QnABoardDTO;
+import dto.qna.QnABoardProductDTO;
 
 public class QnABoardService {
 	private  ServletContext application;
@@ -38,21 +39,45 @@ public class QnABoardService {
 		return totalRows;
 	}
 	
+	*/
 	
-	// MyList 불러오기 
-	public List<QnABoardProductDTO> getMyList(int pageNo, String users_id) {
-		QnABoardDAO dao =  (QnABoardDAO)application.getAttribute("qnABoardDAO");
-		List<QnABoardProductDTO> qnaDTO = dao.selectMyList(pageNo, users_id);
-		return qnaDTO;
+	public List<QnABoardProductDTO> getMyList(Pager pager, String users_id) {
+		List<QnABoardProductDTO> result = null;
+		Connection conn = null;
+		try {
+			conn=ds.getConnection();
+			result = qnaDao.selectMyList(pager, users_id, conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	    }
+		return result;
 	}
 	
 	public int getMyListTotalRows(String users_id) {
-		QnABoardDAO dao =  (QnABoardDAO)application.getAttribute("qnABoardDAO");
-		int totalRows = dao.getMyListRows(users_id);
-		return totalRows;
+		int result = 0;
+		Connection conn = null;
+		try {
+			conn=ds.getConnection();
+			result = qnaDao.getMyListRows(users_id, conn);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	    }	
+		return result;
 	}
 	
-	*/
+	
 	
 	//큐앤에이 작성	
 	public String createQnABoard(QnABoardDTO dto) {

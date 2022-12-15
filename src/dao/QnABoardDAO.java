@@ -67,36 +67,17 @@ public class QnABoardDAO {
 	
 	public int getMyListRows(String users_id, Connection conn) throws Exception {
 		int totalRows = 0;
-		try {
-			String sql = "" + "select count(*) "
-					+ "FROM qna_board q, product p WHERE p.product_id = q.product_id and users_id like '%'||?||'%' ";
-			PreparedStatement pstmt;
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, users_id);
-			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				totalRows = rs.getInt(1);
-				System.out.println("QnADAO totalrows: " + rs.getInt(1));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				// Connection 반납
-				conn.close();
-				System.out.println("반납 성공");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					// Connection 반납
-					conn.close();
-					System.out.println("반납 성공");
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+		
+		String sql = "" + "select count(*) "
+				+ "FROM qna_board q, product p WHERE p.product_id = q.product_id and users_id like '%'||?||'%' ";
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, users_id);
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			totalRows = rs.getInt(1);
 		}
+		
 		return totalRows;
 	}
 	
@@ -336,62 +317,51 @@ public class QnABoardDAO {
 		return result;
 	}
 
-	public List<QnABoardProductDTO> selectMyList(int pageNo, String users_id, Connection conn) throws Exception {
-		try {
-			// sql문 작성
-			String sql = ""
-					+ " SELECT RNUM, qna_board_id, product_name, qna_board_title,users_id,qna_board_date, QNA_BOARD_ANSWER "
-					+ " FROM ( "
-					+ "        SELECT ROWNUM AS RNUM, product_name,qna_board_id, product_id, qna_board_title,users_id,qna_board_date, QNA_BOARD_ANSWER  "
-					+ "			   FROM ("
-					+ "                    SELECT qna_board_id, product_name, p.product_id, qna_board_title,users_id,qna_board_date, QNA_BOARD_ANSWER "
-					+ "                     FROM QNA_BOARD q , Product p "
-					+ "                     where q.product_id = p.product_id "
-					+ "                            and users_id like '%'||?||'%' "
-					+ "                     ORDER BY qna_board_date desc) " 
-					+ "                WHERE ROWNUM < (? * 5) + 1 "
-					+ " ) WHERE RNUM >= ((? - 1) * 5) + 1 ";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, users_id);
-			pstmt.setInt(2, pageNo);
-			pstmt.setInt(3, pageNo);
-			ResultSet rs = pstmt.executeQuery();
+	public List<QnABoardProductDTO> selectMyList(Pager pager, String users_id, Connection conn) throws Exception {
+		
+		// sql문 작성
+		String sql = ""
+				+ " SELECT RNUM, qna_board_id, product_name, qna_board_title,users_id,qna_board_date, QNA_BOARD_ANSWER "
+				+ " FROM ( "
+				+ "        SELECT ROWNUM AS RNUM, product_name,qna_board_id, product_id, qna_board_title,users_id,qna_board_date, QNA_BOARD_ANSWER  "
+				+ "			   FROM ("
+				+ "                    SELECT qna_board_id, product_name, p.product_id, qna_board_title,users_id,qna_board_date, QNA_BOARD_ANSWER "
+				+ "                     FROM QNA_BOARD q , Product p "
+				+ "                     where q.product_id = p.product_id "
+				+ "                            and users_id like '%'||?||'%' "
+				+ "                     ORDER BY qna_board_date desc) " 
+				+ "                WHERE ROWNUM < ? "
+				+ " ) WHERE RNUM >= ? ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, users_id);
+		pstmt.setInt(2, pager.getPageNo()*pager.getRowsPerPage());
+		pstmt.setInt(3, (pager.getPageNo()-1)*pager.getRowsPerPage()+1);
+		ResultSet rs = pstmt.executeQuery();
 
-			QnABoardProductDTO qnaBoardProductDTO;
+		QnABoardProductDTO qnaBoardProductDTO;
 
-			while (rs.next()) {
+		while (rs.next()) {
 
-				qnaBoardProductDTO = new QnABoardProductDTO();
+			qnaBoardProductDTO = new QnABoardProductDTO();
 
-				// 답변은 답변여부만 담아서 리스트 DTO로 담기 위해 삼항연산자 사용
-				String YN = rs.getString("qna_board_answer") != null ? "Y" : "N";
-				// 한 행의 데이터를 DTO에 담아준다
-				qnaBoardProductDTO.setQna_board_id(rs.getInt("qna_board_id"));
-				qnaBoardProductDTO.setProduct_name(rs.getString("product_name"));
-				System.out.println(rs.getString("product_name"));
-				qnaBoardProductDTO.setQna_board_title(rs.getString("qna_board_title"));
-				qnaBoardProductDTO.setUsers_id(rs.getString("users_id"));
-				qnaBoardProductDTO.setQna_board_date(rs.getDate("qna_board_date"));
-				qnaBoardProductDTO.setQna_board_answer(YN);
+			// 답변은 답변여부만 담아서 리스트 DTO로 담기 위해 삼항연산자 사용
+			String YN = rs.getString("qna_board_answer") != null ? "Y" : "N";
+			// 한 행의 데이터를 DTO에 담아준다
+			qnaBoardProductDTO.setQna_board_id(rs.getInt("qna_board_id"));
+			qnaBoardProductDTO.setProduct_name(rs.getString("product_name"));
+			System.out.println(rs.getString("product_name"));
+			qnaBoardProductDTO.setQna_board_title(rs.getString("qna_board_title"));
+			qnaBoardProductDTO.setUsers_id(rs.getString("users_id"));
+			qnaBoardProductDTO.setQna_board_date(rs.getDate("qna_board_date"));
+			qnaBoardProductDTO.setQna_board_answer(YN);
 
-				// DB의 한 행 데이터를 담은 DTO를 리스트에 더해준다
-				qnaBoardProductDTOs.add(qnaBoardProductDTO);
-				System.out.println("DAO: " + qnaBoardProductDTOs.toString());
-			}
-			rs.close();
-			pstmt.close();
-
-		} catch (Exception e) {
-			e.getMessage();
-		} finally {
-			try {
-				// Connection 반납
-				conn.close();
-				System.out.println("반납 성공");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			// DB의 한 행 데이터를 담은 DTO를 리스트에 더해준다
+			qnaBoardProductDTOs.add(qnaBoardProductDTO);
+			System.out.println("DAO: " + qnaBoardProductDTOs.toString());
 		}
+		rs.close();
+		pstmt.close();
+
 		return qnaBoardProductDTOs;
 	}
 
