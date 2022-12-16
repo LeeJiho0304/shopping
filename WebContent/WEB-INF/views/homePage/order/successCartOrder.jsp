@@ -100,7 +100,7 @@
 													<td></td>
 													<td></td>
 													<td>총 금액</td>
-													<td>\ <c:out value="${sum}"/></td>
+													<td>\ <fmt:formatNumber value="${sum}" pattern="#,###"/></td>
 												</tr>
 											</tbody>
 										</table>	

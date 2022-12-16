@@ -684,7 +684,7 @@
 		               		<input type="hidden" name="product_id" id="product_id" value="${productDTO.product_id}">
 		                </c:if>
 		                 <c:if test="${order!=null}">
-		                	<div class="item__price"> \ <c:out value="${sum}"/> </div>
+		                	<div class="item__price"> \ <fmt:formatNumber value="${sum}" pattern="#,###"/> </div>
 		                </c:if>
 		               
 		            </div>
