@@ -253,7 +253,42 @@ public class ProductDAO {
       } catch(Exception e) {
          e.printStackTrace();
       }      
-   return totalRateNum;
+      return totalRateNum;
    }
+   
+   public List<ProductListDTO> selectBestProduct(int category_id, Connection conn) throws Exception {
+  		List<ProductListDTO> result = new ArrayList<>();
+  		
+  		String sql = "select rnum, product_id, product_name, product_price, category_id, subcategory_id, product_totalpoint, main_filename, main_savedname, main_content_type " + 
+  				"from ( " + 
+  				"select rownum as rnum, product_id, product_name, product_price, category_id, subcategory_id, product_totalpoint, main_filename, main_savedname, main_content_type " + 
+  				"    from ( " + 
+  				"        select product_id, product_name, product_price, category_id, subcategory_id, product_totalpoint, main_filename, main_savedname, main_content_type " + 
+  				"        from product " + 
+  				"        where category_id = ? " + 
+  				"        order by product_totalpoint desc " + 
+  				"    ) where rownum <= 3 " + 
+  				") where rnum >= 1";
+		
+  		PreparedStatement pstmt = conn.prepareStatement(sql);
+       pstmt.setInt(1, category_id);
+       
+       ResultSet rs = pstmt.executeQuery();
+       while(rs.next()) {
+       	ProductListDTO product = new ProductListDTO();
+           product.setProduct_id(rs.getInt("product_id"));;
+           product.setProduct_name(rs.getString("product_name"));
+           product.setProduct_price(rs.getInt("product_price"));
+           product.setCategory_id(rs.getInt("category_id"));
+           product.setSubcategory_id(rs.getInt("subcategory_id"));
+           product.setProduct_totalpoint(rs.getDouble("product_totalpoint"));
+           product.setMain_filename(rs.getString("main_filename"));
+           product.setMain_savedname(rs.getString("main_savedname"));
+           product.setMain_content_type(rs.getString("main_content_type"));
+           result.add(product);
+       }
+       
+  		return result;
+	}
 
 }

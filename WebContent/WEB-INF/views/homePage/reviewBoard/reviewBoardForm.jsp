@@ -37,7 +37,7 @@
 									<tr>
 										<th >리뷰내용</th>
 										<td class="QnaTxt"><textarea class="ml-3" rows="8" cols="20" name="review_content" id="review_content"
-												placeholder="문의 내용을 입력해 주세요. (500자 이내)" style="width:400px"></textarea>
+												placeholder="리뷰 내용을 입력해 주세요. (500자 이내)" style="width:400px"></textarea>
 										</td>
 									</tr>
 									<tr>

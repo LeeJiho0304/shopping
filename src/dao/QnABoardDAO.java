@@ -13,7 +13,6 @@ import dto.qna.QnABoardProductDTO;
 
 public class QnABoardDAO {
 	List<QnABoardDTO> qnaBoardDTOs = new ArrayList<>();
-	List<QnABoardProductDTO> qnaBoardProductDTOs = new ArrayList<>();
 
 	public int getTotalRows(Connection conn) throws Exception {
 		int totalRows = 0;
@@ -179,6 +178,8 @@ public class QnABoardDAO {
 	}
 
 	public List<QnABoardProductDTO> selectSearchList(int pageNo, String search_String, Connection conn) throws Exception {
+		List<QnABoardProductDTO> qnaBoardProductDTOs = new ArrayList<>();
+		
 		try {
 			// sql문 작성
 			String sql = ""
@@ -318,6 +319,7 @@ public class QnABoardDAO {
 	}
 
 	public List<QnABoardProductDTO> selectMyList(Pager pager, String users_id, Connection conn) throws Exception {
+		List<QnABoardProductDTO> qnaBoardProductDTOs = new ArrayList<>();
 		
 		// sql문 작성
 		String sql = ""
@@ -338,11 +340,9 @@ public class QnABoardDAO {
 		pstmt.setInt(3, (pager.getPageNo()-1)*pager.getRowsPerPage()+1);
 		ResultSet rs = pstmt.executeQuery();
 
-		QnABoardProductDTO qnaBoardProductDTO;
-
 		while (rs.next()) {
 
-			qnaBoardProductDTO = new QnABoardProductDTO();
+			QnABoardProductDTO qnaBoardProductDTO = new QnABoardProductDTO();
 
 			// 답변은 답변여부만 담아서 리스트 DTO로 담기 위해 삼항연산자 사용
 			String YN = rs.getString("qna_board_answer") != null ? "Y" : "N";

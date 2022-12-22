@@ -33,7 +33,7 @@
 		            </div><!-- / project-info-box -->
 		            <div class="d-flex justify-content-end mt-2"> 
 		            	<button class="btn btn-info mr-2" data-toggle="modal" data-target="#reviewModal">수정하기 <i class="fa fa-pencil h5 m-0"></i></button>
-		            	<button class="btn btn-info ">삭제하기 <i class="fa fa-remove h5 m-0"></i></button>
+		            	<button class="btn btn-info" data-toggle="modal" data-target="#deleteReview">삭제하기 <i class="fa fa-remove h5 m-0"></i></button>
 		            </div>
 	    		</div>
         	</div>
@@ -108,15 +108,37 @@
 									</tbody>
 								</table>
 							</div>
-								
-														
 						</form>
-							
 					</div>
 					<!-- Modal footer -->
 				</div>
 			</div>
     	</div>
+    	<!-- The Modal -->
+		<div class="modal" id="deleteReview">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				      
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">리뷰 삭제 확인</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				        
+				<!-- Modal body -->
+				<div class="modal-body">
+					삭제하시겠습니까?
+				</div>
+				        
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+					<button type="button" class="btn btn-success" data-dismiss="modal">취소</button>
+				</div>
+				        
+				</div>
+			</div>
+		</div>
     </div>
 </div>
 

@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.product.ProductListDTO;
+import service.ProductService;
 import service.ProductService3;
 
 @WebServlet(name="MainController", urlPatterns="/MainController")
 public class MainController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProductService3 productService = (ProductService3) request.getServletContext().getAttribute("productService3");
+		ProductService productService = (ProductService) request.getServletContext().getAttribute("productService");
 		
 		List<ProductListDTO> bestFrige = productService.getBestProduct(1);
 		List<ProductListDTO> bestTv = productService.getBestProduct(2);

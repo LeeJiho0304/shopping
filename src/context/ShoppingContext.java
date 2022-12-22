@@ -28,7 +28,6 @@ import service.UserService;
 public class ShoppingContext implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		System.out.println("ServletContext가 생성 완료됨");
 		
 		//ServletContext 객체 얻기
 		ServletContext application = sce.getServletContext();
@@ -37,8 +36,7 @@ public class ShoppingContext implements ServletContextListener {
 		DataSource dataSource = ConnectionProvider.getDataSource();
 		application.setAttribute("dataSource", dataSource);
 		
-		//ServletContext 객체에 데이터(객체) 저장
-		application.setAttribute("productDAO3", new ProductDAO3());
+		//ServletContext 객체에 DAO데이터(객체) 저장
 		application.setAttribute("productDAO", new ProductDAO());
 		application.setAttribute("userDAO", new UserDAO());
 		application.setAttribute("cartDAO", new CartDAO());
@@ -48,7 +46,7 @@ public class ShoppingContext implements ServletContextListener {
 		application.setAttribute("reviewBoardDAO", new ReviewBoardDAO());
 		application.setAttribute("subCategoryDAO", new SubCategoryDAO());
 		
-		application.setAttribute("productService3", new ProductService3(application));
+		//ServletContext 객체에 Service데이터(객체) 저장
 		application.setAttribute("productService", new ProductService(application));
 		application.setAttribute("userService", new UserService(application));
 		application.setAttribute("cartService", new CartService(application));

@@ -147,4 +147,19 @@ public class ProductService {
       return totalRateNum;
    }
 
+   //best 상품 가져오기
+   public List<ProductListDTO> getBestProduct(int category_id) {
+	   List<ProductListDTO> result = null;
+	   Connection conn = null;
+	   try {
+		   conn = ds.getConnection();
+		   result = productDAO.selectBestProduct(category_id, conn);
+	   } catch(Exception e) {
+		   e.printStackTrace();
+	   } finally {
+		   try{ conn.close(); } catch(Exception e) {}
+	   }
+	   
+	   return result;
+   }
 }
