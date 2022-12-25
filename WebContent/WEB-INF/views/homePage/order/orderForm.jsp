@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -493,7 +494,7 @@
 			            ${productDTO.product_name}
 			          </div>
 			          <div class="item__price">
-			            \ ${productDTO.product_price} 
+			            \ <fmt:formatNumber value="${productDTO.product_price}" pattern="#,###"/> 
 			          </div>
 			          <div class="item__quantity">		           	
 			          </div>
@@ -526,7 +527,7 @@
 				            ${productDTO.product_name}
 				          </div>
 				          <div class="item__price">
-				            \ ${productDTO.product_price} 
+				            \ <fmt:formatNumber value="${productDTO.product_price}" pattern="#,###"/> 
 				          </div>
 				          <div class="item__quantity">		           	
 				          </div>
@@ -677,13 +678,13 @@
 		            <div >
 		                <div class="payment__title">  총 주문 금액  </div>
 		                <c:if test="${order==null}">
-		                	<div class="item__price"> \ ${productDTO.product_price * quantity}  </div>
+		                	<div class="item__price"> \ <fmt:formatNumber value="${productDTO.product_price * quantity}" pattern="#,###"/> </div>
 		                	<input type="hidden" name="product_price" id="product_price" value="${productDTO.product_price}">
 		               		<input type="hidden" name="quantity" id="quantity" value="${quantity}">
 		               		<input type="hidden" name="product_id" id="product_id" value="${productDTO.product_id}">
 		                </c:if>
 		                 <c:if test="${order!=null}">
-		                	<div class="item__price"> \ <c:out value="${sum}"/>  </div>
+		                	<div class="item__price"> \ <fmt:formatNumber value="${sum}" pattern="#,###"/> </div>
 		                </c:if>
 		               
 		            </div>

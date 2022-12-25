@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -88,9 +89,9 @@
 										            <tr>
 										              <td><span class="sub-img"> <img src="ProductImgController?pid=${productDTO.product_id}" height=50px></span></td>
 													<td>${productDTO.product_name}</td>
-													<td>\ ${productDTO.product_price}</td>
+													<td>\ <fmt:formatNumber value="${productDTO.product_price}" pattern="#,###"/></td>
 													<td>&emsp;${productDTO.product_reserve}</td>
-													<td>\ ${productDTO.product_price*productDTO.product_reserve}</td>
+													<td>\ <fmt:formatNumber value="${productDTO.product_price*productDTO.product_reserve}" pattern="#,###"/></td>
 													</tr>
 													<c:set var= "sum" value="${sum+productDTO.product_price * productDTO.product_reserve}"/>
 									            </c:forEach>
@@ -99,7 +100,7 @@
 													<td></td>
 													<td></td>
 													<td>총 금액</td>
-													<td>\<c:out value="${sum}"/></td>
+													<td>\ <fmt:formatNumber value="${sum}" pattern="#,###"/></td>
 												</tr>
 											</tbody>
 										</table>	

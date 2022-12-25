@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -86,9 +87,9 @@
 												<tr style="width:40%">
 													<td><span class="sub-img"> <img src="ProductImgController?pid=${productDTO.product_id}" height=50px></span></td>
 													<td>${productDTO.product_name}</td>
-													<td>\ ${productDTO.product_price}</td>
+													<td>\ <fmt:formatNumber value="${productDTO.product_price}" pattern="#,###"/></td>
 													<td>${orderDetail.order_detail_item_count}</td>
-													<td>\ ${productDTO.product_price*orderDetail.order_detail_item_count}</td>
+													<td>\ <fmt:formatNumber value="${productDTO.product_price*orderDetail.order_detail_item_count}" pattern="#,###"/></td>
 												</tr>
 											</tbody>
 										</table>	
