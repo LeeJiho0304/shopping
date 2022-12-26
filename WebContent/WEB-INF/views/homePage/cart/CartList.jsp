@@ -3,8 +3,9 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
+
 	function ElectronicProducts(evt, ProductsName) {
 		  var i, tabcontent, tablinks;
 		  tabcontent = document.getElementsByClassName("tabcontent");
@@ -37,8 +38,7 @@
 			url: "CartUpdateController",
 			data: {"cart_detail_id":cart_detail_id, "quantity":quantity }, 
 			success: function(data) {
-				console.log(data);
-				
+				location.reload();
 			},
 			error: function() {
 				console.log("통신실패!");
@@ -60,15 +60,15 @@
 			traditional: true,
 			data: {"checkedId":deleteCartList }, 
 			success: function(data) {
-				consolo.log(data);
-				$("#cartContent").empty();
-				$("#cartContent").html(data);					
+				location.reload();			
 			},
 			error: function() {
 				console.log("통신실패!");
 			}
 		});
 	}
+	
+	
 </script>
 
 <section class="h-100 h-custom">
@@ -79,7 +79,7 @@
 
 				<div class="table-responsive">
 				<form method="get" action="CartOrderController">
-					<table class="table" style="text-align:center">
+					<table  class="table" style="text-align:center">
 						<thead>
 							<tr style="border-top: 2px solid black">
 
@@ -114,7 +114,7 @@
 													<input  type="number" class="form-control form-control-sm" name="quantity" value="${cart.cart_detail_item_count}"
 														style="width: 50px;" />
 														
-														<button onClick="updateCount(${cart.cart_detail_id})" class="btn btn-info m-0 p-0">변경</button>	
+														<a type="button" onClick="updateCount(${cart.cart_detail_id})" class="btn btn-info m-0 p-0">변경</a>	
 												</div>
 											</td>
 											<td class="align-middle">

@@ -28,7 +28,6 @@ import service.UserService;
 public class ShoppingContext implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		
 		//ServletContext 객체 얻기
 		ServletContext application = sce.getServletContext();
 		

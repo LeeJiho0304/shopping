@@ -2,13 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-
+<div id="cartContent" class="container h-100 py-5">
 		<div
 			class="row d-flex justify-content-center align-items-center h-100">
 			<div class="col">
 
 				<div class="table-responsive">
-				<form method="get" action="CartOrderController">
 					<table class="table" style="text-align:center">
 						<thead>
 							<tr style="border-top: 2px solid black">
@@ -33,22 +32,21 @@
 			
 											</td>
 											<td scope="row" class= "align-middle">
-			
+												
 												<p>${cart.product_name}</p>
 			
 											</td>
-											
-											<td class= "align-middle" ><fmt:formatNumber value="${cart.product_price}" pattern="#,###"/>원</td>
+											<td class= "align-middle" >${cart.product_price}</td>
 											<td class="align-middle">
 												<div class="d-flex flex-row justify-content-center">			
 													<input  type="number" class="form-control form-control-sm" name="quantity" value="${cart.cart_detail_item_count}"
 														style="width: 50px;" />
 														
-														<a type="button" onClick="updateCount(${cart.cart_detail_id})" class="btn btn-info m-0 p-0">변경</a>	
+														<button onClick="updateCount(${cart.cart_detail_id})" class="btn btn-info m-0 p-0">변경</button>	
 												</div>
 											</td>
 											<td class="align-middle">
-												<p class="mb-0" style="font-weight: 500;"><fmt:formatNumber value="${cart.product_price}" pattern="#,###"/>원</p>
+												<p class="mb-0" style="font-weight: 500;">${cart.cart_detail_item_count * cart.product_price}</p>
 											</td>
 										</tr>
 										<c:set var= "sum" value="${sum + cart.cart_detail_item_count}"/>	
@@ -69,8 +67,7 @@
 									<p style="font-weight: 500; font-size: 20px;"><c:out value="${sum}"/></p>
 								</td>
 								<td><p style="font-weight: 1000; font-size: 15px;">결제예정금액</p>
-								
-									<p style="font-weight: 500; color: red; font-size: 20px;"><fmt:formatNumber value="${sum1}" pattern="#,###"/>원</p></td>
+									<p style="font-weight: 500; color: red; font-size: 20px;"><c:out value="${sum1}"/></p></td>
 							</tr>
 
 						</tbody>
@@ -82,13 +79,13 @@
 						</a>
 					
 						<!-- Button to Open the Modal -->
-						<button type="submit" class="btn btn-danger">체크 목록 구매</button>
+						<button type="button" class="btn btn-danger">체크 목록 구매</button>
+
 					</div>
-					</form>
 				</div>
 
 
 
 			</div>
 		</div>
-	
+	</div>

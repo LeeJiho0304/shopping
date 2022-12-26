@@ -147,7 +147,8 @@ public class ReviewBoardDAO {
       int result = 0;
 
       String sql1 = ""
-            + "INSERT INTO review_board (review_board_id, product_id, review_board_title, review_board_content, review_board_reviewpoint, review_board_date, "
+            + "INSERT INTO review_board (review_board_id, product_id, review_board_title, "
+            + "review_board_content, review_board_reviewpoint, review_board_date, "
             + "users_id, REVIEW_FILENAME, REVIEW_SAVEDNAME, REVIEW_CONTENT_TYPE) "
             + "VALUES (seq_review_board_id.nextval, ?, ?, ?, ?, SYSDATE,?, ?, ?, ?)";
       

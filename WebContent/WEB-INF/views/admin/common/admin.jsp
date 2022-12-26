@@ -10,7 +10,7 @@
 	    float: left;
 	    padding: 10px;
 	    text-align: center;
-	    width: 25%;
+	    width: 33%;
 	    list-style: none;
 	}
 	
@@ -147,10 +147,6 @@
 										<span>김지영</span>
 										</li>
 										
-										<li>
-										<i class="fas fa-user fa-4x"></i> <br/>
-										<span>임예림</span>
-										</li>
 									</ul>
 	                        	</div>
                                 </div>
