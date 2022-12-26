@@ -1,6 +1,6 @@
 package context;
 
-import javax.servlet.ServletContext; 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
@@ -10,7 +10,6 @@ import dao.CartDAO;
 import dao.CategoryDAO;
 import dao.OrderDAO;
 import dao.ProductDAO;
-import dao.ProductDAO3;
 import dao.QnABoardDAO;
 import dao.ReviewBoardDAO;
 import dao.SubCategoryDAO;
@@ -19,7 +18,6 @@ import service.CartService;
 import service.CategoryService;
 import service.OrderService;
 import service.ProductService;
-import service.ProductService3;
 import service.QnABoardService;
 import service.ReviewBoardService;
 import service.SubCategoryService;

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.product.ProductListDTO;
 import service.ProductService;
-import service.ProductService3;
 
 @WebServlet(name="MainController", urlPatterns="/MainController")
 public class MainController extends HttpServlet {

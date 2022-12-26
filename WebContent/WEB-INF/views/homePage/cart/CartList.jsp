@@ -60,7 +60,8 @@
 			traditional: true,
 			data: {"checkedId":deleteCartList }, 
 			success: function(data) {
-				location.reload();			
+				("#cartContent").empty();
+				("#cartContent").html();
 			},
 			error: function() {
 				console.log("통신실패!");

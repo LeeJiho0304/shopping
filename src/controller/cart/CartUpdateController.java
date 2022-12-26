@@ -19,7 +19,7 @@ public class CartUpdateController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		
 		int quantity=  Integer.parseInt(request.getParameter("quantity"));
 		System.out.println("컨트롤러에서 "+quantity);
@@ -43,7 +43,6 @@ HttpSession session = request.getSession();
 		request.setAttribute("cartList", cartList);
 		
 		request.getRequestDispatcher("/WEB-INF/views/homePage/cart/cartDelete.jsp").forward(request, response);		
-		
 	}
 	
 
